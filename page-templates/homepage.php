@@ -125,39 +125,26 @@ jQuery(document).ready(function($) {
         <div class="slider-wrap">
             <div class="slider">
                <?php echo do_shortcode('[carousel-horizontal-main-content-slider]'); ?>
-            
-            
-                <?php /*if(function_exists('show_text_block')) { echo show_text_block('homepage-welcome-to-leaf-academy', false); }*/ ?>
             </div>
         </div>
     </div><!-- .block-front-intro -->
     <a name="start"></a>
     
-    <div class="block block-front-news">
+    <div class="block block-front block-front-news">
         <div class="slider">
             <h2 class="section">News feed</h2>
             <?php echo do_shortcode('[carousel-horizontal-news-content-slider]'); ?>
             
         </div>
-        <!--<div class="main-item">
-            <div class="overlay"></div>
-            <div class="wrap"><span class="title"></span></div>
-        </div> -->
     </div>
     
-    <!-- .block-front-news -->
-    <!--
-    <div class="block block-front-map">
-        <a href="/contact" class="btn grey-green" role="button">Map</a>
-    </div>
-    -->
-    <div class="block block-front-events" style="background-image: url('<?php if(function_exists('get_text_block_image_url')) { echo get_text_block_image_url(1673); } ?>')">
+    <div class="block block-front block-front-events" style="background-image: url('<?php if(function_exists('get_text_block_image_url')) { echo get_text_block_image_url(1673); } ?>')">
         <div class="overlay slider">
+			 <h2 class="section"><?php _e('Events', 'leafacademy'); ?></h2>
             <?php echo do_shortcode('[carousel-horizontal-events-content-slider]'); ?>
         </div>
     </div>
     
-   
     <!-- .block-front-map -->
     <div class="block block-front-sections do-match-height">
         <article class="item bg-white">

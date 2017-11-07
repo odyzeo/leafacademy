@@ -101,27 +101,6 @@ window.screenLG = 1200;
 			});
 		});
 		/*-------------------------------------------*/
-		/*--front news slider
-		/*--*/
-		/*$('.block-front-news .slider .items').slick({
-			arrows: true,
-			autoplay: true,
-			autoplaySpeed: 5000,
-			dots: true,
-			draggable: true,
-			fade: true,
-			infinite: true,
-			prevArrow: '<a class="slick-dir-nav prev"></a>',
-			nextArrow: '<a class="slick-dir-nav next"></a>',
-			speed: 500,
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			swipe: true,
-			customPaging: function(slider,i){
-				return '<a class="tab"></a>';
-			}
-		}); */
-		/*-------------------------------------------*/
 		/*--triggers
 		/*--*/
 		function fnInit(){
