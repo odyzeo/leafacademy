@@ -1,0 +1,10 @@
+.lfab-categories {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.lfab-category {
+    display: inline-block;
+    vertical-align: top;
+    margin:12px 6px;
+}

@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'ChaparralProLight';
+    src: url('ChaparralProLight.eot');
+    src: url('ChaparralProLight.eot') format('embedded-opentype'),
+         url('ChaparralProLight.woff2') format('woff2'),
+         url('ChaparralProLight.woff') format('woff'),
+         url('ChaparralProLight.ttf') format('truetype'),
+         url('ChaparralProLight.svg#ChaparralProLight') format('svg');
+}

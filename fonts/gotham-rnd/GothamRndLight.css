@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'GothamRndLight';
+    src: url('GothamRndLight.eot');
+    src: url('GothamRndLight.eot') format('embedded-opentype'),
+         url('GothamRndLight.woff2') format('woff2'),
+         url('GothamRndLight.woff') format('woff'),
+         url('GothamRndLight.ttf') format('truetype'),
+         url('GothamRndLight.svg#GothamRndLight') format('svg');
+}

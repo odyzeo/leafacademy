@@ -1,0 +1,205 @@
+<?php
+/**
+ * Template Name: Homepage
+ *
+ * @package WordPress
+ * @subpackage Twenty_Fourteen
+ * @since Twenty Fourteen 1.0
+ */
+ 
+get_header(); ?> 
+
+<script type="text/javascript">
+
+var ytPlayers =[];
+var YouTubeIframeAPIReady = false;
+var domReady = false;
+
+
+
+function initPlayer(videoId, elementId){
+    if (!ytPlayers[elementId]){
+    
+    ytPlayers[elementId] = new YT.Player(elementId, {
+        videoId: videoId,
+        height: '100%',
+        width: '100%',
+        playerVars: {
+            color: 'white',
+            showinfo: 0, 
+            rel: 0,
+            autoplay: true,
+            controls: 0,
+            wmode: 'transparent',
+            //'playsinline':'1',
+            //loop: 1
+        },
+        events: {
+            'onReady': function(event){
+               //event.target.playVideo(); // comment out this line
+                ytPlayers[elementId].mute();
+                ytPlayers[elementId].addEventListener('onStateChange',function(e){
+                    
+                });
+            },
+            
+            'onStateChange': function(){
+                
+                var status = ytPlayers[elementId].getPlayerState(); 
+               
+                  if (status === YT.PlayerState.PLAYING){
+                  }else if (status === YT.PlayerState.ENDED){
+                      ytPlayers[elementId].playVideo();
+                  }else{
+                     
+                  }
+            }
+           }
+        }); 
+    }     
+}
+
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+function onYouTubeIframeAPIReady() {
+    YouTubeIframeAPIReady = true;
+   <?php
+       $mainVideoId =  get_text_block_video_id(1670);
+       if ($mainVideoId){
+           echo("initPlayer('$mainVideoId','intro-video'); ");
+       }
+    ?> 
+    if (domReady){
+      initSlideVideos(); 
+    }   
+}
+
+function initSlideVideos(){
+   
+    jQuery('.chpcs_video.doInitPlayerLater').each(function(){
+        
+        var videoId = jQuery(this).data('video');
+        if (videoId){
+             jQuery(this).css({ backgroundImage: 'none' });
+             initPlayer(videoId,jQuery(this).find('.chpcs_video_iframe').attr('id')); 
+        }
+    })
+}
+
+jQuery(document).ready(function($) {
+   domReady = true; 
+   if (YouTubeIframeAPIReady){
+      initSlideVideos(); 
+   }   
+});
+</script>
+
+
+
+
+<div id="main-content" class="main-content homepage">
+
+
+    <div class="block block-front-intro do-match-height bg-green">
+        <div class="video" style="background-image: url('<?php if(function_exists('get_text_block_image_url')) {if (function_exists('get_text_block_video_id') && !get_text_block_video_id(1670)) echo get_text_block_image_url(1670); } ?>')">
+            <div class="overlay"></div>
+          
+            <div class="wrap">
+            <?php if(function_exists('show_text_block') && trim(strip_tags(show_text_block(1670, true)))!=''){?>
+                <div class="title">
+                     <?php { echo show_text_block(1670, false); } ?>
+                     <!--Boarding school<br>for future leadership-->
+                
+                </div>
+            <?php } ?>
+            <a href="/#start" class="scroll-down"></a>
+            
+            </div>
+          
+            <div id="intro-video"></div>
+        </div>
+        <div class="slider-wrap">
+            <div class="slider">
+               <?php echo do_shortcode('[carousel-horizontal-main-content-slider]'); ?>
+            
+            
+                <?php /*if(function_exists('show_text_block')) { echo show_text_block('homepage-welcome-to-leaf-academy', false); }*/ ?>
+            </div>
+        </div>
+    </div><!-- .block-front-intro -->
+    <a name="start"></a>
+    
+    <div class="block block-front-news">
+        <div class="slider">
+            <h2 class="section">News feed</h2>
+            <?php echo do_shortcode('[carousel-horizontal-news-content-slider]'); ?>
+            
+        </div>
+        <!--<div class="main-item">
+            <div class="overlay"></div>
+            <div class="wrap"><span class="title"></span></div>
+        </div> -->
+    </div>
+    
+    <!-- .block-front-news -->
+    <!--
+    <div class="block block-front-map">
+        <a href="/contact" class="btn grey-green" role="button">Map</a>
+    </div>
+    -->
+    <div class="block block-front-events" style="background-image: url('<?php if(function_exists('get_text_block_image_url')) { echo get_text_block_image_url(1673); } ?>')">
+        <div class="overlay slider">
+            <?php echo do_shortcode('[carousel-horizontal-events-content-slider]'); ?>
+        </div>
+    </div>
+    
+   
+    <!-- .block-front-map -->
+    <div class="block block-front-sections do-match-height">
+        <article class="item bg-white">
+            <div class="section"><?php echo get_the_title(54); ?></div>
+            <?php if(function_exists('show_text_block')) { echo show_text_block(54, false); } ?>
+           
+        </article>
+        <article class="item bg-green">
+            <div class="section"><?php echo get_the_title(56); ?></div>
+            <?php if(function_exists('show_text_block')) { echo show_text_block(56, false); } ?>
+           
+        </article>
+        <article class="item bg-darkgrey">
+            <div class="section"><?php echo get_the_title(58); ?></div>
+            <?php if(function_exists('show_text_block')) { echo show_text_block(58, false); } ?>
+        </article>
+    </div><!-- .block-front-sections -->
+
+
+    <?php /*
+    <div id="primary" class="content-area">
+        <div id="content" class="site-content" role="main">
+           
+            <?php
+                // Start the Loop.
+                while ( have_posts() ) : the_post();
+                    echo('***************');
+                    // Include the page content template.
+                    get_template_part( 'content', 'page' );
+
+                    // If comments are open or we have at least one comment, load up the comment template.
+                    if ( comments_open() || get_comments_number() ) {
+                        comments_template();
+                    }
+                endwhile;
+            ?>
+        </div><!-- #content -->
+    </div><!-- #primary -->
+    */ ?>
+</div><!-- #main-content -->
+
+<?php
+//get_sidebar();
+
+get_footer();

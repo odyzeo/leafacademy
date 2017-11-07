@@ -1,0 +1,202 @@
+.lfab-article-item {
+
+}
+
+.lfab-article-item-inner {
+    text-align: center;
+    padding-top: 38px;
+    padding-bottom: 38px;
+}
+
+.lfab-article-item-content {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    position: relative;
+    padding-left: 200px;
+}
+
+.lfab-article-item.has-avatar .lfab-article-item-content {
+    min-height: 186px;
+}
+
+.lfab-article-item-footer {
+    position: absolute;
+    left: 0;
+    top:50%;
+    -webkit-transform:translateY(-50%);
+    transform:translateY(-50%);
+    width: 200px;
+}
+
+
+/*avatar */
+.lfab-article-item-author-avatar {
+    text-align: center;
+}
+
+.lfab-article-item-author-avatar-inner {
+    width: 70%;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background-color: #eee;
+    margin-bottom: 12px;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid white;
+    box-shadow: 0 0 1px rgba(0,0,0,.2);
+}
+
+.lfab-article-item-author-avatar-image-wrapper {
+    display: block;
+    width: 100%;
+    height: 0;
+    text-decoration: none;
+    padding-bottom: 100%;
+}
+
+.lfab-article-item-author-avatar-image-wrapper img {
+    display:block;
+    max-width: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+}
+
+.lfab-article-item-author-name {
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 1.3;
+    /*word-break: break-all;
+    word-wrap: break-word;*/
+}
+
+.lfab-article-item-author-name-link {
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .lfab-article-item-author-name-link:hover {
+        text-decoration: underline;
+    }
+}
+
+.lfab-article-item-author-name-link:active {
+    text-decoration: underline;
+}
+
+
+/** header stuff **/
+.lfab-article-item-meta {
+    font-size: 0;
+    line-height: 1;
+}
+
+.lfab-article-item-meta > * {
+    display: inline;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.lfab-article-item-date {
+    font-size: 12px;
+    line-height: 1;
+    color:#333333;
+    font-weight: 600;
+    font-family: "Gotham Rounded A", "Gotham Rounded B", sans-serif;
+}
+
+.lfab-article-item-meta-divider {
+    display: inline-block;
+    font-size: 12px;
+    color:#333333;
+    font-weight: 600;
+    font-family: "Gotham Rounded A", "Gotham Rounded B", sans-serif;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.lfab-article-item-categories-list {
+    line-height: 1rem;
+    font-weight: 600;
+    font-family: "Gotham Rounded A", "Gotham Rounded B", sans-serif;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+
+.lfab-article-item-categories-list-item {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.lfab-article-item-categories-list-item:after {
+    content: ",";
+    font-size: 12px;
+    color:#333333;
+    margin-right: 3px;
+}
+
+.lfab-article-item-categories-list-item:last-child:after {
+    display: none;
+}
+
+.lfab-article-item-categories-list-item-link {
+    font-size: 12px;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .lfab-article-item-categories-list-item-link:hover {
+        text-decoration: underline;
+    }
+}
+
+.lfab-article-item-categories-list-item-link:active {
+    text-decoration: underline;
+}
+
+/* body */
+.lfab-article-item .lfab-article-item-title {
+    line-height: 1.3;
+    margin: 14px 0;
+    font-size: 32px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.lfab-article-item-excerpt {
+    margin: 14px 0;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+
+/* footer */
+.lfa-blog-footer {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.lfa-blog-pagination {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.lfa-blog-pagination > * {
+    margin: 0 12px;
+}
+
+.no-articles-at-this-time {
+    text-align: center;
+    margin: 25px auto;
+}

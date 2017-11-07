@@ -1,0 +1,619 @@
+/** this category list in list articles **/
+.lfa-blog-category-list {
+    text-align: center;
+}
+
+.lfa-blog-category-list-inner {
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    max-width: 914px;
+}
+
+
+/** articles */
+.lfa-blog-article-list .lfa-blog-article-list-item {}
+.lfa-blog-article-list .lfa-blog-article-list-item[aria-hidden="true"] {
+    display: none;
+}
+
+.lfa-blog-article-list .lfa-blog-article-list-item.odd .lfab-article-item-inner {
+    background-color: #f2f2f2;
+}
+
+.lfa-blog-article-list .lfa-blog-article-list-item.odd .lfab-article-item-author-avatar-inner {
+    background-color: #ccc;
+}
+
+.lfa-blog-article-list .lfab-article-item-content {
+    width: 914px;
+}
+
+/** bloggers **/
+.bloggers {
+
+}
+
+.bloggers .name a {
+    color: inherit;
+}
+
+@media (min-width: 768px) {
+    .bloggers .name a:hover {
+        text-decoration: underline;
+    }
+}
+
+.bloggers .name a:active {
+    text-decoration: underline;
+}
+
+.bloggers .position {
+    margin-top: 3px;
+}
+
+@media (max-width: 1200px) {
+    .bloggers .block-team {
+        padding-top:0!important;
+        padding-bottom:0!important;
+    }
+}
+
+
+
+@media (max-width: 992px) {
+    .lfa-blog-category-list-inner {
+        display: block;
+        max-width: none;
+        width: auto;
+    }
+
+    .lfab-categories {
+        padding: 12px;
+    }
+
+    .lfab-category {
+        margin: 6px 3px;
+    }
+
+    .lfa-blog-article-list .lfab-article-item-content {
+        display: block;
+        max-width: none;
+        width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .lfab-article-item-inner {
+        padding: 20px;
+    }
+
+    .lfab-article-item-footer {
+        width: 100px;
+        -webkit-transform:none;
+        transform:none;top:0;
+    }
+
+    .lfab-article-item-author-avatar-inner {
+        width: 100%;
+    }
+
+    .lfab-article-item-author-name {
+        white-space: normal;
+        overflow: auto;
+        text-overflow: initial;
+    }
+
+    .lfa-blog-article-list .lfab-article-item-content {
+        padding-left: 130px;
+    }
+
+    .lfab-article-item .lfab-article-item-title {
+        font-size: 22px;
+        margin: 7px 0;
+    }
+
+    .lfab-article-item-body {
+        padding-bottom: 70px;
+    }
+
+    .lfab-article-item-cta {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+
+    .lfab-article-item-excerpt {
+        line-height: 1.45;
+        font-size: 15px;
+    }
+
+    .bloggers .entry-content > *:first-child {
+        padding: 0!important;
+        margin: 0!important;
+        padding-bottom: 50px!important;
+    }
+
+    .bloggers .items .item:first-child:before {
+        display: none!important;
+    }
+
+    .bloggers .items .item:before {
+        display: block!important;
+        left:50%;
+        top:-30px;
+        content:"";
+        position: absolute;
+        background-color: #111;
+        height: 1px;
+        width: 120px
+    }
+}
+
+
+.lfa-blog-field:-ms-input-placeholder {
+    color:#999999;
+    line-height: 1.2;
+}.lfa-blog-field::-webkit-input-placeholder {
+    color:#999999;
+    line-height: 1.2;
+}
+.lfa-blog-field::-moz-placeholder {
+    color:#999999;
+    line-height: 1.2;
+}
+.lfa-blog-field:-moz-placeholder {
+    color:#999999;
+    line-height: 1.2;
+}
+
+
+.lfa-blog-field {
+    border:1px solid #adb9c8;
+    display:block;
+    width: 100%;
+    height: 46px;
+    line-height: 1.2;
+    padding: 0 12px;
+    color:#333;
+    font-size: 17px;
+    font-family: 'ChaparralProRegular', sans-serif;
+    box-shadow: none;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+textarea.lfa-blog-field {
+    padding: 12px;
+    line-height: 1.34;
+    height: 4.02em;
+    min-height: 140px;
+    max-height: 500px;
+    resize: vertical;
+
+}
+
+.lfa-blog-field:focus {
+    border-color:#333;
+    box-shadow: 0 0 2px rgba(0,0,0,.2) inset;
+}
+
+
+/** login form */
+form[aria-hidden="true"] {
+    display: none;
+}
+
+.loginformlink[aria-hidden="true"] {
+    display: none;
+}
+
+form.loginform {
+    text-align: center;
+    padding: 30px 0;
+}
+.loginform,
+.loginformfields {
+    margin:0;
+    padding:0;
+    border:none;
+}
+
+.loginformfields {
+    display: inline-block;
+    vertical-align: top;
+    width: 250px;
+}
+
+.loginformfields[disabled] .lfa-blog-field,
+.lostpasswordformfields[disabled] .lfa-blog-field {
+    opacity: .7;
+    pointer-events: none;
+    color: #999;
+}
+
+.loginformfieldgroup {
+
+}
+
+.loginformfieldgroup + .loginformfieldgroup {
+    margin-top: 15px;
+}
+
+.loginformsubmit,
+.lostpasswordformsubmit {
+    margin-top: 15px;
+}
+
+.loginformsubmitbtn,
+.lostpasswordformsubmitbtn {
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.loginformsubmitbtn[disabled],
+.lostpasswordformsubmitbtn[disabled] {
+    opacity: .7;
+    pointer-events: none;
+}
+
+.loginformsubmitbtn.btn-loader,
+.lostpasswordformsubmitbtn.btn-loader {
+    position: relative;
+    background-size: auto 50%;
+    background-image: url("../../images/spinner-light.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    pointer-events: none;
+    color: transparent!important;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.loginformlinks {
+    list-style: none;
+    padding: 0;
+    margin:0!important;
+    padding-bottom: 20px;
+}
+
+.loginformlinks li {
+    display: block;
+    margin:0;
+    padding: 0;
+    text-align: center;
+    line-height: 1;
+}
+
+.loginformlinks li + li {
+    margin-top: 4px;
+}
+
+.loginformlinkitem {
+    display: inline-block;
+    background: none;
+    margin:0;
+    padding: 0;
+    color:#00b24c;
+    font-weight: bold;
+    font-family: 'ChaparralProRegular', sans-serif;
+    font-size: 15px;
+    line-height: 1;
+    text-decoration: underline;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .loginformlinkitem:hover {
+        text-decoration: none;
+    }
+}
+
+.loginformlinkitem:active {
+    text-decoration: none;
+}
+
+
+/* forgotten address form */
+
+form.lostpasswordform {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.lostpasswordform .lfa-blog-field {
+    text-align: center;
+}
+
+.lostpasswordform,
+.lostpasswordformfields {
+    margin:0;
+    padding:0;
+    border:none;
+}
+
+.lostpasswordformfields {
+    display: inline-block;
+    vertical-align: top;
+    width: 250px;
+}
+
+.lostpasswordwassent {
+    display: none;
+    background-color: green;
+    color: white;
+    text-align: center;
+    margin:10px auto;
+    max-width: 250px;
+    line-height: 1.4;
+    padding: 12px;
+    text-shadow: 0 1px 1px rgba(0,0,0,.25);
+}
+
+
+/* register form **/
+form.registerform {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.registerform,
+.registerformfields {
+    margin:0;
+    padding:0;
+    border:none;
+}
+
+.registerformfields {
+    display: inline-block;
+    vertical-align: top;
+    width: 340px;
+    position: relative;
+}
+
+.registerformfieldgroup {
+}
+
+.registerformfieldgroup.has-error .lfa-blog-field {
+    border-color: red;
+    color:red!important;
+}
+.has-error-text{
+    display: none;
+}
+
+.registerformfieldgroup.has-error .has-error-text{
+    display: block;
+    padding: 5px 12px;
+    color: red;
+    font-size: 14px;
+}
+
+.registerformfields[disabled] .lfa-blog-field {
+    opacity: .7;
+    pointer-events: none;
+    color: #999;
+}
+
+.registerformfields[disabled] button {
+    opacity: 0.7;
+    cursor: pointer;
+    pointer-events: none;
+}
+
+.registerformfieldgroup + .registerformfieldgroup {
+    margin-top: 15px;
+}
+
+.registerformsubmit {
+    margin-top: 15px;
+}
+
+.registerformsubmitbtn {
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.registerformsubmitbtn[disabled] {
+    opacity: .7;
+    pointer-events: none;
+}
+
+.registerformsubmitbtn.btn-loader {
+    position: relative;
+    background-size: auto 50%;
+    background-image: url("../../images/spinner-light.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    pointer-events: none;
+    color: transparent!important;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.registration_rules {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 25px;
+}
+
+.registration_rules > * {
+    margin-bottom: 0!important;
+}
+
+
+/* registration form avatar */
+
+.registerformavatarfieldgroup {
+    position: absolute;
+    right: 100%;
+    margin-right: 25px;
+    margin-top: 25px;
+    top:0;
+}
+
+.lfa-blog-field-file {
+    position: absolute;
+    left: -100px;
+    top:-100px;
+    display:block;
+    opacity:0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.registerformsubmitinfo {
+    margin: 10px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+.registerformuploadbtn {
+    display:inline-block;
+    vertical-align: top;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: none;
+    background-color: #d6d6d6;
+    border:none;
+    margin:0;
+    padding: 0;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    -webkit-transition: background-color 122ms ease-out;
+    transition: background-color 122ms ease-out;
+}
+
+@media (min-width: 768px) {
+    .registerformuploadbtn:hover {
+        background-color: #aaa;
+    }
+}
+
+.registerformuploadbtn:active {
+    background-color: #aaa;
+}
+
+.registerformuploadbtn .registerformuploadbtnlabel {
+    display:block;
+    color:#111;
+    font-size: 17px;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    -webkit-transform:translateY(-50%) translateX(-50%);
+    transform:translateY(-50%) translateX(-50%);
+}
+
+.registerformavatarfieldgroupremovephoto {
+    margin-top: 12px;
+    display: none;
+}
+
+.registerformavatarfieldgroupremovephotobtn {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    outline: none;
+    margin: 0;
+    background: #eee;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 1px solid rgba(0,0,0,.2);
+    line-height: 1;
+    padding: 6px 10px;
+}
+
+@media (min-width: 768px) {
+    .registerformavatarfieldgroupremovephotobtn:hover {
+        background-color: #aaa;
+        color:white;
+        text-shadow: 0 1px 1px rgba(0,0,0,.6);
+    }
+}
+
+.registerformavatarfieldgroupremovephotobtn:active {
+    background-color: #aaa;
+    color:white;
+    text-shadow: 0 1px 1px rgba(0,0,0,.6);
+}
+
+.registerformuploadbtnpreview {
+    display:block;
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    top:0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+
+@media (max-width: 768px) {
+    .registration_rules {
+        max-width: none;
+        margin-left: 18px;
+        margin-right: 18px;
+    }
+
+    .site-content .registration_rules p, .site-content .registration_rules ul, .site-content .registration_rules ol {
+        font-size: 17px;
+        line-height: 1.4;
+    }
+
+    .registerformavatarfieldgroup {
+        position: relative;
+        right: auto;
+        margin-right: 0;
+        top:auto;
+        text-align: center;
+        -webkit-transform:none;
+        transform:none;
+        margin-bottom: 25px;
+    }
+
+    .lfa-blog-field::-webkit-input-placeholder {
+        line-height: 1.55;
+    }
+
+    .loginformlinks {
+        padding-bottom: 30px;
+    }
+
+    .loginformlinks li + li {
+        margin-top: 20px;
+    }
+
+    .registerformfields {
+        width: 250px;
+    }
+}
+
+.registerformsuccess {
+    display: none;
+    background-color: green;
+    color: white;
+    text-align: center;
+    margin:25px auto;
+    max-width: 350px;
+    line-height: 1.4;
+    padding: 12px;
+    text-shadow: 0 1px 1px rgba(0,0,0,.25);
+}

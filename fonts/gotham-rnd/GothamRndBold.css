@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'GothamRndBold';
+    src: url('GothamRndBold.eot');
+    src: url('GothamRndBold.eot') format('embedded-opentype'),
+         url('GothamRndBold.woff2') format('woff2'),
+         url('GothamRndBold.woff') format('woff'),
+         url('GothamRndBold.ttf') format('truetype'),
+         url('GothamRndBold.svg#GothamRndBold') format('svg');
+}
