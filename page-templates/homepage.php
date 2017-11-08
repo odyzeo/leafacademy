@@ -98,11 +98,7 @@ jQuery(document).ready(function($) {
 });
 </script>
 
-
-
-
 <div id="main-content" class="main-content homepage">
-
 
     <div class="block block-front-intro do-match-height bg-green">
         <div class="video" style="background-image: url('<?php if(function_exists('get_text_block_image_url')) {if (function_exists('get_text_block_video_id') && !get_text_block_video_id(1670)) echo get_text_block_image_url(1670); } ?>')">
@@ -111,9 +107,7 @@ jQuery(document).ready(function($) {
             <div class="wrap">
             <?php if(function_exists('show_text_block') && trim(strip_tags(show_text_block(1670, true)))!=''){?>
                 <div class="title">
-                     <?php { echo show_text_block(1670, false); } ?>
-                     <!--Boarding school<br>for future leadership-->
-                
+                     <?php echo show_text_block(1670, false); ?>
                 </div>
             <?php } ?>
             <a href="/#start" class="scroll-down"></a>
@@ -134,7 +128,6 @@ jQuery(document).ready(function($) {
         <div class="slider">
             <h2 class="section">News feed</h2>
             <?php echo do_shortcode('[carousel-horizontal-news-content-slider]'); ?>
-            
         </div>
     </div>
     
@@ -162,31 +155,9 @@ jQuery(document).ready(function($) {
             <?php if(function_exists('show_text_block')) { echo show_text_block(58, false); } ?>
         </article>
     </div><!-- .block-front-sections -->
-
-
-    <?php /*
-    <div id="primary" class="content-area">
-        <div id="content" class="site-content" role="main">
-           
-            <?php
-                // Start the Loop.
-                while ( have_posts() ) : the_post();
-                    echo('***************');
-                    // Include the page content template.
-                    get_template_part( 'content', 'page' );
-
-                    // If comments are open or we have at least one comment, load up the comment template.
-                    if ( comments_open() || get_comments_number() ) {
-                        comments_template();
-                    }
-                endwhile;
-            ?>
-        </div><!-- #content -->
-    </div><!-- #primary -->
-    */ ?>
+   
 </div><!-- #main-content -->
 
 <?php
-//get_sidebar();
 
 get_footer();
