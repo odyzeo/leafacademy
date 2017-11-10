@@ -180,6 +180,7 @@ window.screenMD = 992;
 window.screenLG = 1200;
 /*-------------------------------------------*/
 (function ($) {
+	
     $(document).ready(function(){
         /*-------------------------------------------*/
         /*--vars
@@ -270,10 +271,18 @@ window.screenLG = 1200;
             var $el = $('body'),
                 $className = 'header-mini',
                 $scrollTop = $(window).scrollTop();
+		
+			
             if($scrollTop<1){
-                $el.removeClass($className);
-            }else{
-                $el.addClass($className);
+                
+				$el.removeClass($className);
+				$(document).trigger('header-scroll');
+				
+            }else if (!$el.hasClass($className)) {
+                
+				$el.addClass($className);
+				$(document).trigger('header-scroll');
+				
             }
         }
         /*-------------------------------------------*/

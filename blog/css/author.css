@@ -88,6 +88,8 @@ nav.nav .lfa-author-panel {
     top:45px;
     background-color: #00b24c;
     height: 2000px;
+	overflow-y: auto;
+    overflow-x: hidden;
 }
 
 nav.nav .lfa-author-panel::after {

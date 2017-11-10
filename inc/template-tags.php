@@ -200,29 +200,33 @@ function leafacademy_category_transient_flusher() {
 add_action( 'edit_category', 'leafacademy_category_transient_flusher' );
 add_action( 'save_post',     'leafacademy_category_transient_flusher' );
 
-function the_post_thumbnail_caption(WP_Post $post = null, $caption = null) {
+if ( ! function_exists( 'the_post_thumbnail_caption' ) ) :
+	
+	function the_post_thumbnail_caption(WP_Post $post = null, $caption = null) {
 
-    if($post === null) {
-        global $post;
-    }
+		if($post === null) {
+			global $post;
+		}
 
-  $thumbnail_id    = get_post_thumbnail_id($post->ID);
-  $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
-  
+	  $thumbnail_id    = get_post_thumbnail_id($post->ID);
+	  $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
 
-  if ($thumbnail_image && isset($thumbnail_image[0])) {
 
-      if($caption === null) {
-          $caption =  $thumbnail_image[0]->post_excerpt;
-      }
-    $description =  $thumbnail_image[0]->post_content; 
-  
-    echo '<span class="post-thumbnail-caption-wrapper"><span class="post-thumbnail-caption-wrapper-tr"><span class="post-thumbnail-caption-wrapper-td">';
-    echo '<strong class="post-thumbnail-caption">'.esc_attr($caption).'</strong>';
-    if ($description) echo '<span class="post-thumbnail-description">'.$description.'</span>';
-    echo '</span></span></span>';
-  }
-}
+	  if ($thumbnail_image && isset($thumbnail_image[0])) {
+
+		  if($caption === null) {
+			  $caption =  $thumbnail_image[0]->post_excerpt;
+		  }
+		$description =  $thumbnail_image[0]->post_content; 
+
+		echo '<span class="post-thumbnail-caption-wrapper"><span class="post-thumbnail-caption-wrapper-tr"><span class="post-thumbnail-caption-wrapper-td">';
+		echo '<strong class="post-thumbnail-caption">'.esc_attr($caption).'</strong>';
+		if ($description) echo '<span class="post-thumbnail-description">'.$description.'</span>';
+		echo '</span></span></span>';
+	  }
+	}
+
+endif;
 
 if ( ! function_exists( 'leafacademy_post_thumbnail' ) ) :
 /**
