@@ -47,7 +47,6 @@ window.screenLG = 1200;
 			if($('.'+$class).length==0){
 				$el.before('<div class="'+$class+'"></div>');
 			}
-			/*$('.'+$class).css({height: $el.outerHeight()});*/
 		}
 		/*-------------------------------------------*/
 		/*--header scroll
@@ -123,4 +122,4 @@ window.screenLG = 1200;
 		});
 		/*-------------------------------------------*/
 	});
-})(jQuery)
+})(jQuery);

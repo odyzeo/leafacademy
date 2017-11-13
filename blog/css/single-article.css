@@ -73,7 +73,8 @@
 	vertical-align: middle;
 	padding-left: 0px;
 	font-size: 0.8em;
-	margin: 5px 0;
+	margin: 5px 10px 5px 0;
+    display: inline-block;
 }
 
 @media (max-width: 850px) {

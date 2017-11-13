@@ -254,16 +254,20 @@ var LFABlog = {
 
 		jQuery(function($) {
 
-			var currentHeight = $(".lfa-author-panel").height();
-			var newHeight = $(window).height() - $('#primary-menu').height() - $('#header > .top').height() - visPx(jQuery('#footer'));
-			if ($('#wpadminbar').length > 0) {
-				newHeight -= $('#wpadminbar').height();
-			}
+			if (mediaQueryMinWidth(1200)) {
+				
+				var currentHeight = $(".lfa-author-panel").height();
+				var newHeight = $(window).height() - $('#primary-menu').height() - $('#header > .top').height() - visPx(jQuery('#footer'));
+				if ($('#wpadminbar').length > 0) {
+					newHeight -= $('#wpadminbar').height();
+				}
 
-			if (currentHeight !== newHeight) {
-				$(".lfa-author-panel").css({
-					'height': newHeight + 'px'
-				});
+				if (currentHeight !== newHeight) {
+					$(".lfa-author-panel").css({
+						'height': newHeight + 'px'
+					});
+				}
+
 			}
 
 		});
