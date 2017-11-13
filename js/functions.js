@@ -14,30 +14,6 @@
 	button = nav.find('.menu-toggle');
 	menu = nav.find('.nav-menu');
 
-	// Enable menu toggle for small screens.
-	(function() {
-		if (!nav || !button) {
-			return;
-		}
-
-		// Hide button if menu is missing or empty.
-		if (!menu || !menu.children().length) {
-			button.hide();
-			return;
-		}
-
-		button.on('click.leafacademy', function() {
-			nav.toggleClass('toggled-on');
-			if (nav.hasClass('toggled-on')) {
-				$(this).attr('aria-expanded', 'true');
-				menu.attr('aria-expanded', 'true');
-			} else {
-				$(this).attr('aria-expanded', 'false');
-				menu.attr('aria-expanded', 'false');
-			}
-		});
-	})();
-
 	/*
 	 * Makes "skip to content" link work correctly in IE9 and Chrome for better
 	 * accessibility.
@@ -223,7 +199,7 @@ window.screenLG = 1200;
 		});
 
 		function resizeMain() {
-			//console.log($(window).height(),$('#footer').outerHeight(),$('#header').outerHeight(), $('.post-thumbnail').first().height());
+
 			var offset = 0;
 			if ($(document).height() > $(window).height()) {
 				offset = $('#header').outerHeight();   //lebo ked sa scrollne tak sa zmnis header a uz to neni dost velke
@@ -237,7 +213,7 @@ window.screenLG = 1200;
 		/*-------------------------------------------*/
 		/*--sticky element
 		 /*--*/
-		function fnSickyElement(el, cl) {
+		function fnStickyElement(el, cl) {
 			var $el = $(el),
 					$class = cl + 'placeholder';
 			if ($('.' + $class).length == 0) {
@@ -249,10 +225,10 @@ window.screenLG = 1200;
 		/*--header scroll
 		 /*--*/
 		function fnHeaderScroll() {
-			var $el = $('body'),
-					$className = 'header-mini',
-					$scrollTop = $(window).scrollTop();
 
+			var $el = $('body');
+			var $className = 'header-mini';
+			var $scrollTop = $(window).scrollTop();
 
 			if ($scrollTop < 1) {
 
@@ -274,14 +250,20 @@ window.screenLG = 1200;
 				$elResponsiveMenu.show();
 			} else {
 				$elResponsiveMenu.hide();
+				$('#header .nav .nav-toggle').removeClass('open');
+				$('header > nav > ul.menu > li.expanded').removeClass('expanded').attr({
+					'aria-expanded': 'false'
+				});
 			}
 		}
+
 		$('#header .nav .nav-toggle').click(function(event) {
 			event.preventDefault();
+			$(this).toggleClass('open');
 			$elResponsiveMenu.fadeToggle('fast');
 		});
 
-		$('header > nav > ul.menu > li > a').on('click', function() {
+		$('header > nav > ul.menu > li.menu-item-has-children > a').on('click', function() {
 
 			var menuLink = $(this).closest('li');
 			var isExpanded = menuLink.hasClass('expanded');
@@ -512,15 +494,12 @@ window.screenLG = 1200;
 
 		}
 
-
 		if ($('.block-items-list .item iframe').length) {
 			$(window).resize(function() {
 				resizeBlockVideo();
 			});
 			resizeBlockVideo();
 		}
-
-
 
 		/*-------------------------------------------*/
 		/*--team
@@ -592,11 +571,11 @@ window.screenLG = 1200;
 			fnGetHashFromHref($(this));
 			return false;
 		});
+
 		$(document).on('click', '.block-team .close', function() {
 			$('.block-team .active').removeClass('active');
 			fnTeamResizeFix();
 		});
-
 
 		/*-------------------------------------------*/
 		/*--triggers
@@ -604,7 +583,7 @@ window.screenLG = 1200;
 
 		function fnInit() {
 			fnHeaderScroll();
-			fnSickyElement('#header', 'header');
+			fnStickyElement('#header', 'header');
 			fnMatchHeightBreakpoint();
 			fnMasonry();
 			resizeMain();
@@ -613,14 +592,19 @@ window.screenLG = 1200;
 
 		$(window).scroll(function() {
 			fnHeaderScroll();
-			fnSickyElement('#header', 'header');
+			fnStickyElement('#header', 'header');
 		});
+
 		$(window).resize(function() {
-			fnSickyElement('#header', 'header');
+			fnStickyElement('#header', 'header');
 			fnMatchHeightBreakpoint();
+		});
+
+		// Listen for orientation changes
+		window.addEventListener("orientationchange", function() {
 			fnResponsiveMenu();
 			resizePostThumb();
-		});
+		}, false);
 
 		$(window).load(function() {
 			fnInit();

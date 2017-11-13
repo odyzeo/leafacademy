@@ -2162,7 +2162,18 @@ header.entry-header{
 	content: '\f0c9';
 	font-size: 36px;
 	color: #fff;
+	transition: all .2s linear;
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
 }
+
+#header .nav .nav-toggle.open .icon:before {
+	content: "\f00d";
+	transition: all .2s linear;
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
 #header .nav .nav-toggle .text {
 	display: inline-block;
 	vertical-align: middle;
