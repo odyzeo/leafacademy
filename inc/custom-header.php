@@ -55,8 +55,9 @@ if ( ! function_exists( 'leafacademy_header_style' ) ) :
  *
  */
 function leafacademy_header_style() {
+	
 	$text_color = get_header_textcolor();
-
+	
 	// If no custom color for text is set, let's bail.
 	if ( display_header_text() && $text_color === get_theme_support( 'custom-header', 'default-text-color' ) )
 		return;

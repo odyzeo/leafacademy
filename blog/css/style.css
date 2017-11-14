@@ -17,8 +17,20 @@
     display: none;
 }
 
-.lfa-blog-article-list .lfa-blog-article-list-item.odd .lfab-article-item-inner {
-    background-color: #f2f2f2;
+.lfa-blog-article-list .lfa-blog-article-list-item:nth-child(4n+1) .lfab-article-item-inner {
+    background: #fef383;
+}
+
+.lfa-blog-article-list .lfa-blog-article-list-item:nth-child(4n+2) .lfab-article-item-inner {
+	background: #f3f3f4 url('../../images/patterns/leaf-siva.png');
+}
+
+.lfa-blog-article-list .lfa-blog-article-list-item:nth-child(4n+3) .lfab-article-item-inner {
+	background: url('../../images/patterns/lines-zltozelena.png');
+}
+
+.lfa-blog-article-list .lfa-blog-article-list-item:nth-child(4n+0) .lfab-article-item-inner {
+    background: #f3f3f4 url('../../images/patterns/academy-svetlosiva.png');
 }
 
 .lfa-blog-article-list .lfa-blog-article-list-item.odd .lfab-article-item-author-avatar-inner {
@@ -27,11 +39,6 @@
 
 .lfa-blog-article-list .lfab-article-item-content {
     width: 914px;
-}
-
-/** bloggers **/
-.bloggers {
-
 }
 
 .bloggers .name a {

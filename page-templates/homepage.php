@@ -120,6 +120,7 @@ jQuery(document).ready(function($) {
             <div class="slider">
                <?php echo do_shortcode('[carousel-horizontal-main-content-slider]'); ?>
             </div>
+			<a href="#" class="read-more">&nbsp;</a>
         </div>
     </div><!-- .block-front-intro -->
     <a name="start"></a>

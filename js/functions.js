@@ -582,12 +582,15 @@ window.screenLG = 1200;
 		 /*--*/
 
 		function fnInit() {
+			
 			fnHeaderScroll();
 			fnStickyElement('#header', 'header');
 			fnMatchHeightBreakpoint();
 			fnMasonry();
 			resizeMain();
+			
 		}
+		
 		fnInit();
 
 		$(window).scroll(function() {
@@ -607,7 +610,16 @@ window.screenLG = 1200;
 		}, false);
 
 		$(window).load(function() {
+		
 			fnInit();
+			
+			$(document).on('click', '.slider-wrap .read-more', function() {
+				console.log($(this).closest('.slider-wrap'));
+				$(this).closest('.slider-wrap').toggleClass('expanded');
+				return false;
+				
+			});
+			
 			$(window).resize();
 		});
 
