@@ -1000,20 +1000,16 @@ add_action('save_post', 'leafacademy_metabox_block_tag_save_date');
 if (!function_exists('leafacademy_team_members')) : // output
 
 	function leafacademy_team_members($atts, $do_shortcode = 1, $strip_shortcodes = 0) {
+
 		$type = isset($atts["type"]) ? $atts["type"] : "our-team";
 		$args = array(
 			'posts_per_page' => 100,
 			'offset' => 0,
-			//'category'        => ,
-			'orderby' => 'menu_order', // post_date, rand
+			'orderby' => 'menu_order',
 			'order' => 'ASC',
-			//'include'         => ,
-			//'exclude'         => ,
 			'meta_key' => "_team_member_type",
 			'meta_value' => $type,
 			'post_type' => 'team_member',
-			//'post_mime_type'  => ,
-			//'post_parent'     => ,
 			'post_status' => 'publish',
 			'suppress_filters' => true
 		);
@@ -1022,20 +1018,15 @@ if (!function_exists('leafacademy_team_members')) : // output
 
 		$html = '';
 		foreach ($posts as $post) {
-			//$meta_name = get_post_meta( $post->ID, '_team_member_title', true );
+
 			$meta_email = get_post_meta($post->ID, '_team_member_email', true);
 			$img_url = null;
 			$img = get_the_post_thumbnail($post->ID, 'medium');
-			/* if( empty( $img ) ) {
-			  $img = '<img src="'.plugins_url( '/img/default.png', __FILE__ ).'">';
-			  } */
-
 
 			if (has_post_thumbnail($post->ID)) {
+
 				$img = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'leafacademy-small-square');
 				$img_url = $img[0];
-
-				//the_post_thumbnail( 'thumbnail' ); /* thumbnail, medium, large, full, thumb-100, thumb-200, thumb-400, array(100,100) */
 			}
 
 			$content = $post->post_content;
@@ -1045,27 +1036,30 @@ if (!function_exists('leafacademy_team_members')) : // output
 			if ($strip_shortcodes == 1) {
 				$content = strip_shortcodes($content);
 			}
-			// $content = wp_trim_words( $content, 30, '...');
+
 			$content = wpautop($content);
 
-			$html .= '
-            <article class="item">
-                <a name="' . $post->post_name . '"></a>
-                <a href="#' . $post->post_name . '" class="image do-bg-image"><img src="' . ($img_url ? $img_url : '/wp-content/themes/leafacademy/images/team-member.png ') . '"></a>
-                <h2 class="name">' . $post->post_title . '</h2>';
-			if ($meta_email)
-				$html .='     
-                <div class="contact">
-                            <a href="mailto:' . $meta_email . '">' . $meta_email . '</a>
-                </div>';
-			$html .='      
-                <div class="about">
-                    <a class="close"></a>
-                    <p>' . $content . '</p>
-                </div>
-            </article>
-            ';
+			$html .= '<article class="item">';
+			$html .= '<a name="' . $post->post_name . '"></a>';
+			$html .= '<a href="#' . $post->post_name . '" class="image do-bg-image" data-supress-scroll><img src="' . ($img_url ? $img_url : '/wp-content/themes/leafacademy/images/team-member.png ') . '"></a>';
+			$html .= '<h2 class="name">' . $post->post_title . '</h2>';
+
+			$meta_job_role = get_post_meta($post->ID, 'la_job_role', true);
+			if (!empty($meta_job_role)) {
+				$html .= '<span class="job-role">' . esc_html($meta_job_role) . '</span>';
+			}
+
+			if ($meta_email) {
+
+				$html .='<div class="contact">';
+				$html .= '<a href="mailto:' . $meta_email . '">' . $meta_email . '</a>';
+				$html .= '</div>';
+			}
+
+			$html .='<div class="about"><a class="close"></a><p>' . $content . '</p></div>';
+			$html .= '</article>';
 		}
+
 		$html = '<div class="block block-team"><div class="items do-match-height">' . $html . '</div></div>';
 		return $html;
 
@@ -1073,75 +1067,7 @@ if (!function_exists('leafacademy_team_members')) : // output
 
 endif; // end of function_exists()
 
-
 add_shortcode('team_members', 'leafacademy_team_members');
-
-/*
-  if( ! function_exists( 'leafacademy_team_member' ) ) : // output
-  function leafacademy_team_member($atts, $do_shortcode = 1, $strip_shortcodes = 0 ) {
-  $name = isset($atts["name"]) ? $atts["name"] : null ;
-  if (empty($name)) return '';
-
-  $args = array(
-  'name'               => $name,
-  'post_type'   => 'team_member',
-  'post_status' => 'publish',
-  'numberposts' => 1,
-
-  //  'suppress_filters' => true
-  );
-
-  $posts = get_posts( $args );
-
-  $html = '';
-  foreach ( $posts as $post ) {
-  //$meta_name = get_post_meta( $post->ID, '_team_member_title', true );
-  $meta_email = get_post_meta( $post->ID, '_team_member_email', true );
-  $img_url = null;
-  $img = get_the_post_thumbnail( $post->ID, 'medium' );
-
-
-  if( has_post_thumbnail( $post->ID ) ) {
-  $img = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'leafacademy-small-square' );
-  $img_url = $img[0];
-
-
-  }
-
-  $content = $post->post_content;
-  if( $do_shortcode == 1 ) {
-  $content = do_shortcode( $content );
-  }
-  if( $strip_shortcodes == 1 ) {
-  $content = strip_shortcodes( $content );
-  }
-  // $content = wp_trim_words( $content, 30, '...');
-  $content = wpautop( $content );
-
-  $html .= '
-  <article class="item">
-  <a name="'.$post->post_name.'"></a>
-  <a href="#'.$post->post_name.'" class="image do-bg-image"><img src="'.($img_url ? $img_url : '/wp-content/themes/leafacademy/images/team-member.png ').'"></a>
-  <h2 class="name">'.$post->post_title.'</h2>';
-  if ($meta_email) $html .='
-  <div class="contact">
-  <a href="mailto:'.$meta_email.'">'.$meta_email.'</a>
-  </div>';
-  $html .='
-  <div class="about">
-  <a class="close"></a>
-  <p>'.$content.'</p>
-  </div>
-  </article>
-  ';
-  }
-  $html = '<div class="block block-team"><div class="items do-match-height">'.$html.'</div></div>';
-  return $html;
-  }
-  endif; // end of function_exists()
-
-
-  add_shortcode('team_member', 'leafacademy_team_member'); */
 
 if (!function_exists('leafacademy_blocks_grid')) : // output
 
@@ -1198,7 +1124,6 @@ if (!function_exists('leafacademy_blocks_grid')) : // output
 				}
 			}
 
-
 			$content = $post->post_content;
 			if ($do_shortcode == 1) {
 				$content = do_shortcode($content);
@@ -1213,16 +1138,16 @@ if (!function_exists('leafacademy_blocks_grid')) : // output
 			}
 
 			if (!empty($slides)) {
-				$html .= '<article class="item image ' . $sizeClass . '" style="' . $inlineCss . '><div class="images-wrap">' . $slides . '</div></article>';
+				$html .= '<article class="item image ' . $sizeClass . '" style="' . $inlineCss . '"><div class="images-wrap">' . $slides . '</div></article>';
 				$blocksClass = 'block-gallery';
 			} else if (trim(strip_tags($content)) == "" && !empty($img)) {
 				if ($matchHeight) {
-					$html .='<article class="item image do-bg-image ' . $sizeClass . '" style="' . $inlineCss . '><img src="' . $img_url . '"></article>';
+					$html .='<article class="item image do-bg-image ' . $sizeClass . '" style="' . $inlineCss . '"><img src="' . $img_url . '"></article>';
 				} else {
-					$html .='<article class="item image ' . $sizeClass . '" style="' . $inlineCss . '><img src="' . $img_url . '"></article>';
+					$html .='<article class="item image ' . $sizeClass . '" style="' . $inlineCss . '"><img src="' . $img_url . '"></article>';
 				}
 			} else if (stripos($content, '<iframe') !== false && $meta_hidetitle) {
-				$html .='<article class="item image ' . $sizeClass . '" style="' . $inlineCss . '>' . $content . '</article>';
+				$html .='<article class="item image ' . $sizeClass . '" style="' . $inlineCss . '">' . $content . '</article>';
 			} else {
 
 				$content = wpautop($content);

@@ -120,5 +120,18 @@
     </header><!-- #header -->
 
     <!-- #masthead -->
+<?php
 
-	<div id="main" class="site-main">
+$inlineCss = '';
+
+if (is_singular('page')) {
+	
+	$meta_bgimage = get_post_meta(get_the_ID(), 'la_bg_pattern', true);
+	if (!empty($meta_bgimage)) {
+		$inlineCss = ' style="background-image: url(\'' . wp_get_attachment_url($meta_bgimage) . '\');"';
+	}
+
+}
+			
+?>
+	<div id="main" class="site-main"<?php echo $inlineCss; ?>>

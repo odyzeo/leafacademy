@@ -209,3 +209,20 @@ function lfa_get_login_link($backUrl = null) {
 function lfa_get_blog_categories_page() {
     return get_page_by_path("blog/categories");
 }
+
+add_filter('posts_orderby', 'lfa_maybe_alter_wp_query', 10, 2);
+
+function lfa_maybe_alter_wp_query($orderby_statement, $wp_query) {
+	
+	if (is_admin()) {
+		return $orderby_statement;
+	}
+	
+	if ($wp_query->get("post_type") === "sp_faq") {
+		return "wp_posts.menu_order ASC";
+	}
+	
+	return $orderby_statement;
+	
+	
+}
