@@ -7,7 +7,8 @@
  * @since Twenty Fourteen 1.0
  */
  
-get_header(); ?> 
+get_header();
+?>
 
 <script type="text/javascript">
 
@@ -15,48 +16,42 @@ var ytPlayers =[];
 var YouTubeIframeAPIReady = false;
 var domReady = false;
 
-
-
 function initPlayer(videoId, elementId){
-    if (!ytPlayers[elementId]){
     
-    ytPlayers[elementId] = new YT.Player(elementId, {
-        videoId: videoId,
-        height: '100%',
-        width: '100%',
-        playerVars: {
-            color: 'white',
-            showinfo: 0, 
-            rel: 0,
-            autoplay: true,
-            controls: 0,
-            wmode: 'transparent',
-            //'playsinline':'1',
-            //loop: 1
-        },
-        events: {
-            'onReady': function(event){
-               //event.target.playVideo(); // comment out this line
-                ytPlayers[elementId].mute();
-                ytPlayers[elementId].addEventListener('onStateChange',function(e){
-                    
-                });
-            },
-            
-            'onStateChange': function(){
-                
-                var status = ytPlayers[elementId].getPlayerState(); 
-               
-                  if (status === YT.PlayerState.PLAYING){
-                  }else if (status === YT.PlayerState.ENDED){
-                      ytPlayers[elementId].playVideo();
-                  }else{
-                     
-                  }
-            }
-           }
-        }); 
-    }     
+	if (!ytPlayers[elementId]){
+    
+		ytPlayers[elementId] = new YT.Player(elementId, {
+			videoId: videoId,
+			height: '100%',
+			width: '100%',
+			playerVars: {
+				color: 'white',
+				showinfo: 0, 
+				rel: 0,
+				autoplay: true,
+				controls: 0,
+				wmode: 'transparent'
+			},
+			events: {
+				'onReady': function(event){
+					ytPlayers[elementId].mute();
+				},
+
+				'onStateChange': function(){
+
+					var status = ytPlayers[elementId].getPlayerState(); 
+
+					if (status === YT.PlayerState.ENDED){
+						ytPlayers[elementId].playVideo();
+					}
+				}
+
+			}
+			
+		});
+
+    }
+
 }
 
 var tag = document.createElement('script');
@@ -87,7 +82,9 @@ function initSlideVideos(){
              jQuery(this).css({ backgroundImage: 'none' });
              initPlayer(videoId,jQuery(this).find('.chpcs_video_iframe').attr('id')); 
         }
-    })
+		
+    });
+	
 }
 
 jQuery(document).ready(function($) {
@@ -103,17 +100,14 @@ jQuery(document).ready(function($) {
     <div class="block block-front-intro do-match-height bg-green">
         <div class="video" style="background-image: url('<?php if(function_exists('get_text_block_image_url')) {if (function_exists('get_text_block_video_id') && !get_text_block_video_id(1670)) echo get_text_block_image_url(1670); } ?>')">
             <div class="overlay"></div>
-          
             <div class="wrap">
-            <?php if(function_exists('show_text_block') && trim(strip_tags(show_text_block(1670, true)))!=''){?>
-                <div class="title">
-                     <?php echo show_text_block(1670, false); ?>
-                </div>
-            <?php } ?>
-            <a href="/#start" class="scroll-down"></a>
-            
+				<?php if(function_exists('show_text_block') && trim(strip_tags(show_text_block(1670, true)))!=''){?>
+					<div class="title">
+						 <?php echo show_text_block(1670, false); ?>
+					</div>
+				<?php } ?>
+				<a href="<?php echo home_url('/#start'); ?>" class="scroll-down"></a>
             </div>
-          
             <div id="intro-video"></div>
         </div>
         <div class="slider-wrap">

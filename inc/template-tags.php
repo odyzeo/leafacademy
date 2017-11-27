@@ -16,11 +16,16 @@ if (!function_exists('leafacademy_paging_nav')) :
 	 * @global WP_Query   $wp_query   WordPress Query object.
 	 * @global WP_Rewrite $wp_rewrite WordPress Rewrite object.
 	 */
-	function leafacademy_paging_nav() {
+	function leafacademy_paging_nav($query = null) {
+	
 		global $wp_query, $wp_rewrite;
-
+		
+		if ($query === null){
+			$query = $wp_query;
+		}
+		
 		// Don't print empty markup if there's only one page.
-		if ($wp_query->max_num_pages < 2) {
+		if ($query->max_num_pages < 2) {
 			return;
 		}
 
@@ -43,12 +48,12 @@ if (!function_exists('leafacademy_paging_nav')) :
 		$links = paginate_links(array(
 			'base' => $pagenum_link,
 			'format' => $format,
-			'total' => $wp_query->max_num_pages,
+			'total' => $query->max_num_pages,
 			'current' => $paged,
 			'mid_size' => 1,
 			'add_args' => array_map('urlencode', $query_args),
-			'prev_text' => __('&larr; Previous', 'leafacademy'),
-			'next_text' => __('Next &rarr;', 'leafacademy'),
+			'prev_text' => __('', 'leafacademy'),
+			'next_text' => __('', 'leafacademy'),
 		));
 
 		if ($links) :

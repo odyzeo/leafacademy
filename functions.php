@@ -258,7 +258,7 @@ function leafacademy_scripts() {
 	wp_enqueue_style('genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.0.3');
 
 	// Load our main stylesheet.
-	wp_enqueue_style('leafacademy-style', get_template_directory_uri() . '/css/style.css', array(), '1.0.6');
+	wp_enqueue_style('leafacademy-style', get_template_directory_uri() . '/css/style.css', array(), '1.0.7');
 
 	// Load the Internet Explorer specific stylesheet.
 	wp_enqueue_style('leafacademy-ie', get_template_directory_uri() . '/css/ie.css', array('leafacademy-style'), '20131205');
@@ -1085,7 +1085,7 @@ if (!function_exists('leafacademy_blocks_grid')) : // output
 			'meta_value' => $tag,
 			'post_type' => 'grid_block',
 			'post_status' => 'publish',
-			'suppress_filters' => true
+			'suppress_filters' => false
 		);
 
 		$posts = get_posts($args);
@@ -1175,13 +1175,11 @@ endif; // end of function_exists()
 
 add_shortcode('blocks_grid', 'leafacademy_blocks_grid');
 
-
 add_filter('manage_grid_block_posts_columns', 'grid_blocks_table_head');
 
 function grid_blocks_table_head($defaults) {
-	//$defaults['title']  = 'Title';
+
 	$defaults['_block_tag'] = 'Tag';
-	//$defaults['date']   = 'Date';
 	return $defaults;
 
 }

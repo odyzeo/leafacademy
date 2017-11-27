@@ -47,8 +47,7 @@ var LFABlog = {
 			jQuery(function($) {
 				$(".lfab-category-link").removeClass("active").filter(function() {
 					var id = $(this).data("id");
-
-					return LFABlog.articles.isActiveCategory(id)
+					return LFABlog.articles.isActiveCategory(id);
 				}).addClass("active");
 			});
 		},
@@ -80,7 +79,7 @@ var LFABlog = {
 								if (postsToDisplay.indexOf(postId) === -1) {
 									postsToDisplay.push(postId);
 								}
-							})
+							});
 						}
 
 					});
@@ -113,6 +112,7 @@ var LFABlog = {
 		pagination: {
 			reloadDOM: function() {
 				jQuery(function($) {
+
 					var $baseNode = $(".lfa-blog-footer");
 
 					$baseNode.html("");
@@ -181,7 +181,7 @@ var LFABlog = {
 			},
 			canGoNext: function() {
 				return LFABlog.articles.currentPage < LFABlog.articles.pagination.getTotalPages();
-			},
+			}
 		},
 		showPaginatedArticles: function() {
 
@@ -532,41 +532,13 @@ var LFABlog = {
 				if (typeof FileReader != "undefined") {
 
 					if ($fileNode.files.length) {
+						
 						var reader = new FileReader();
-
 						reader.onload = function(e) {
-
-							/*var img1 = new Image();
-							 img1.src = this.result;
-							 
-							 EXIF.getData(img1, function() {
-							 var allMetaData = EXIF.getAllTags(this);
-							 var orientation = allMetaData.Orientation;
-							 
-							 if(typeof allMetaData.Orientation != "undefined") {
-							 alert(allMetaData.Orientation)
-							 switch(allMetaData.Orientation){
-							 
-							 case 8:
-							 $bcgNode.get(0).style.transform = "rotateY(90deg)";
-							 break;
-							 case 3:
-							 $bcgNode.get(0).style.transform = "rotateY(180deg)";
-							 break;
-							 case 6:
-							 $bcgNode.get(0).style.transform = "rotateY(-90deg)";
-							 break;
-							 
-							 
-							 }
-							 }
-							 
-							 });*/
-
 							$bcgNode.get(0).style.backgroundImage = 'url(' + this.result + ')';
 						};
-
 						reader.readAsDataURL($fileNode.files[0]);
+						
 					}
 				}
 			});

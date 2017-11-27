@@ -79,20 +79,36 @@
                <?php wp_nav_menu( array( 'container'=>false, 'theme_location' => 'secondary_top', 'menu_class' => 'menu', 'menu_id' => 'secondary-top-menu', 'depth'=>1 ) ); ?>
                 <div class="search">
                     <?php get_search_form(); ?>
-                   
                 </div>
-                 <div class="language-switcher-wrap">
-                 <div class="language-switcher">
-                  <a href="/" data-lang="EN" class="language-switcher-trigger">EN</a>
-                  <ul>
-                        <li><a href="http://academy.leaf.sk/"><span>SK</span></a></li>
-                        <li><a href="http://academy.leaf.sk/cz"><span>CZ</span></a></li>
-                        <li><a href="http://academy.leaf.sk/de"><span>AT</span></a></li>
-                        <li><a href="http://academy.leaf.sk/hu"><span>DE</span></a></li>
-                        <li><a href="http://academy.leaf.sk/pl"><span>PL</span></a></li>
-                    
-                  </ul><span aria-hidden="true" class="stretchy-nav-bg"></span>
-                </div>
+				<div class="language-switcher-wrap">
+					<div class="language-switcher">
+						<?php if (function_exists('icl_get_languages')): ?>
+							<?php $languages = icl_get_languages('skip_missing=0&orderby=name&order=asc&link_empty_to=' . home_url('/{%lang}/')); ?>
+							<?php foreach ($languages as $language): ?>
+								<?php if ($language['active'] == 1):?>
+									<a href="<?php echo $language['url']; ?>" data-lang="<?php echo $language['language_code']; ?>" class="language-switcher-trigger"><?php echo $language['language_code']; ?></a>
+								<?php endif; ?>
+							<?php endforeach; ?>
+							<ul>
+							<?php foreach ($languages as $language): ?>
+								<?php if ($language['active'] == 0): ?>
+									<li><a href="<?php echo $language['url']; ?>"><span><?php echo $language['language_code']; ?></span></a></li>
+								<?php endif; ?>
+							<?php endforeach; ?>
+							</ul>
+						<?php else: ?>
+							<a href="/" data-lang="EN" class="language-switcher-trigger">EN</a>
+							<ul>
+								  <li><a href="http://academy.leaf.sk/"><span>SK</span></a></li>
+								  <li><a href="http://academy.leaf.sk/cz"><span>CZ</span></a></li>
+								  <li><a href="http://academy.leaf.sk/de"><span>AT</span></a></li>
+								  <li><a href="http://academy.leaf.sk/hu"><span>DE</span></a></li>
+								  <li><a href="http://academy.leaf.sk/pl"><span>PL</span></a></li>
+
+							</ul>
+							<?php endif; ?>
+						<span aria-hidden="true" class="stretchy-nav-bg"></span>
+					</div>
                 </div>
                 <div class="top-social top-social-alt">
                    <?php echo DISPLAY_ULTIMATE_PLUS(); ?>
