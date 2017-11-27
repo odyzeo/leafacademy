@@ -272,10 +272,6 @@ function leafacademy_scripts() {
 	if (is_singular() && wp_attachment_is_image()) {
 		wp_enqueue_script('leafacademy-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array('jquery'), '20130402');
 	}
-	/*
-	  if ( is_active_sidebar( 'sidebar-3' ) ) {
-	  wp_enqueue_script( 'jquery-masonry' );
-	  } */
 
 	if (is_front_page() && 'slider' == get_theme_mod('featured_content_layout')) {
 		wp_enqueue_script('leafacademy-slider', get_template_directory_uri() . '/js/slider.js', array('jquery'), '20151102', true);
@@ -1093,6 +1089,7 @@ if (!function_exists('leafacademy_blocks_grid')) : // output
 		$html = '';
 		foreach ($posts as $post) {
 
+			$isMajorBlock = get_field('la_major_block', $post->ID);
 			$meta_bgcolor = get_post_meta($post->ID, '_block_bgcolor', true);
 			$meta_bgimage = get_post_meta($post->ID, 'la_bg_pattern', true);
 			$meta_hidetitle = get_post_meta($post->ID, '_block_hide_title', true);
@@ -1135,6 +1132,10 @@ if (!function_exists('leafacademy_blocks_grid')) : // output
 			$inlineCss = '';
 			if (!empty($meta_bgimage)) {
 				$inlineCss = 'background-image: url(\'' . wp_get_attachment_url($meta_bgimage) . '\');';
+			}
+			
+			if ($isMajorBlock) {
+				$inlineCss .= 'order: -1;';
 			}
 
 			if (!empty($slides)) {
