@@ -2,88 +2,103 @@
 
 class LFA_Author extends WP_User {
 
-    private $avatar = false;
+	private $avatar = FALSE;
 
-    public function getUrl() {
-        return get_author_posts_url($this->ID, $this->user_nicename);
-    }
+	public function getUrl() {
 
-    public function getFullName() {
-        return $this->display_name;
-    }
+		return get_author_posts_url($this->ID, $this->user_nicename);
+	}
 
-    public function getFirstName() {
-        return $this->user_firstname;
-    }
+	public function getFullName() {
 
-    /*
-     * Ak user nie je blogger, tak to vrati true, pretoze u inych roli nas to nezaujima
-     */
-    public function isEnabled() {
+		return $this->display_name;
+	}
 
-        if(!$this->isBlogger()) {
-            return true;
-        }
+	public function getFirstName() {
 
-        return !!get_metadata("user", $this->ID, "_user_enabled", true);
-    }
+		return $this->user_firstname;
+	}
 
-    public function doEnable() {
-        if(!$this->isBlogger()) {
-            return false;
-        } else if ($this->isEnabled()) {
-            return true;
-        }
+	public function getID() {
 
-        update_user_meta( $this->ID, '_user_enabled', 1 );
+		return $this->ID;
+	}
 
-        lfa_send_mail_blogger_account_activated($this);
+	/*
+	 * Ak user nie je blogger, tak to vrati true, pretoze u inych roli nas to nezaujima
+	 */
+	public function isEnabled() {
 
-        return true;
-    }
+		if (!$this->isBlogger()) {
+			return TRUE;
+		}
 
-    public function isBlogger() {
-        return in_array(LFA_USER_ROLE_BLOGGER, $this->roles, true);
-    }
+		return !!get_metadata("user", $this->ID, "_user_enabled", TRUE);
+	}
 
-    public function getPosition() {
-        return trim((string)get_metadata("user", $this->ID, "_user_position", true));
-    }
+	public function doEnable() {
 
-    public function getBio() {
-        return trim((string)get_the_author_meta("description", $this->ID));
-    }
+		if (!$this->isBlogger()) {
+			return FALSE;
+		} else if ($this->isEnabled()) {
+			return TRUE;
+		}
 
-    public function hasAvatar() {
-        return $this->getAvatar() !== null;
-    }
+		update_user_meta($this->ID, '_user_enabled', 1);
 
-    public function getAvatarSrc() {
-        $doc = new DOMDocument();
-        $doc->loadHTML($this->getAvatar());
-        $imageTags = $doc->getElementsByTagName('img');
+		lfa_send_mail_blogger_account_activated($this);
 
-        if($imageTags) {
-            foreach($imageTags as $tag) {
-                return $tag->getAttribute('src');
-            }
-        }
+		return TRUE;
+	}
 
-        return null;
-    }
+	public function isBlogger() {
 
-    public function getAvatar() {
-        if($this->avatar === false) {
-            $this->avatar = null;
+		return in_array(LFA_USER_ROLE_BLOGGER, $this->roles, TRUE);
+	}
 
-            global $simple_local_avatars;
-            $avatar = $simple_local_avatars->get_avatar("", $this->ID, 200);
+	public function getPosition() {
 
-            if(mb_strlen($avatar)) {
-                $this->avatar = $avatar;
-            }
-        }
+		return trim((string)get_metadata("user", $this->ID, "_user_position", TRUE));
+	}
 
-        return $this->avatar;
-    }
+	public function getBio() {
+
+		return trim((string)get_the_author_meta("description", $this->ID));
+	}
+
+	public function hasAvatar() {
+
+		return $this->getAvatar() !== NULL;
+	}
+
+	public function getAvatarSrc() {
+
+		$doc = new DOMDocument();
+		$doc->loadHTML($this->getAvatar());
+		$imageTags = $doc->getElementsByTagName('img');
+
+		if ($imageTags) {
+			foreach ($imageTags as $tag) {
+				return $tag->getAttribute('src');
+			}
+		}
+
+		return NULL;
+	}
+
+	public function getAvatar() {
+
+		if ($this->avatar === FALSE) {
+			$this->avatar = NULL;
+
+			global $simple_local_avatars;
+			$avatar = $simple_local_avatars->get_avatar("", $this->ID, 200);
+
+			if (mb_strlen($avatar)) {
+				$this->avatar = $avatar;
+			}
+		}
+
+		return $this->avatar;
+	}
 }

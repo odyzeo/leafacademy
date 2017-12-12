@@ -4,7 +4,7 @@ define("LFA_TAXONOMY_BLOG_ARTICLE_CATEGORY", "article-category");
 define("LFA_USER_ROLE_BLOGGER", "blogger");
 define("LFA_BLOGGER_URL_BASE", "blog/bloggers/");
 
-define('DISALLOW_FILE_EDIT', true);
+define('DISALLOW_FILE_EDIT', TRUE);
 
 require_once dirname(__FILE__) . "/lib/vendor/autoload.php";
 require_once dirname(__FILE__) . "/lib/mailer.php";
@@ -20,6 +20,7 @@ require_once dirname(__FILE__) . "/lib/Blog_Article.php";
 //maily z webu budeme odosielat cez php mailer
 //je tu taktiez aktivny plugin wp-email-templates, ktory nam ostyluje emaily
 add_action('phpmailer_init', function (PHPMailer $mailer) {
+
 	$mailer->IsSMTP();
 	$mailer->Host = "smtp.websupport.sk"; // your SMTP server
 	$mailer->Username = "blog@leafacademy.eu";
@@ -27,11 +28,9 @@ add_action('phpmailer_init', function (PHPMailer $mailer) {
 	$mailer->setFrom($mailer->Username, get_option("blogname"));
 	$mailer->Sender = $mailer->Username;
 	$mailer->CharSet = "utf-8";
-	$mailer->isHTML(true);
-	$mailer->SMTPAuth = true;
+	$mailer->isHTML(TRUE);
+	$mailer->SMTPAuth = TRUE;
 }, 10, 1);
-
-
 
 //ak je to blogger, z admin listungu dame prec quick edit
 add_filter('post_row_actions', function ($actions) {
@@ -58,9 +57,9 @@ add_filter('post_row_actions', function ($actions) {
 	return $actions;
 }, 10, 1);
 
-
 //este dodoatocna kontrola, aby sa neaktivovany blogger nemohol prihlasit nijako
 add_action("admin_init", function () {
+
 	if (lfa_current_user_is_blogger()) {
 
 		$u = new LFA_Author(wp_get_current_user());
@@ -71,9 +70,9 @@ add_action("admin_init", function () {
 	}
 }, 100);
 
-
 //pre bloggera odoberieme metaboxy, ktore su default a nema ich vidiet
 add_action("add_meta_boxes", function () {
+
 	if (lfa_current_user_is_blogger()) {
 		remove_meta_box('authordiv', LFA_POST_TYPE_BLOG_ARTICLE, 'normal');
 		remove_meta_box('revisionsdiv', LFA_POST_TYPE_BLOG_ARTICLE, 'normal');
@@ -82,7 +81,6 @@ add_action("add_meta_boxes", function () {
 		remove_meta_box('leafacademy_metabox_post_feed', LFA_POST_TYPE_BLOG_ARTICLE, "normal");
 	}
 }, 100);
-
 
 //submit div odoberieme pri pridavani/editovani blogovych clankov pre kazdeho okrem bloggerov
 //ale ak "nie blogger" pridava blogovy clanok, tak tak mu ho tam zobrazime
@@ -94,7 +92,6 @@ add_action("current_screen", function ($screen) {
 		}
 	}
 });
-
 
 //mame custom linky, preto si musime urobit aj custom vyznacivanie aktivnych linkov
 //add_action("wp_head", 'lfa_blog_on_wp_head', 13);
@@ -113,17 +110,17 @@ function lfa_blog_on_wp_head() {
 
 ;
 
-
 //user rola blogger nebude mat "Dashboard" link
 add_action('admin_menu', function () {
+
 	if (lfa_current_user_is_blogger()) {
 		remove_menu_page("index.php");
 	}
 });
 
-
 //user role blogger sa defaultne nedostane na dashboard/index.php stranku
 add_action("current_screen", function ($screen) {
+
 	if (lfa_current_user_is_blogger()) {
 		switch ($screen->id) {
 			case "dashboard":
@@ -135,13 +132,14 @@ add_action("current_screen", function ($screen) {
 
 //defaultne wordpress nema podporu pre custom template "author-{role}.php", takze to pridame
 function lfa_author_role_template($templates = '') {
+
 	$author = get_queried_object();
 	$role = $author->roles[0];
 
 	if (!is_array($templates) && !empty($templates)) {
-		$templates = locate_template(array("author-{$role}.php", $templates), false);
+		$templates = locate_template(array("author-{$role}.php", $templates), FALSE);
 	} elseif (empty($templates)) {
-		$templates = locate_template("author-{$role}.php", false);
+		$templates = locate_template("author-{$role}.php", FALSE);
 	} else {
 		$new_template = locate_template(array("author-{$role}.php"));
 		if (!empty($new_template)) {
@@ -154,7 +152,6 @@ function lfa_author_role_template($templates = '') {
 }
 
 add_filter('author_template', 'lfa_author_role_template');
-
 
 //zakazame updaty pluginov, pretoze sme ich upravovali
 add_filter('site_transient_update_plugins', function ($value) {
@@ -176,6 +173,7 @@ add_filter('site_transient_update_plugins', function ($value) {
 	);
 
 	array_map(function ($plugin) use ($value) {
+
 		if (isset($value->response[$plugin])) {
 			unset($value->response[$plugin]);
 		}
@@ -184,15 +182,15 @@ add_filter('site_transient_update_plugins', function ($value) {
 	return $value;
 }, 10, 1);
 
-
 //zrusime hlasku, ktora hovori o update wordpressu
 add_action('admin_init', function () {
+
 	remove_action('admin_notices', 'update_nag', 3);
 }, 1);
 
-
 //pre nase custom clanky dame vlastnu dlzku excerptu
 add_filter('excerpt_length', function ($length) {
+
 	global $post;
 
 	if (LFA_POST_TYPE_BLOG_ARTICLE === $post->post_type) {
@@ -202,9 +200,9 @@ add_filter('excerpt_length', function ($length) {
 	return $length;
 }, 12);
 
-
 //pre nase custom blog clanky dame custom excerpt
 add_filter('excerpt_more', function ($more) {
+
 	global $post;
 
 	if (LFA_POST_TYPE_BLOG_ARTICLE === $post->post_type) {
@@ -214,9 +212,9 @@ add_filter('excerpt_more', function ($more) {
 	return $more;
 }, 12);
 
-
 //pre rolu blogger budu mat author linky custom format
 add_filter("author_link", function ($link, $id) {
+
 	$user = new LFA_Author($id);
 
 	if ($user->isBlogger()) {
@@ -226,9 +224,9 @@ add_filter("author_link", function ($link, $id) {
 	return $link;
 }, 80, 2);
 
-
 //aby nam fungovali custom linky pre bloggerov, musime pre ne urobit rewrite rules
 add_filter('rewrite_rules_array', function ($rules) {
+
 	$newrules = array();
 	$newrules[LFA_BLOGGER_URL_BASE . '([^/]+)/page/?([0-9]{1,})/?$'] = 'index.php?author_name=$matches[1]&paged=$matches[2]';
 	$newrules[LFA_BLOGGER_URL_BASE . '([^/]+)/?$'] = 'index.php?author_name=$matches[1]';
@@ -237,7 +235,6 @@ add_filter('rewrite_rules_array', function ($rules) {
 
 	return $rules;
 });
-
 
 //tuto je viac akcii
 //v administracii vidi rola bologger len post_types, ktorych je sam autorom, cize blogy, media, atd...
@@ -260,7 +257,6 @@ add_action('pre_get_posts', function ($query) {
 	}
 });
 
-
 //do zoznamu userov prida stlpec, kolko maju napisanych clankov
 add_filter('manage_users_columns', function ($column) {
 
@@ -281,6 +277,7 @@ add_filter('manage_users_columns', function ($column) {
 	return $column;
 });
 add_filter('manage_users_custom_column', function ($val, $column_name, $user_id) {
+
 	switch ($column_name) {
 		case 'blog_articles num' :
 			$count = count_user_posts($user_id, LFA_POST_TYPE_BLOG_ARTICLE);
@@ -305,33 +302,31 @@ add_filter('manage_users_custom_column', function ($val, $column_name, $user_id)
 	return $val;
 }, 10, 3);
 
-
 //admin ajax, enable blogger
 add_action('wp_ajax_enable_blogger', function () {
 
 	header("Content-type: application/json, charset=utf-8");
 
-	$uid = (int) $_POST["uid"];
+	$uid = (int)$_POST["uid"];
 
 	$user = new LFA_Author($uid);
 
 	if ($user) {
 		if ($user->doEnable()) {
-			wp_die(json_encode(array("status" => true)));
+			wp_die(json_encode(array("status" => TRUE)));
 		}
 	}
 
-	wp_die(json_encode(array("status" => false)));
+	wp_die(json_encode(array("status" => FALSE)));
 });
-
 
 //pre bloggerov v admine dame do body class, pretoze cez css sa skryvaju nejake prvky
 add_filter("admin_body_class", function ($classes) {
+
 	$classes .= lfa_current_user_is_blogger() ? " user-role-blogger " : "";
 
 	return $classes;
 });
-
 
 //bloggeri budu moct editovat alebo zobrazit len article, ktorym su sami autorom
 add_action("current_screen", function ($screen) {
@@ -342,7 +337,7 @@ add_action("current_screen", function ($screen) {
 	if (is_admin() && lfa_current_user_is_blogger()) {
 		if ($screen instanceof WP_Screen) {
 			if ($screen->post_type === LFA_POST_TYPE_BLOG_ARTICLE) {
-				$postId = (int) $_GET["post"];
+				$postId = (int)$_GET["post"];
 				$post = get_post($postId);
 				if ($post instanceof WP_Post) {
 					if (intval($post->post_author) !== get_current_user_id()) {
@@ -354,59 +349,59 @@ add_action("current_screen", function ($screen) {
 	}
 });
 
-
 //ked sa clovek odhlasi, tak ho redirectneme na home, je to kvoli blogu
 //toto presmerovanie funguje globalne vo wordpresse
 add_filter("logout_redirect", function () {
+
 	return home_url();
 });
-
 
 //ajax pre login
 //hook je registrovany len pre neprihlasenych userov
 add_action("wp_ajax_nopriv_blogger_login", function () {
+
 	$login = mb_strtolower(trim($_POST["login"]));
 	$password = $_POST["password"];
 
 	header("Content-type: application/json, charset=utf-8");
 
-	if (filter_var($login, FILTER_VALIDATE_EMAIL) === false) {
-		wp_die(json_encode(array("status" => false)));
+	if (filter_var($login, FILTER_VALIDATE_EMAIL) === FALSE) {
+		wp_die(json_encode(array("status" => FALSE)));
 	}
 
 	$user = get_user_by("email", $login);
 
 	if (!($user instanceof WP_User)) {
-		wp_die(json_encode(array("status" => false)));
+		wp_die(json_encode(array("status" => FALSE)));
 	}
 
 	if (wp_check_password($password, $user->user_pass, $user->ID)) {
 		$credentials = array(
 			"user_login" => $user->nickname,
 			"user_password" => $password,
-			"remember" => true
+			"remember" => TRUE
 		);
 
 		$author = new LFA_Author($user);
 
 		if (!$author->isEnabled()) {
-			wp_die(json_encode(array("status" => false)));
+			wp_die(json_encode(array("status" => FALSE)));
 		}
 
 		$login = wp_signon($credentials);
 
 		if ($login instanceof WP_User) {
-			wp_die(json_encode(array("status" => true)));
+			wp_die(json_encode(array("status" => TRUE)));
 		}
 	}
 
-	wp_die(json_encode(array("status" => false)));
+	wp_die(json_encode(array("status" => FALSE)));
 });
-
 
 //ajax pre lost password
 //hook je registrovany len pre neprihlasenych userov
 add_action("wp_ajax_nopriv_blogger_lost_password", function () {
+
 	$login = mb_strtolower(trim($_POST["email"]));
 
 	$user = get_user_by("email", $login);
@@ -414,22 +409,22 @@ add_action("wp_ajax_nopriv_blogger_lost_password", function () {
 	header("Content-type: application/json, charset=utf-8");
 
 	if (!($user instanceof WP_User)) {
-		wp_die(json_encode(array("status" => false)));
+		wp_die(json_encode(array("status" => FALSE)));
 	}
 
-	$newPassword = wp_generate_password(9, false, false);
+	$newPassword = wp_generate_password(9, FALSE, FALSE);
 
 	wp_set_password($newPassword, $user->ID);
 
 	lfa_send_mail_lost_password($user, $newPassword);
 
-	wp_die(json_encode(array("status" => true)));
+	wp_die(json_encode(array("status" => TRUE)));
 });
-
 
 //ajax pre registraciu bloggera
 //hook je registrovany len pre neprihlasenych userov
 add_action("wp_ajax_nopriv_blogger_registration", function () {
+
 	header("Content-type: application/json, charset=utf-8");
 
 	$email = mb_strtolower(trim($_POST["email"]));
@@ -439,24 +434,24 @@ add_action("wp_ajax_nopriv_blogger_registration", function () {
 	$occupation = trim($_POST["occupation"]);
 	$bio = trim($_POST["bio"]);
 
-	if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-		wp_die(json_encode(array("status" => false, "reason" => "Please, provide a valid e-mail address.")));
+	if (filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE) {
+		wp_die(json_encode(array("status" => FALSE, "reason" => "Please, provide a valid e-mail address.")));
 	}
 
 	if (mb_strlen($password) < 5) {
-		wp_die(json_encode(array("status" => false, "reason" => "The password has to have at least 5 characters.")));
+		wp_die(json_encode(array("status" => FALSE, "reason" => "The password has to have at least 5 characters.")));
 	}
 
 	if (mb_strlen($first_name) < 1) {
-		wp_die(json_encode(array("status" => false, "reason" => "Please, provide your first name.")));
+		wp_die(json_encode(array("status" => FALSE, "reason" => "Please, provide your first name.")));
 	}
 
 	if (mb_strlen($last_name) < 1) {
-		wp_die(json_encode(array("status" => false, "reason" => "Please, provide your last name.")));
+		wp_die(json_encode(array("status" => FALSE, "reason" => "Please, provide your last name.")));
 	}
 
 	if (email_exists($email)) {
-		wp_die(json_encode(array("status" => false, "reason" => "The e-mail address has already been registered. \n\nPlease, try another one.")));
+		wp_die(json_encode(array("status" => FALSE, "reason" => "The e-mail address has already been registered. \n\nPlease, try another one.")));
 	}
 
 	$userdata = array(
@@ -472,11 +467,11 @@ add_action("wp_ajax_nopriv_blogger_registration", function () {
 	$user_id = wp_insert_user($userdata);
 
 	if ($user_id instanceof WP_Error) {
-		wp_die(json_encode(array("status" => false, "reason" => "Unexpected error occurred, please, try again.")));
+		wp_die(json_encode(array("status" => FALSE, "reason" => "Unexpected error occurred, please, try again.")));
 	}
 
 	$user_id = intval($user_id);
-	$user_id = (int) $user_id;
+	$user_id = (int)$user_id;
 
 	if ($user_id > 1) {
 		$user = get_user_by("id", $user_id);
@@ -488,23 +483,22 @@ add_action("wp_ajax_nopriv_blogger_registration", function () {
 			lfa_send_mail_blogger_registered_to_bloger($user);
 			lfa_send_mail_blogger_registered_to_admin($user);
 
-			wp_die(json_encode(array("status" => true)));
+			wp_die(json_encode(array("status" => TRUE)));
 		}
 	}
 
-	wp_die(json_encode(array("status" => false, "reason" => "Unexpected error occurred. Please, try again.")));
+	wp_die(json_encode(array("status" => FALSE, "reason" => "Unexpected error occurred. Please, try again.")));
 });
-
 
 //do frontendu si pastneme ajaxurl, kvoli ajax requestom
 add_action("wp_head", function () {
+
 	?>
 	<script>
 		var ajaxurl = <?php echo json_encode(admin_url('admin-ajax.php')); ?>;
 	</script>
 	<?php
 });
-
 
 //clanky, ktore vytvori blogger musia ist na schvalenie adminovi
 //cize ked sa zobrazuje single-article stranka, pred tym sa cekne, ci ten post ma nejaku reviziu
@@ -521,13 +515,13 @@ add_action("wp", function () {
 		if ($wp_query->is_preview()) {
 			$wp_query->set_404();
 			status_header(404);
-			return false;
+			return FALSE;
 		}
 
 		if (!($post instanceof WP_Post)) {
 			$wp_query->set_404();
 			status_header(404);
-			return false;
+			return FALSE;
 		}
 
 		$article = new Blog_Article($post);
@@ -535,7 +529,7 @@ add_action("wp", function () {
 		if (!$article->modifyPostByRevision($post)) {
 			$wp_query->set_404();
 			status_header(404);
-			return false;
+			return FALSE;
 		}
 
 		setup_postdata($post);
@@ -546,19 +540,18 @@ add_action("wp", function () {
 	}
 });
 
-
-
 //upravime stlpce v zozname blogovych clankov
 add_filter('manage_article_posts_columns', function ($columns) {
+
 	$columns = array_reverse($columns);
-	$cb = null;
+	$cb = NULL;
 	if (isset($columns['cb'])) {
 		$cb = $columns['cb'];
 		unset($columns['cb']);
 	}
 
 	$columns['title2'] = $columns['title'];
-	if ($cb !== null) {
+	if ($cb !== NULL) {
 		$columns['cb'] = $cb;
 	}
 	$columns = array_reverse($columns);
@@ -568,6 +561,7 @@ add_filter('manage_article_posts_columns', function ($columns) {
 	return $columns;
 });
 add_action('manage_article_posts_custom_column', function ($column, $post_id) {
+
 	$post = new Blog_Article(get_post($post_id));
 
 	$additional = "";
@@ -588,10 +582,9 @@ add_action('manage_article_posts_custom_column', function ($column, $post_id) {
 	}
 }, 10, 2);
 
-
-
 //fix dalsieho pluginu, aby nam nepridaval k clankom meta boxy
 add_filter("fb_og_metabox_exclude_types", function ($types) {
+
 	$types[] = LFA_POST_TYPE_BLOG_ARTICLE;
 
 	return $types;
@@ -607,19 +600,18 @@ add_filter("dfi_post_types", function ($types) {
 	return $types;
 });
 
-
 /**
  * vo wordpressovom loope, nech sa pre kazdy WP post objekt typu article nacita pre neho posledna revizia
  * potom funkcie the_title, the_content budu pouzivat udaje z revizie
  * toto je kvoli loopom, clanok v detaile sa upravuje v akcii "wp"
  */
-add_action("the_post", function ($post = null, $wp_query = null) {
+add_action("the_post", function ($post = NULL, $wp_query = NULL) {
 
 	/**
 	 * @var $post WP_Post|null
 	 * @var $wp_query WP_Query|null
 	 */
-	if ($wp_query === null || ($wp_query instanceof WP_Query && !$wp_query->is_main_query())) {
+	if ($wp_query === NULL || ($wp_query instanceof WP_Query && !$wp_query->is_main_query())) {
 		if ($post instanceof WP_Post) {
 			if ($post->post_type === LFA_POST_TYPE_BLOG_ARTICLE) {
 				$article = new Blog_Article($post);
@@ -628,3 +620,49 @@ add_action("the_post", function ($post = null, $wp_query = null) {
 		}
 	}
 });
+
+// check if blogger have avatar, if no, restrict all blog possibilities
+add_action("current_screen", "disallowBlogFunctionsWithoutUserAvatar", 100);
+
+function disallowBlogFunctionsWithoutUserAvatar() {
+
+	// if user is not blogger, do nothing
+	if (lfa_current_user_is_blogger()) {
+
+		// get current screen parameters
+		$screen = get_current_screen();
+		$screenAction = $screen->base;
+		$screenPostType = $screen->post_type;
+
+		// set screens where condition is needed
+		$disallowedScreenActions = array(
+			'post',
+			'edit',
+			LFA_POST_TYPE_BLOG_ARTICLE . '_page_order-post-types-' . LFA_POST_TYPE_BLOG_ARTICLE,
+
+		);
+
+		// check if blogger is on back end and if he's operating with Blog post type
+		if ($screenPostType == LFA_POST_TYPE_BLOG_ARTICLE && is_admin()) {
+
+			// check is blogger is on one of disallowed screens
+			if (in_array($screenAction, $disallowedScreenActions)) {
+
+				// get user object and needed data
+				$u = new LFA_Author(wp_get_current_user());
+				$userId = $u->getID();
+
+				$hasUserAvatar = $u->hasAvatar();
+
+				// check if blogger have avatar already set
+				if (!$hasUserAvatar) {
+
+					// restrict view if blogger doesn't have avatar already set
+					$profileEditLink = get_edit_user_link($userId);
+					wp_die("Before adding blog post, <a href='" . $profileEditLink . "'>upload avatar</a> into your profile first.", 403);
+				}
+			}
+		}
+	}
+
+}
