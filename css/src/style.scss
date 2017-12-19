@@ -1704,7 +1704,7 @@ header.entry-header{
 		list-style-type:none;
 		display: block;
 	}
-	
+
 }
 
 .language-switcher ul a {
@@ -1731,11 +1731,11 @@ header.entry-header{
 	-o-transform: translateY(-50%) scale(0);
 	transform: translateY(-50%) scale(0);
 	opacity: 0.6;
-	
+
 }
 
 .language-switcher ul a::before {
-	
+
 	content: "";
 	position: absolute;
 	width: 3px;
@@ -1748,7 +1748,7 @@ header.entry-header{
 	-o-transform: translateX(3px) translateY(-50%) scaleY(0);
 	transform: translateX(3px) translateY(-50%) scaleY(0);
 	background-color: #ffffff;
-	
+
 }
 
 .language-switcher ul span {
@@ -4391,7 +4391,7 @@ header.entry-header{
 
 }
 
-.category-news .news-items{
+body.archive.category .news-items{
 
 	.article-wrapper {
 
@@ -4448,7 +4448,7 @@ header.entry-header{
 	background-size: cover;
 }
 
-.category-news  .post-date{
+body.archive.category .post-date{
 	font-size: 90%;
 	color: #999;
 	padding-bottom: 1em;
@@ -4700,17 +4700,26 @@ h2.ces {
 	text-align: center;
 	margin: 20px 0 0 0;
 
-	a.page-numbers {
+	.page-numbers {
 
 		color: #1a1a1a !important;
 		text-decoration: none !important;
 		font-weight: bold;
 		margin: 0 5px;
+		cursor: pointer;
 
 		&.prev {
 
+			background: transparent;
 			margin-right: 10px;
+			border: none;
+
+			&[disabled] {
+				display: none;
+			}
+
 			&:before {
+
 				display: inline-block;
 				font: normal normal normal 14px/1 FontAwesome;
 				font-size: inherit;
@@ -4722,14 +4731,23 @@ h2.ces {
 				line-height: 28px;
 				font-size: 25px;
 				vertical-align: middle;
+
 			}
 
 		}
 
 		&.next {
 
+			background: transparent;
 			margin-left: 10px;
+			border: none;
+
+			&[disabled] {
+				display: none;
+			}
+
 			&:after {
+
 				display: inline-block;
 				font: normal normal normal 14px/1 FontAwesome;
 				font-size: inherit;
@@ -4741,13 +4759,14 @@ h2.ces {
 				line-height: 28px;
 				font-size: 25px;
 				vertical-align: middle;
+
 			}
 
 		}
 
 	}
 
-	span.current {
+	span.current, span.page-number {
 
 		@extend .btn;
 
@@ -4773,6 +4792,23 @@ h2.ces {
 			border-width: 22px 0 22px 22px;
 		}
 
+	}
+
+}
+
+body.page-template-regular .entry-content {
+	max-width: 1034px;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.entry-content .su-tabs-nav {
+
+	span {
+		padding: 30px 20px;
+		font-size: 22px;
 	}
 
 }

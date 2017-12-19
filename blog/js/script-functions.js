@@ -122,13 +122,15 @@ var LFABlog = {
 					}
 
 					var $pagination = $("<div />");
-					$pagination.addClass("lfa-blog-pagination");
+					$pagination.addClass("pagination lfa-blog-pagination");
 					$pagination.appendTo($baseNode);
 
 					var $prevBtn = $("<button />");
 					$prevBtn.appendTo($pagination);
-					$prevBtn.addClass("lfa-blog-pagination-btn").addClass(".lfa-blog-pagination-btn-prev");
-					$prevBtn.prop("type", "button").attr("data-action", "lfa-blog-prev").text("Previous");
+					$prevBtn.attr({
+						'class': "page-numbers prev lfa-blog-pagination-btn lfa-blog-pagination-btn-prev",
+						'data-action': 'lfa-blog-prev'
+					}).prop("type", "button");
 
 					if (!LFABlog.articles.pagination.canGoPrev()) {
 						$prevBtn.prop("disabled", true);
@@ -137,12 +139,14 @@ var LFABlog = {
 					var $infoLabel = $("<span />");
 					$infoLabel.appendTo($pagination);
 					$infoLabel.addClass("lfa-blog-pagination-label");
-					$infoLabel.text("Pages: " + LFABlog.articles.currentPage + " " + " of " + LFABlog.articles.pagination.getTotalPages());
+					$infoLabel.html("<span class=\"page-number\">" + LFABlog.articles.currentPage + "</span> " + " of <span class=\"page-number\">" + LFABlog.articles.pagination.getTotalPages() + '</span>');
 
 					var $nextBtn = $("<button />");
 					$nextBtn.appendTo($pagination);
-					$prevBtn.addClass("lfa-blog-pagination-btn").addClass(".lfa-blog-pagination-btn-next");
-					$nextBtn.prop("type", "button").attr("data-action", "lfa-blog-next").text("Next");
+					$nextBtn.attr({
+						'class': 'page-numbers next lfa-blog-pagination-btn lfa-blog-pagination-btn-next',
+						'data-action': 'lfa-blog-next'
+					}).prop("type", "button");
 
 					if (!LFABlog.articles.pagination.canGoNext()) {
 						$nextBtn.prop("disabled", true);
@@ -255,7 +259,7 @@ var LFABlog = {
 		jQuery(function($) {
 
 			if (mediaQueryMinWidth(1200)) {
-				
+
 				var currentHeight = $(".lfa-author-panel").height();
 				var newHeight = $(window).height() - $('#primary-menu').height() - $('#header > .top').height() - visPx(jQuery('#footer'));
 				if ($('#wpadminbar').length > 0) {
@@ -532,13 +536,13 @@ var LFABlog = {
 				if (typeof FileReader != "undefined") {
 
 					if ($fileNode.files.length) {
-						
+
 						var reader = new FileReader();
 						reader.onload = function(e) {
 							$bcgNode.get(0).style.backgroundImage = 'url(' + this.result + ')';
 						};
 						reader.readAsDataURL($fileNode.files[0]);
-						
+
 					}
 				}
 			});

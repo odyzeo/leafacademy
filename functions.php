@@ -258,7 +258,7 @@ function leafacademy_scripts() {
 	wp_enqueue_style('genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.0.3');
 
 	// Load our main stylesheet.
-	wp_enqueue_style('leafacademy-style', get_template_directory_uri() . '/css/style.css', array(), '1.0.7');
+	wp_enqueue_style('leafacademy-style', get_template_directory_uri() . '/css/style.css', array(), '1.0.8');
 
 	// Load the Internet Explorer specific stylesheet.
 	wp_enqueue_style('leafacademy-ie', get_template_directory_uri() . '/css/ie.css', array('leafacademy-style'), '20131205');
@@ -1128,7 +1128,7 @@ if (!function_exists('leafacademy_blocks_grid')) : // output
 			if ($strip_shortcodes == 1) {
 				$content = strip_shortcodes($content);
 			}
-
+			
 			$inlineCss = '';
 			if (!empty($meta_bgimage)) {
 				$inlineCss = 'background-image: url(\'' . wp_get_attachment_url($meta_bgimage) . '\');';
