@@ -859,13 +859,12 @@ header.entry-header{
 	margin-bottom: 0.6em; 
 }
 
-
-
 .site-content h3{
 	font-size: 26px;
 	font-weight: bold;
 	text-transform: uppercase;  
 	margin-bottom: 0.1em;
+	clear: both;
 }
 .site-content h4{
 	font-size: 26px;
@@ -3080,6 +3079,7 @@ header.entry-header{
 	color: #FFFFFF; 
 }
 .block-front-events .slider .title {
+
 	padding-bottom: 35px;
 	line-height: 1.1em;
 	font-family: 'ChaparralProBold', sans-serif;
@@ -3088,8 +3088,26 @@ header.entry-header{
 	text-transform: uppercase;
 
 }
+
 .wa_chpc_slider_events{
+
 	text-align: center;
+
+
+	.text {
+
+		p {
+			font-style: italic;
+
+			&:first-child {
+				font-style: initial;
+				margin-bottom: 20px;
+			}
+		}
+
+
+	}
+
 }
 
 @media screen and (max-width: 768px) {
@@ -4797,18 +4815,123 @@ h2.ces {
 }
 
 body.page-template-regular .entry-content {
+
 	max-width: 1034px;
     padding-left: 60px;
     padding-right: 60px;
     margin-left: auto;
     margin-right: auto;
+
+	> * {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 
-.entry-content .su-tabs-nav {
+.entry-content {
 
-	span {
-		padding: 30px 20px;
-		font-size: 22px;
+	h3 {
+		clear: both;
+	}
+
+	img.alignleft {
+
+		float: left;
+		display: inline-block;
+		margin: 20px;
+
+	}
+
+	.su-tabs-nav {
+
+		span {
+			padding: 30px 20px;
+			font-size: 22px;
+		}
+
+	}
+
+	.su-spoiler {
+
+		border-bottom: 1px solid #efefef;
+
+		.su-spoiler-title {
+
+			padding: 30px 20px;
+			font-size: 22px;
+
+		}
+
+		&.title-with-icon {
+
+			.su-spoiler-title {
+
+				padding-left: 75px;
+
+				&:hover {
+					color: #00b24c;
+				}
+
+				&:before {
+
+					width: 50px;
+					height: 100%;
+					display: inline-block;
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: contain;
+				}
+
+			}
+
+			&.leadership .su-spoiler-title:before {	
+				background-image: url('../images/icons/leadership-darkgrey.png');
+			}
+
+			&.leadership:hover .su-spoiler-title:before {
+				background-image: url('../images/icons/leadership-green.png');
+			}
+
+			&.development .su-spoiler-title:before {
+				background-image: url('../images/icons/development-darkgrey.png');
+			}
+
+			&.development:hover .su-spoiler-title:before {
+				background-image: url('../images/icons/development-green.png');
+			}
+
+
+			&.stem .su-spoiler-title:before {
+				background-image: url('../images/icons/stem-darkgrey.png');
+			}
+			&.stem:hover .su-spoiler-title:before {
+
+				background-image: url('../images/icons/stem-green.png');
+
+			}
+
+			&.ces .su-spoiler-title:before {
+				background-image: url('../images/icons/ces-darkgrey.png');
+			}
+			&.ces:hover .su-spoiler-title:before {
+				background-image: url('../images/icons/ces-green.png');
+			}
+		}
+
+		.su-spoiler-icon {
+
+			top: 50%;
+			margin-top: -10px;
+			right: 0;
+			left: auto !important;
+			font-size: 29px;
+
+		}
+
 	}
 
 }
