@@ -4862,6 +4862,26 @@ body.page-template-regular .entry-content {
 
 		}
 
+		&.la-green-grey {
+
+			border: none !important;
+			text-align: center;
+
+			.su-spoiler-title {
+
+				@extend .btn;
+				@extend .green-grey;
+
+				border: none !important;
+
+			}
+
+			.su-spoiler-content {
+				text-align: left;
+			}
+
+		}
+
 		&.title-with-icon {
 
 			.su-spoiler-title {
