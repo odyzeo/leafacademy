@@ -1,0 +1,43 @@
+{
+    "key": "group_5a1c50b2318ed",
+    "title": "Grid Blocks",
+    "fields": [
+        {
+            "key": "field_5a1c50bc24d60",
+            "label": "Major Block",
+            "name": "la_major_block",
+            "type": "true_false",
+            "instructions": "Major block is always displayed first within given group of grid blocks on mobile.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "grid_block"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1514905247
+}
