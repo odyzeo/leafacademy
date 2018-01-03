@@ -1,6 +1,6 @@
 {
     "key": "group_5a3935eb5a78a",
-    "title": "Home Page",
+    "title": "Home Page - Events",
     "fields": [
         {
             "key": "field_5a3935faa9ed0",
@@ -42,5 +42,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1514905234
+    "modified": 1514966831
 }

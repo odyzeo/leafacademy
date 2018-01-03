@@ -1,0 +1,94 @@
+{
+    "key": "group_5a4c8d967e837",
+    "title": "Home Page - Popups",
+    "fields": [
+        {
+            "key": "field_5a4c8f86d423d",
+            "label": "Popup Content (New Visitors)",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5a4c8d96bd9ad",
+            "label": "",
+            "name": "la_popup_new_visitor",
+            "type": "wysiwyg",
+            "instructions": "Content below will be displayed to new website users in a popup.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 1
+        },
+        {
+            "key": "field_5a4c8f98d423e",
+            "label": "Popup Content (Returning Visitors)",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5a4c8d96bda28",
+            "label": "",
+            "name": "la_popup_returning_visitor",
+            "type": "wysiwyg",
+            "instructions": "Content below will be displayed to returning website visitors in a popup.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1514967292
+}
