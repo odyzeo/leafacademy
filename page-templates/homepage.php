@@ -102,7 +102,7 @@ if ($mainVideoId) {
 		if (function_exists('get_text_block_video_id')) {
 
 			$introBackgroundImage = get_text_block_image_url(1670);
-			if (!$introBackgroundImage) {
+			if (!empty($introBackgroundImage)) {
 				$introInlineStyle = 'style="background-image: url(' . $introBackgroundImage . ');"';
 			}
 		}
