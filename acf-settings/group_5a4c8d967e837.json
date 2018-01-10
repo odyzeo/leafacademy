@@ -3,6 +3,28 @@
     "title": "Home Page - Popups",
     "fields": [
         {
+            "key": "field_5a55cfa17b957",
+            "label": "Excluded Pages",
+            "name": "la_popup_excluded_pages",
+            "type": "post_object",
+            "instructions": "The popup will not be displayed on selected pages.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "page"
+            ],
+            "taxonomy": [],
+            "allow_null": 1,
+            "multiple": 1,
+            "return_format": "id",
+            "ui": 1
+        },
+        {
             "key": "field_5a4c8f86d423d",
             "label": "Popup Content (New Visitors)",
             "name": "",
@@ -84,11 +106,11 @@
     ],
     "menu_order": 0,
     "position": "normal",
-    "style": "seamless",
+    "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1514967292
+    "modified": 1515576599
 }

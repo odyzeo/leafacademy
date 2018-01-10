@@ -50,6 +50,10 @@ Source: http://www.genericons.com
 
 == Changelog ==
 
+= 1.6.4 =
+* Changed the popup to treat user as a "new visitor" until midnight of the day of the first visit.
+* Added the option to exclude popup on selected pages.
+
 = 1.5 =
 * Released: August 18, 2015
 
