@@ -333,6 +333,7 @@ textarea {
 	color: #1a1a1a;
 	line-height: normal;
 	outline: none;
+	-webkit-appearance: none;
 }
 
 select {
@@ -5470,6 +5471,10 @@ body.page-template-regular {
 }
 
 @media screen and (max-width: 640px) {
+
+	.hide-on-mobile {
+		display: none;
+	}
 
 	#floating-popup {
 

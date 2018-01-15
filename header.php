@@ -44,8 +44,12 @@
 	
     <header id="header">
         <div class="top">
-            
-            <div class="top-nav">
+
+	        <?php
+	        $hideSocialBarOnMobile = get_field('hide_header_social_bar_on_mobile');
+	        $topNavExtraCssClasses = $hideSocialBarOnMobile ? 'hide-on-mobile' : '';
+	        ?>
+	        <div class="top-nav <?php echo $topNavExtraCssClasses; ?>">
                <?php wp_nav_menu( array( 'container'=>false, 'theme_location' => 'secondary_top', 'menu_class' => 'menu', 'menu_id' => 'secondary-top-menu', 'depth'=>1 ) ); ?>
                 <div class="search">
                     <?php get_search_form(); ?>
