@@ -8,6 +8,7 @@ class PopupManager {
 
 	const LAST_VISIT_COOKIE_NAME = 'la_last_visit';
 	const FIRST_VISIT_COOKIE_NAME = 'la_first_visit';
+	const SESSION_VISIT_COOKIE_NAME = 'la_session_visit';
 
 	private static $contentFieldName = NULL;
 
@@ -20,6 +21,7 @@ class PopupManager {
 
 	public static function checkTheVisitorCookie() {
 
+		$sessionVisitTime = filter_has_var(INPUT_COOKIE, self::SESSION_VISIT_COOKIE_NAME) ? filter_input(INPUT_COOKIE, self::SESSION_VISIT_COOKIE_NAME) : NULL;
 		$firstVisitTime = filter_has_var(INPUT_COOKIE, self::FIRST_VISIT_COOKIE_NAME) ? filter_input(INPUT_COOKIE, self::FIRST_VISIT_COOKIE_NAME) : NULL;
 		$lastVisitTime = filter_has_var(INPUT_COOKIE, self::LAST_VISIT_COOKIE_NAME) ? filter_input(INPUT_COOKIE, self::LAST_VISIT_COOKIE_NAME) : NULL;
 
@@ -28,6 +30,14 @@ class PopupManager {
 		setcookie(self::LAST_VISIT_COOKIE_NAME, $currentTimestamp, strtotime('+1 month'), '/', $host);
 		if ($firstVisitTime === NULL) {
 			setcookie(self::FIRST_VISIT_COOKIE_NAME, current_time('timestamp', true), strtotime('+1 year'), '/', $host);
+		}
+
+		if ($sessionVisitTime === NULL) {
+			setcookie(self::SESSION_VISIT_COOKIE_NAME, current_time('timestamp', TRUE), 0, '/', $host);
+		} else {
+
+			//  show the pop-up only once per session
+			return;
 		}
 
 		self::$contentFieldName = 'la_popup_returning_visitor';
