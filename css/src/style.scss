@@ -5470,10 +5470,24 @@ body.page-template-regular {
 
 }
 
+.post-thumbnail-mobile {
+
+	display: none;
+
+	img {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+}
+
 @media screen and (max-width: 640px) {
 
 	.hide-on-mobile {
 		display: none;
+	}
+
+	.post-thumbnail-mobile {
+		display: block;
 	}
 
 	#floating-popup {
@@ -5491,3 +5505,5 @@ body.page-template-regular {
 	}
 
 }
+
+

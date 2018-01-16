@@ -13,17 +13,17 @@ if (!function_exists('leafacademy_paging_nav')) :
 	 *
 	 * @since Twenty Fourteen 1.0
 	 *
-	 * @global WP_Query   $wp_query   WordPress Query object.
+	 * @global WP_Query $wp_query WordPress Query object.
 	 * @global WP_Rewrite $wp_rewrite WordPress Rewrite object.
 	 */
-	function leafacademy_paging_nav($query = null) {
-	
+	function leafacademy_paging_nav($query = NULL) {
+
 		global $wp_query, $wp_rewrite;
-		
-		if ($query === null){
+
+		if ($query === NULL) {
 			$query = $wp_query;
 		}
-		
+
 		// Don't print empty markup if there's only one page.
 		if ($query->max_num_pages < 2) {
 			return;
@@ -64,7 +64,7 @@ if (!function_exists('leafacademy_paging_nav')) :
 					<?php echo $links; ?>
 				</div><!-- .pagination -->
 			</nav><!-- .navigation -->
-			<?php
+		<?php
 		endif;
 
 	}
@@ -79,9 +79,10 @@ if (!function_exists('leafacademy_post_nav')) :
 	 * @since Twenty Fourteen 1.0
 	 */
 	function leafacademy_post_nav() {
+
 		// Don't print empty markup if there's nowhere to navigate.
-		$previous = ( is_attachment() ) ? get_post(get_post()->post_parent) : get_adjacent_post(false, '', true);
-		$next = get_adjacent_post(false, '', false);
+		$previous = (is_attachment()) ? get_post(get_post()->post_parent) : get_adjacent_post(FALSE, '', TRUE);
+		$next = get_adjacent_post(FALSE, '', FALSE);
 
 		if (!$next && !$previous) {
 			return;
@@ -121,6 +122,7 @@ if (!function_exists('leafacademy_posted_on')) :
 	 * @since Twenty Fourteen 1.0
 	 */
 	function leafacademy_posted_on() {
+
 		if (is_sticky() && is_home() && !is_paged()) {
 			echo '<span class="featured-post">' . __('Sticky', 'leafacademy') . '</span>';
 		}
@@ -141,7 +143,8 @@ endif;
  * @return boolean true if blog has more than 1 category
  */
 function leafacademy_categorized_blog() {
-	if (false === ( $all_the_cool_cats = get_transient('leafacademy_category_count') )) {
+
+	if (FALSE === ($all_the_cool_cats = get_transient('leafacademy_category_count'))) {
 		// Create an array of all the categories that are attached to posts
 		$all_the_cool_cats = get_categories(array(
 			'hide_empty' => 1,
@@ -153,12 +156,12 @@ function leafacademy_categorized_blog() {
 		set_transient('leafacademy_category_count', $all_the_cool_cats);
 	}
 
-	if (1 !== (int) $all_the_cool_cats) {
+	if (1 !== (int)$all_the_cool_cats) {
 		// This blog has more than 1 category so leafacademy_categorized_blog should return true
-		return true;
+		return TRUE;
 	} else {
 		// This blog has only 1 category so leafacademy_categorized_blog should return false
-		return false;
+		return FALSE;
 	}
 
 }
@@ -169,6 +172,7 @@ function leafacademy_categorized_blog() {
  * @since Twenty Fourteen 1.0
  */
 function leafacademy_category_transient_flusher() {
+
 	// Like, beat it. Dig?
 	delete_transient('leafacademy_category_count');
 
@@ -177,7 +181,7 @@ function leafacademy_category_transient_flusher() {
 add_action('edit_category', 'leafacademy_category_transient_flusher');
 add_action('save_post', 'leafacademy_category_transient_flusher');
 
-function leafacademy_the_post_thumbnail_caption($caption = null) {
+function leafacademy_the_post_thumbnail_caption($caption = NULL) {
 
 	global $post;
 
@@ -186,7 +190,7 @@ function leafacademy_the_post_thumbnail_caption($caption = null) {
 
 	if ($thumbnail_image && isset($thumbnail_image[0])) {
 
-		if ($caption === null) {
+		if ($caption === NULL) {
 			$caption = $thumbnail_image[0]->post_excerpt;
 		}
 		$description = $thumbnail_image[0]->post_content;
@@ -220,10 +224,13 @@ if (!function_exists('leafacademy_post_thumbnail')) :
 			return;
 		}
 
-		if (is_singular()) :
-			?>
+		$mobileFeaturedImageId = get_field('mobile_featured_image');
+		$mobileFeaturedImageAvailable = is_numeric($mobileFeaturedImageId);
 
-			<div class="post-thumbnail corner-fx corner-fx-greywhite">
+		$thumbnailWrapperExtraCssClass = $mobileFeaturedImageAvailable ? 'hide-on-mobile' : '';
+		if (is_singular()): ?>
+
+			<div class="post-thumbnail corner-fx corner-fx-greywhite <?php echo $thumbnailWrapperExtraCssClass; ?>">
 				<?php
 				if ((!is_active_sidebar('sidebar-2') || is_page_template('page-templates/full-width.php'))) {
 
@@ -236,9 +243,18 @@ if (!function_exists('leafacademy_post_thumbnail')) :
 				?>
 			</div>
 
-		<?php else : ?>
+			<?php if ($mobileFeaturedImageAvailable): ?>
 
-			<a class="post-thumbnail corner-fx corner-fx-greywhite" href="<?php the_permalink(); ?>" aria-hidden="true">
+				<div class="post-thumbnail-mobile">
+					<?php $mobileFeaturedImageSource = wp_get_attachment_image_src($mobileFeaturedImageId, 'full'); ?>
+					<img src="<?php echo $mobileFeaturedImageSource[0]; ?>"/>
+				</div>
+
+			<?php endif; ?>
+
+		<?php else: ?>
+
+			<a class="post-thumbnail corner-fx corner-fx-greywhite <?php echo $thumbnailWrapperExtraCssClass; ?>" href="<?php the_permalink(); ?>" aria-hidden="true">
 				<?php
 				if ((!is_active_sidebar('sidebar-2') || is_page_template('page-templates/full-width.php'))) {
 					the_post_thumbnail('leafacademy-full-width');
@@ -248,6 +264,15 @@ if (!function_exists('leafacademy_post_thumbnail')) :
 				}
 				?>
 			</a>
+
+			<?php if ($mobileFeaturedImageAvailable): ?>
+
+				<a class="post-thumbnail-mobile">
+					<?php $mobileFeaturedImageSource = wp_get_attachment_image_src($mobileFeaturedImageId, 'full'); ?>
+					<img src="<?php echo $mobileFeaturedImageSource[0]; ?>"/>
+				</a>
+
+			<?php endif; ?>
 
 		<?php
 		endif; // End is_singular()
@@ -267,7 +292,7 @@ function leafacademy_inline_featured_image($attachmentId) {
 		$description = $thumbnail_image[0]->post_content;
 
 		$res = '<div class="post-thumbnail post-thumbnail-inline corner-fx corner-fx-greywhite">';
-		$res .= wp_get_attachment_image($attachmentId, 'leafacademy-full-width', false, null);
+		$res .= wp_get_attachment_image($attachmentId, 'leafacademy-full-width', FALSE, NULL);
 		$res .= '<span class="post-thumbnail-caption-wrapper"><span class="post-thumbnail-caption-wrapper-tr"><span class="post-thumbnail-caption-wrapper-td">';
 		$res .= '<strong class="post-thumbnail-caption">' . $caption . '</strong>';
 		if ($description)
@@ -287,11 +312,14 @@ if (!function_exists('leafacademy_excerpt_more') && !is_admin()) :
 	 * @since Twenty Fourteen 1.3
 	 *
 	 * @param string $more Default Read More excerpt link.
+	 *
 	 * @return string Filtered Read More excerpt link.
 	 */
 	function leafacademy_excerpt_more($more) {
+
 		$link = sprintf('<a href="%1$s" class="more-link">%2$s</a>', esc_url(get_permalink(get_the_ID())),
-				/* translators: %s: Name of current post */ sprintf(__('Continue reading %s <span class="meta-nav">&rarr;</span>', 'leafacademy'), '<span class="screen-reader-text">' . get_the_title(get_the_ID()) . '</span>')
+			/* translators: %s: Name of current post */
+			sprintf(__('Continue reading %s <span class="meta-nav">&rarr;</span>', 'leafacademy'), '<span class="screen-reader-text">' . get_the_title(get_the_ID()) . '</span>')
 		);
 		return ' &hellip; ' . $link;
 
