@@ -220,7 +220,7 @@ if (!function_exists('leafacademy_post_thumbnail')) :
 	 */
 	function leafacademy_post_thumbnail() {
 
-		if (post_password_required() || is_attachment() || !has_post_thumbnail()) {
+		if (post_password_required() || is_attachment()) {
 			return;
 		}
 
@@ -230,18 +230,20 @@ if (!function_exists('leafacademy_post_thumbnail')) :
 		$thumbnailWrapperExtraCssClass = $mobileFeaturedImageAvailable ? 'hide-on-mobile' : '';
 		if (is_singular()): ?>
 
-			<div class="post-thumbnail corner-fx corner-fx-greywhite <?php echo $thumbnailWrapperExtraCssClass; ?>">
-				<?php
-				if ((!is_active_sidebar('sidebar-2') || is_page_template('page-templates/full-width.php'))) {
+			<?php if (has_post_thumbnail()): ?>
+				<div class="post-thumbnail corner-fx corner-fx-greywhite <?php echo $thumbnailWrapperExtraCssClass; ?>">
+					<?php
+					if ((!is_active_sidebar('sidebar-2') || is_page_template('page-templates/full-width.php'))) {
 
-					the_post_thumbnail('leafacademy-full-width');
-					the_post_thumbnail_caption();
-				} else {
+						the_post_thumbnail('leafacademy-full-width');
+						the_post_thumbnail_caption();
+					} else {
 
-					the_post_thumbnail();
-				}
-				?>
-			</div>
+						the_post_thumbnail();
+					}
+					?>
+				</div>
+			<?php endif; ?>
 
 			<?php if ($mobileFeaturedImageAvailable): ?>
 
@@ -254,16 +256,18 @@ if (!function_exists('leafacademy_post_thumbnail')) :
 
 		<?php else: ?>
 
-			<a class="post-thumbnail corner-fx corner-fx-greywhite <?php echo $thumbnailWrapperExtraCssClass; ?>" href="<?php the_permalink(); ?>" aria-hidden="true">
-				<?php
-				if ((!is_active_sidebar('sidebar-2') || is_page_template('page-templates/full-width.php'))) {
-					the_post_thumbnail('leafacademy-full-width');
-					the_post_thumbnail_caption();
-				} else {
-					the_post_thumbnail('post-thumbnail', array('alt' => get_the_title()));
-				}
-				?>
-			</a>
+			<?php if (has_post_thumbnail()): ?>
+				<a class="post-thumbnail corner-fx corner-fx-greywhite <?php echo $thumbnailWrapperExtraCssClass; ?>" href="<?php the_permalink(); ?>" aria-hidden="true">
+					<?php
+					if ((!is_active_sidebar('sidebar-2') || is_page_template('page-templates/full-width.php'))) {
+						the_post_thumbnail('leafacademy-full-width');
+						the_post_thumbnail_caption();
+					} else {
+						the_post_thumbnail('post-thumbnail', array('alt' => get_the_title()));
+					}
+					?>
+				</a>
+			<?php endif; ?>
 
 			<?php if ($mobileFeaturedImageAvailable): ?>
 
