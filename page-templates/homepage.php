@@ -95,6 +95,15 @@ if ($mainVideoId) {
 
 <div id="main-content" class="main-content homepage">
 
+	<?php if (has_post_thumbnail()): ?>
+		<div class="entry-content">
+			<div class="content-width">
+				<?php $imageLink = get_post_meta(get_post_thumbnail_id(get_the_ID()), 'su_slide_link', TRUE); ?>
+				<?php leafacademy_post_thumbnail($imageLink); ?>
+			</div>
+		</div>
+	<?php endif; ?>
+
 	<?php
 	$introInlineStyle = '';
 	if (function_exists('get_text_block_image_url')) {

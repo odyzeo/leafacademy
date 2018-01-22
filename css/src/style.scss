@@ -5506,4 +5506,14 @@ body.page-template-regular {
 
 }
 
+.page-template-homepage {
 
+	.entry-content {
+		min-height: auto !important;
+	}
+
+	.corner-fx:after {
+		display: none;
+	}
+
+}

@@ -26,14 +26,15 @@ class PopupManager {
 		$lastVisitTime = filter_has_var(INPUT_COOKIE, self::LAST_VISIT_COOKIE_NAME) ? filter_input(INPUT_COOKIE, self::LAST_VISIT_COOKIE_NAME) : NULL;
 
 		$host = parse_url(get_option('siteurl'), PHP_URL_HOST);
+		$currentTimestamp = current_time('timestamp', TRUE);
 
 		setcookie(self::LAST_VISIT_COOKIE_NAME, $currentTimestamp, strtotime('+1 month'), '/', $host);
 		if ($firstVisitTime === NULL) {
-			setcookie(self::FIRST_VISIT_COOKIE_NAME, current_time('timestamp', true), strtotime('+1 year'), '/', $host);
+			setcookie(self::FIRST_VISIT_COOKIE_NAME, $currentTimestamp, strtotime('+1 year'), '/', $host);
 		}
 
 		if ($sessionVisitTime === NULL) {
-			setcookie(self::SESSION_VISIT_COOKIE_NAME, current_time('timestamp', TRUE), 0, '/', $host);
+			setcookie(self::SESSION_VISIT_COOKIE_NAME, $currentTimestamp, TRUE, 0, '/', $host);
 		} else {
 
 			//  show the pop-up only once per session
@@ -41,7 +42,7 @@ class PopupManager {
 		}
 
 		self::$contentFieldName = 'la_popup_returning_visitor';
-		$currentTimestamp = current_time('timestamp', true);
+
 		if ($lastVisitTime === NULL || date('Ymd', $firstVisitTime) === date('Ymd', $currentTimestamp)) {
 			self::$contentFieldName = 'la_popup_new_visitor';
 		}

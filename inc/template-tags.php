@@ -218,7 +218,7 @@ if (!function_exists('leafacademy_post_thumbnail')) :
 	 * @since Twenty Fourteen 1.0
 	 * @since Twenty Fourteen 1.4 Was made 'pluggable', or overridable.
 	 */
-	function leafacademy_post_thumbnail() {
+	function leafacademy_post_thumbnail($targetUrl = '') {
 
 		if (post_password_required() || is_attachment()) {
 			return;
@@ -228,7 +228,7 @@ if (!function_exists('leafacademy_post_thumbnail')) :
 		$mobileFeaturedImageAvailable = is_numeric($mobileFeaturedImageId);
 
 		$thumbnailWrapperExtraCssClass = $mobileFeaturedImageAvailable ? 'hide-on-mobile' : '';
-		if (is_singular()): ?>
+		if (is_singular() && empty($targetUrl)): ?>
 
 			<?php if (has_post_thumbnail()): ?>
 				<div class="post-thumbnail corner-fx corner-fx-greywhite <?php echo $thumbnailWrapperExtraCssClass; ?>">
@@ -256,8 +256,10 @@ if (!function_exists('leafacademy_post_thumbnail')) :
 
 		<?php else: ?>
 
+			<?php $hyperlink = empty($targetUrl) ? get_permalink() : $targetUrl; ?>
 			<?php if (has_post_thumbnail()): ?>
-				<a class="post-thumbnail corner-fx corner-fx-greywhite <?php echo $thumbnailWrapperExtraCssClass; ?>" href="<?php the_permalink(); ?>" aria-hidden="true">
+
+				<a class="post-thumbnail corner-fx corner-fx-greywhite <?php echo $thumbnailWrapperExtraCssClass; ?>" href="<?php echo $hyperlink; ?>" aria-hidden="true">
 					<?php
 					if ((!is_active_sidebar('sidebar-2') || is_page_template('page-templates/full-width.php'))) {
 						the_post_thumbnail('leafacademy-full-width');
@@ -271,7 +273,7 @@ if (!function_exists('leafacademy_post_thumbnail')) :
 
 			<?php if ($mobileFeaturedImageAvailable): ?>
 
-				<a class="post-thumbnail-mobile">
+				<a class="post-thumbnail-mobile" href="<?php echo $hyperlink; ?>">
 					<?php $mobileFeaturedImageSource = wp_get_attachment_image_src($mobileFeaturedImageId, 'full'); ?>
 					<img src="<?php echo $mobileFeaturedImageSource[0]; ?>"/>
 				</a>
