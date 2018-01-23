@@ -69,16 +69,44 @@
 	<body <?php body_class(); ?>>
 		<div id="page" class="hfeed site">
 
-			<a id="formAnchor802730794" name="form802730794"></a>
-			<script type="text/javascript" src="https://fs18.formsite.com/include/form/embedManager.js?802730794"></script>
-			<script type="text/javascript">
-				EmbedManager.embed({
-					key: "https://fs18.formsite.com/res/showFormEmbed?EParam=B6fiTn%2BRcO70RTMd3SAp3H5%2FpBxO5FChFzpUCZwnDno%3D&802730794",
-					width: "100%",
-					showFormLogin: <?php echo (ApplicationIntroManager::$showIntro) ? 'true' : 'false'; ?>,
-					mobileResponsive: true
-				});
-			</script>
+			<div id="page" class="hfeed site">
+				<?php while (have_posts()) : the_post(); ?>
+
+					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+
+						<div class="entry-content">
+
+							<p>
+								<?php
+								if (ApplicationIntroManager::$showIntro) {
+									the_field('la_popup_content');
+								}
+								?>
+							</p>
+
+							<p>
+								<a id="formAnchor1061293735" name="form1061293735"></a>
+								<script type="text/javascript" src="https://fs18.formsite.com/include/form/embedManager.js?1061293735"></script>
+								<script type="text/javascript">
+									EmbedManager.embed({
+										key: "https://fs18.formsite.com/res/showFormEmbed?EParam=B6fiTn%2BRcO70RTMd3SAp3KCHUUU5i45xFzpUCZwnDno%3D&1061293735",
+										width: "100%",
+										showFormLogin: <?php echo (ApplicationIntroManager::$showIntro) ? 'true' : 'false'; ?>,
+										mobileResponsive: true
+									});
+								</script>
+							</p>
+
+							<p>
+								<?php edit_post_link(__('Edit', 'leafacademy'), '<span class="edit-link">', '</span>'); ?>
+							</p>
+
+						</div><!-- .entry-content -->
+
+					</article><!-- #post-## -->
+				<?php endwhile; ?>
+
+			</div>
 
 		</div>
 

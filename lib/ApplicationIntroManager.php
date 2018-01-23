@@ -16,7 +16,6 @@ class ApplicationIntroManager {
 	public static function init() {
 
 		add_action('wp_loaded', array(__CLASS__, 'checkTheVisitorCookie'), 10, 0);
-		add_action('blank_page_wp_footer', array(__CLASS__, 'onWpFooter'));
 
 	}
 
@@ -36,67 +35,6 @@ class ApplicationIntroManager {
 		}
 
 		self::$showIntro = FALSE;
-
-	}
-
-	public static function onWpFooter() {
-
-		if (self::$showIntro === FALSE) {
-			return;
-		}
-
-		//	take excluded pages into account
-		$shouldPopupRender = FALSE;
-		$popupContent = '';
-
-		if (is_page()) {
-
-			$popupContent = get_field('la_popup_content');
-			if (!empty($popupContent)) {
-				$shouldPopupRender = TRUE;
-			}
-		}
-
-		if (!$shouldPopupRender) {
-			return;
-		}
-
-		echo '<div id="floating-popup" class="popup-bottom-center">';
-		echo '<a href="#" class="close-btn"></a>';
-		echo $popupContent;
-		echo '</div>';
-		?>
-
-		<script type="text/javascript">
-			jQuery.noConflict();
-			(function($) {
-				$(function() {
-
-					$(document).ready(function() {
-
-						if ($(window).width() > 640) {
-
-							$('#floating-popup').css({
-								marginLeft: $('#floating-popup').outerWidth() / 2 * -1
-							});
-
-						}
-
-						$('#floating-popup').on('click', 'a.close-btn', function() {
-
-							$('#floating-popup').addClass('hidden');
-							return false;
-
-						});
-
-					});
-
-				});
-
-			})(jQuery);
-		</script>
-
-		<?php
 
 	}
 
