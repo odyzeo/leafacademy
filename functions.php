@@ -26,8 +26,10 @@
  */
 require_once dirname(__FILE__) . "/functions-leafacademyblog.php";
 require_once dirname(__FILE__) . "/lib/PopupManager.php";
+require_once dirname(__FILE__) . "/lib/ApplicationIntroManager.php";
 
 PopupManager::init();
+ApplicationIntroManager::init();
 
 /**
  * Set up the content width value based on the theme's design.

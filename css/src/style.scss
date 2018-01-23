@@ -347,7 +347,7 @@ select::-ms-expand {
 }
 
 img {
-	width: auto;
+	/* width: auto; */
 	height: auto;
 	max-width: 100%;
 	max-height: 100%;
@@ -829,8 +829,16 @@ header.entry-header {
 	padding-top: 30px;
 }
 
-.entry-content > :last-child {
-	margin-bottom: 60px;
+.entry-content {
+
+	> :first-child {
+		margin-bottom: 0 !important;
+	}
+
+	> :last-child {
+		margin-bottom: 60px;
+	}
+
 }
 
 .item .entry-content > :first-child {
@@ -3018,6 +3026,38 @@ header.entry-header {
 		-o-transform: translateY(0);
 		transform: translateY(0);
 	}
+}
+
+.campaign-intro {
+
+	background: #00b24c url("../images/patterns/triangles-zelena.png");
+	color: #fff;
+	margin-bottom: 0 !important;
+	padding: 40px 0;
+
+	.content-width {
+		margin-bottom: 0 !important;
+	}
+
+	p {
+		margin-bottom: 10px;
+	}
+
+	a {
+		color: white !important;
+	}
+
+	h2, h3 {
+
+		padding-bottom: 20px;
+		line-height: 1.1em;
+		font-family: 'ChaparralProBold', sans-serif;
+		font-weight: normal;
+		font-size: 27px;
+		text-transform: uppercase;
+
+	}
+
 }
 
 /* SLIDER */
@@ -5407,11 +5447,14 @@ body.page-template-regular {
 	color: #000000;
 	text-decoration: none;
 	padding: 20px;
+	padding-top: 30px;
 	min-height: 100px;
 	text-align: center;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	max-height: 100%;
+	overflow-y: auto;
 
 	-webkit-transition: right 1s ease, bottom 1s ease;
 	-moz-transition: right 1s ease, bottom 1s ease;
@@ -5470,6 +5513,34 @@ body.page-template-regular {
 
 }
 
+.popup-bottom-center {
+
+	width: 100% !important;
+	left: 0;
+
+	@media screen and (min-width: 640px) {
+
+		max-width: 1024px !important;
+		left: 50%;
+
+	}
+
+	img.aligncenter {
+
+		margin-left: auto;
+		margin-right: auto;
+
+	}
+
+	&.hidden {
+
+		display: none;
+		bottom: 100%;
+
+	}
+
+}
+
 .post-thumbnail-mobile {
 
 	display: none;
@@ -5494,7 +5565,6 @@ body.page-template-regular {
 
 		width: 100%;
 		font-size: 15px;
-		padding: 10px;
 		line-height: 1.15em;
 
 		&.hidden {

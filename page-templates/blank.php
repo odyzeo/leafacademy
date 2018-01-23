@@ -6,7 +6,7 @@
  * @subpackage Twenty_Fourteen
  * @since Twenty Fourteen 1.0
  */
-?> 
+?>
 <!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7" <?php language_attributes(); ?>>
@@ -28,7 +28,7 @@
     <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
     <![endif]-->
     <?php wp_head(); ?>
-    
+
     <!-- social buttons -->
     <script type="text/javascript">var switchTo5x=true;</script>
     <script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
@@ -62,10 +62,11 @@
                     // Include the page content template.
                     get_template_part( 'content', 'page' );
 
-                   
                 endwhile;
             ?>
-      
+
     </div>
+
+	<?php do_action('blank_page_wp_footer'); ?>
 </body>
 </html>
