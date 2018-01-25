@@ -41,7 +41,11 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
-	
+
+	<?php if (function_exists('gtm4wp_the_gtm_tag')) {
+		gtm4wp_the_gtm_tag();
+	} ?>
+
     <header id="header">
         <div class="top">
 
