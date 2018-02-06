@@ -56,12 +56,6 @@
 
 						<div class="entry-content">
 
-							<?php if (ApplicationIntroManager::$showIntro): ?>
-								<div class="content-width more-info-box">
-									<?php the_field('la_popup_content'); ?>
-								</div>
-							<?php endif; ?>
-
 							<p>
 
 								<a name="form802730794" id="formAnchor802730794"></a>
