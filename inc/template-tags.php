@@ -265,7 +265,7 @@ if (!function_exists('leafacademy_post_thumbnail')) :
 						the_post_thumbnail('leafacademy-full-width');
 						the_post_thumbnail_caption();
 					} else {
-						the_post_thumbnail('post-thumbnail', array('alt' => get_the_title()));
+						the_post_thumbnail('leafacademy-full-width', array('alt' => get_the_title()));
 					}
 					?>
 				</a>
