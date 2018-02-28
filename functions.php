@@ -263,7 +263,7 @@ function leafacademy_scripts() {
 	wp_enqueue_style('genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.0.3');
 
 	// Load our main stylesheet.
-	wp_enqueue_style('leafacademy-style', get_template_directory_uri() . '/css/style.css', array(), '201802281039');
+	wp_enqueue_style('leafacademy-style', get_template_directory_uri() . '/css/style.css', array(), '201802281259');
 
 	// Load the Internet Explorer specific stylesheet.
 	wp_enqueue_style('leafacademy-ie', get_template_directory_uri() . '/css/ie.css', array('leafacademy-style'), '20131205');
@@ -1409,3 +1409,22 @@ function lfa_load_acf_json($paths) {
 	return $paths;
 
 }
+
+function wpse_287229_embed_html( $cache, $url, $attr, $post_ID ) {
+    if ( 
+        strpos( $cache, 'youtube.com' ) !== false || 
+        strpos( $cache, 'youtu.be' ) !== false 
+    ) {
+        //	$cache = str_replace( '<iframe ', '<iframe class="" ', $cache ); // YouTube doesn't have a class on its iframe.
+		$cache = '<div class="youtube-embed">' . $cache . '</div>';
+    }
+
+    if ( strpos( $cache, 'soundcloud.com' ) !== false ) {
+        // str_replace optimised for SoundCloud here.
+    }
+
+    // etc.
+
+    return $cache;
+}
+add_filter( 'embed_oembed_html', 'wpse_287229_embed_html', 10, 4 );
