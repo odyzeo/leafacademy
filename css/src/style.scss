@@ -398,6 +398,9 @@ video {
 .entry-content embed {
 	max-width: 100%;
 	width: 100%;
+}
+
+.entry-content .youtube-embed iframe {
 	height: 500px;
 }
 
@@ -408,8 +411,12 @@ video {
 	.entry-content embed {
         max-width: 100%;
 		width: 100%;
+	}
+
+	.entry-content .youtube-embed iframe {
 		height: 200px;
 	}
+	
 }
 
 .block {
