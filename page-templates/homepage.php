@@ -95,38 +95,6 @@ get_header();
 
 	<div id="main-content" class="main-content homepage">
 
-		<?php if (has_post_thumbnail()): ?>
-			<div class="entry-content">
-				<div class="content-width">
-					<?php $imageLink = get_post_meta(get_post_thumbnail_id(get_the_ID()), 'su_slide_link', TRUE); ?>
-					<?php leafacademy_post_thumbnail($imageLink); ?>
-				</div>
-			</div>
-		<?php endif; ?>
-
-		<?php
-
-		$legacyMainSliderPosts = get_posts(array(
-			'posts_per_page' => 1,
-			'post_type' => 'text-blocks',
-			'post_status' => 'publish',
-			'meta_key' => '_text-blocks_in_main_slider',
-			'meta_value' => '1',
-			'suppress_filters' => 0
-		));
-
-		?>
-		<?php if (!empty($legacyMainSliderPosts)): ?>
-			<div class="entry-content campaign-intro">
-				<div class="content-width">
-					<?php
-					$post_content = strip_shortcodes($legacyMainSliderPosts[0]->post_content);
-					echo wpautop($post_content);
-					?>
-				</div>
-			</div>
-		<?php endif; ?>
-
 		<?php
 		$introInlineStyle = '';
 		if (function_exists('get_text_block_image_url')) {
@@ -140,6 +108,28 @@ get_header();
 			}
 		}
 		?>
+
+		<div class="block block-front-intro do-match-height bg-green">
+			<div class="video" <?php echo $introInlineStyle; ?>>
+				<div class="overlay"></div>
+				<div class="wrap">
+									<?php if (function_exists('show_text_block') && trim(strip_tags(show_text_block(1670, TRUE))) != ''): ?>
+					    <div class="title">
+												<?php echo show_text_block(1670, FALSE); ?>
+					    </div>
+									<?php endif; ?>
+					<a href="<?php echo home_url('/#start'); ?>" class="scroll-down"></a>
+				</div>
+				<div id="intro-video"></div>
+			</div>
+			<div class="slider-wrap">
+				<div class="slider">
+									<?php echo do_shortcode('[carousel-horizontal-main-content-slider]'); ?>
+				</div>
+				<a href="#" class="read-more">&nbsp;</a>
+			</div>
+		</div><!-- .block-front-intro -->
+
 		<a name="start"></a>
 
 		<div class="block block-front block-front-news">
