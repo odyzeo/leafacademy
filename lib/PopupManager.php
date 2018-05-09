@@ -14,8 +14,13 @@ class PopupManager {
 
 	public static function init() {
 
-		add_action('wp_loaded', array(__CLASS__, 'checkTheVisitorCookie'), 10, 0);
-		add_action('wp_footer', array(__CLASS__, 'onWpFooter'));
+		$popupEnabled = intval(get_field('la_popup_enabled', intval(get_option('page_on_front'))));
+		if ($popupEnabled === 1) {
+
+			add_action('wp_loaded', array(__CLASS__, 'checkTheVisitorCookie'), 10, 0);
+			add_action('wp_footer', array(__CLASS__, 'onWpFooter'));
+
+		}
 
 	}
 

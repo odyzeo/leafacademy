@@ -3,13 +3,40 @@
     "title": "Home Page - Popups",
     "fields": [
         {
+          "key": "field_5af2e12052a17",
+          "label": "Enable popup",
+          "name": "la_popup_enabled",
+          "type": "true_false",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "message": "",
+          "default_value": 0,
+          "ui": 1,
+          "ui_on_text": "",
+          "ui_off_text": ""
+        },
+      {
             "key": "field_5a55cfa17b957",
             "label": "Excluded Pages",
             "name": "la_popup_excluded_pages",
             "type": "post_object",
             "instructions": "The popup will not be displayed on selected pages.",
             "required": 0,
-            "conditional_logic": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_5af2e12052a17",
+              "operator": "==",
+              "value": "1"
+            }
+          ]
+        ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -31,7 +58,15 @@
             "type": "tab",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+          "conditional_logic": [
+            [
+              {
+                "field": "field_5af2e12052a17",
+                "operator": "==",
+                "value": "1"
+              }
+            ]
+          ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -47,7 +82,15 @@
             "type": "wysiwyg",
             "instructions": "Content below will be displayed to new website users in a popup.",
             "required": 0,
-            "conditional_logic": 0,
+          "conditional_logic": [
+            [
+              {
+                "field": "field_5af2e12052a17",
+                "operator": "==",
+                "value": "1"
+              }
+            ]
+          ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -66,7 +109,15 @@
             "type": "tab",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+          "conditional_logic": [
+            [
+              {
+                "field": "field_5af2e12052a17",
+                "operator": "==",
+                "value": "1"
+              }
+            ]
+          ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -82,7 +133,15 @@
             "type": "wysiwyg",
             "instructions": "Content below will be displayed to returning website visitors in a popup.",
             "required": 0,
-            "conditional_logic": 0,
+          "conditional_logic": [
+            [
+              {
+                "field": "field_5af2e12052a17",
+                "operator": "==",
+                "value": "1"
+              }
+            ]
+          ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -112,5 +171,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1515576599
+  "modified": 1525866893
 }
