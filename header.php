@@ -24,11 +24,27 @@
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/fonts/gotham-rnd/408453/B2F6C17C212922BE4.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/fonts/gotham-rnd/408453/B2F6C17C212922BE4.css"/>
 	<!--[if lt IE 9]>
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
-	
+
+	<!-- Google Tag Manager -->
+	<script>(function(w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({
+					'gtm.start':
+						new Date().getTime(), event: 'gtm.js'
+				});
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+				j.async = true;
+				j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(window, document, 'script', 'dataLayer', 'GTM-TZ5SRR4');</script>
+	<!-- End Google Tag Manager -->
+
 	<?php wp_head(); ?>
     
     <!-- social buttons -->
@@ -42,51 +58,55 @@
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
 
-	<?php if (function_exists('gtm4wp_the_gtm_tag')) {
-		gtm4wp_the_gtm_tag();
-	} ?>
-
     <header id="header">
         <div class="top">
+
+		<!-- Google Tag Manager (noscript) -->
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TZ5SRR4" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+		</noscript>
+		<!-- End Google Tag Manager (noscript) -->
 
 	        <?php
 	        $hideSocialBarOnMobile = get_field('hide_header_social_bar_on_mobile');
 	        $topNavExtraCssClasses = $hideSocialBarOnMobile ? 'hide-on-mobile' : '';
 	        ?>
 	        <div class="top-nav <?php echo $topNavExtraCssClasses; ?>">
-               <?php wp_nav_menu( array( 'container'=>false, 'theme_location' => 'secondary_top', 'menu_class' => 'menu', 'menu_id' => 'secondary-top-menu', 'depth'=>1 ) ); ?>
+			<?php wp_nav_menu(array('container' => FALSE, 'theme_location' => 'secondary_top', 'menu_class' => 'menu', 'menu_id' => 'secondary-top-menu', 'depth' => 1)); ?>
                 <div class="search">
                     <?php get_search_form(); ?>
                 </div>
-				<div class="language-switcher-wrap">
-					<div class="language-switcher">
-						<?php if (function_exists('icl_get_languages')): ?>
-							<?php $languages = icl_get_languages('skip_missing=0&orderby=name&order=asc&link_empty_to=' . home_url('/{%lang}/')); ?>
-							<?php foreach ($languages as $language): ?>
-								<?php if ($language['active'] == 1):?>
-									<a href="<?php echo $language['url']; ?>" data-lang="<?php echo $language['language_code']; ?>" class="language-switcher-trigger"><?php echo $language['language_code']; ?></a>
-								<?php endif; ?>
-							<?php endforeach; ?>
-							<ul>
+			<div class="language-switcher-wrap">
+				<div class="language-switcher">
+					<?php if (function_exists('icl_get_languages')): ?>
+						<?php $languages = icl_get_languages('skip_missing=0&orderby=name&order=asc&link_empty_to=' . home_url('/{%lang}/')); ?>
+						<?php foreach ($languages as $language): ?>
+							<?php if ($language['active'] == 1): ?>
+								<a href="<?php echo $language['url']; ?>" data-lang="<?php echo $language['language_code']; ?>" class="language-switcher-trigger"><?php echo $language['language_code']; ?></a>
+							<?php endif; ?>
+						<?php endforeach; ?>
+						<ul>
 							<?php foreach ($languages as $language): ?>
 								<?php if ($language['active'] == 0): ?>
-									<li><a href="<?php echo $language['url']; ?>"><span><?php echo $language['language_code']; ?></span></a></li>
+									<li>
+										<a href="<?php echo $language['url']; ?>"><span><?php echo $language['language_code']; ?></span></a>
+									</li>
 								<?php endif; ?>
 							<?php endforeach; ?>
-							</ul>
-						<?php else: ?>
-							<a href="/" data-lang="EN" class="language-switcher-trigger">EN</a>
-							<ul>
-								  <li><a href="http://academy.leaf.sk/"><span>SK</span></a></li>
-								  <li><a href="http://academy.leaf.sk/cz"><span>CZ</span></a></li>
-								  <li><a href="http://academy.leaf.sk/de"><span>AT</span></a></li>
-								  <li><a href="http://academy.leaf.sk/hu"><span>DE</span></a></li>
-								  <li><a href="http://academy.leaf.sk/pl"><span>PL</span></a></li>
+						</ul>
+					<?php else: ?>
+						<a href="/" data-lang="EN" class="language-switcher-trigger">EN</a>
+						<ul>
+							<li><a href="http://academy.leaf.sk/"><span>SK</span></a></li>
+							<li><a href="http://academy.leaf.sk/cz"><span>CZ</span></a></li>
+							<li><a href="http://academy.leaf.sk/de"><span>AT</span></a></li>
+							<li><a href="http://academy.leaf.sk/hu"><span>DE</span></a></li>
+							<li><a href="http://academy.leaf.sk/pl"><span>PL</span></a></li>
 
-							</ul>
-							<?php endif; ?>
-						<span aria-hidden="true" class="stretchy-nav-bg"></span>
-					</div>
+						</ul>
+					<?php endif; ?>
+					<span aria-hidden="true" class="stretchy-nav-bg"></span>
+				</div>
                 </div>
                 <div class="top-social top-social-alt">
                    <?php echo DISPLAY_ULTIMATE_PLUS(); ?>

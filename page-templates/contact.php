@@ -6,13 +6,9 @@
  * @subpackage Twenty_Fourteen
  * @since Twenty Fourteen 1.0
  */
- 
-get_header(); ?> 
 
-
-
-
-
+get_header();
+?>
 <div id="main-content" class="main-content contact">
 
     <div class="block block-front-sections do-match-height">
@@ -20,12 +16,12 @@ get_header(); ?>
                 <div class="section"><?php echo get_the_title(190); ?></div>
                 <?php if(function_exists('show_text_block')) { echo show_text_block(190, false); } ?>
                 <br />
-                <iframe id="contact-map" width="100%" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJRY0m7UiJbEcRwZYSK9-dFq4&key=AIzaSyAm3drQLpF0AMLAcUJmAUvJ9Qv-cYmC_8k" allowfullscreen></iframe>
-            </article>
+
+	    </article>
             <article class=" bg-white wide-column">
                 
-                
                 <div class="item">
+			<iframe id="contact-map" width="100%" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJRY0m7UiJbEcRwZYSK9-dFq4&key=AIzaSyAm3drQLpF0AMLAcUJmAUvJ9Qv-cYmC_8k" allowfullscreen></iframe>
                 <?php
                     // Start the Loop.
                     while ( have_posts() ) : the_post();
