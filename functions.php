@@ -91,17 +91,17 @@ if (!function_exists('leafacademy_setup')) :
 
 		// Enable support for Post Thumbnails, and declare two sizes.
 		add_theme_support('post-thumbnails');
-		set_post_thumbnail_size(640, 250, true);
-		add_image_size('leafacademy-full-width', 1280, 500, true);
-		add_image_size('leafacademy-small-square', 190, 190, true);
-		add_image_size('leafacademy-block-image', 600, 1000, false);
-		add_image_size('leafacademy-block-wide-image', 1000, 1000, false);
+		set_post_thumbnail_size(640, 250, TRUE);
+		add_image_size('leafacademy-full-width', 1280, 500, TRUE);
+		add_image_size('leafacademy-small-square', 190, 190, TRUE);
+		add_image_size('leafacademy-block-image', 600, 1000, FALSE);
+		add_image_size('leafacademy-block-wide-image', 1000, 1000, FALSE);
 
 		// This theme uses wp_nav_menu() in two locations.
 		register_nav_menus(array(
 			'primary' => __('Top primary menu', 'leafacademy'),
 			'secondary_top' => __('Top Secondary menu', 'leafacademy'),
-				//'secondary' => __( 'Secondary menu in left sidebar', 'leafacademy' ),
+			//'secondary' => __( 'Secondary menu in left sidebar', 'leafacademy' ),
 		));
 
 		/*
@@ -145,6 +145,7 @@ add_action('after_setup_theme', 'leafacademy_setup');
  * @since LEAF Academy 1.0
  */
 function leafacademy_content_width() {
+
 	if (is_attachment() && wp_attachment_is_image()) {
 		$GLOBALS['content_width'] = 810;
 	}
@@ -161,6 +162,7 @@ add_action('template_redirect', 'leafacademy_content_width');
  * @return array An array of WP_Post objects.
  */
 function leafacademy_get_featured_posts() {
+
 	/**
 	 * Filter the featured posts to return in LEAF Academy.
 	 *
@@ -180,7 +182,8 @@ function leafacademy_get_featured_posts() {
  * @return bool Whether there are featured posts.
  */
 function leafacademy_has_featured_posts() {
-	return !is_paged() && (bool) leafacademy_get_featured_posts();
+
+	return !is_paged() && (bool)leafacademy_get_featured_posts();
 
 }
 
@@ -190,6 +193,7 @@ function leafacademy_has_featured_posts() {
  * @since LEAF Academy 1.0
  */
 function leafacademy_widgets_init() {
+
 	require get_template_directory() . '/inc/widgets.php';
 	register_widget('LEAF_Academy_Widget');
 
@@ -233,6 +237,7 @@ add_action('widgets_init', 'leafacademy_widgets_init');
  * @return string
  */
 function leafacademy_font_url() {
+
 	$font_url = '';
 	/*
 	 * Translators: If there are characters in your language that are not supported
@@ -256,8 +261,9 @@ function leafacademy_font_url() {
  * @since LEAF Academy 1.0
  */
 function leafacademy_scripts() {
+
 	// Add Lato font, used in the main stylesheet.
-	wp_enqueue_style('leafacademy-lato', leafacademy_font_url(), array(), null);
+	wp_enqueue_style('leafacademy-lato', leafacademy_font_url(), array(), NULL);
 
 	// Add Genericons font, used in the main stylesheet.
 	wp_enqueue_style('genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.0.3');
@@ -279,18 +285,18 @@ function leafacademy_scripts() {
 	}
 
 	if (is_front_page() && 'slider' == get_theme_mod('featured_content_layout')) {
-		wp_enqueue_script('leafacademy-slider', get_template_directory_uri() . '/js/slider.js', array('jquery'), '20151102', true);
+		wp_enqueue_script('leafacademy-slider', get_template_directory_uri() . '/js/slider.js', array('jquery'), '20151102', TRUE);
 
 		wp_localize_script('leafacademy-slider', 'featuredSliderDefaults', array(
 			'prevText' => __('Previous', 'leafacademy'),
 			'nextText' => __('Next', 'leafacademy')
 		));
 	}
-	wp_enqueue_script('leafacademy-matchHeight', get_template_directory_uri() . '/js/jquery.matchHeight-min.js', array('jquery'), '20151102', true);
-	wp_enqueue_script('leafacademy-imagesloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.min.js', array('jquery'), '20151102', true);
-	wp_enqueue_script('leafacademy-masonry', get_template_directory_uri() . '/js/masonry.pkgd.min.js', array('jquery'), '20151102', true);
-	wp_enqueue_script('leafacademy-slick', get_template_directory_uri() . '/js/slick/slick.min.js', array('jquery'), '20151102', true);
-	wp_enqueue_script('leafacademy-script', get_template_directory_uri() . '/js/functions.js', array('jquery'), '201711001', true);
+	wp_enqueue_script('leafacademy-matchHeight', get_template_directory_uri() . '/js/jquery.matchHeight-min.js', array('jquery'), '20151102', TRUE);
+	wp_enqueue_script('leafacademy-imagesloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.min.js', array('jquery'), '20151102', TRUE);
+	wp_enqueue_script('leafacademy-masonry', get_template_directory_uri() . '/js/masonry.pkgd.min.js', array('jquery'), '20151102', TRUE);
+	wp_enqueue_script('leafacademy-slick', get_template_directory_uri() . '/js/slick/slick.min.js', array('jquery'), '20151102', TRUE);
+	wp_enqueue_script('leafacademy-script', get_template_directory_uri() . '/js/functions.js', array('jquery'), '201711001', TRUE);
 
 }
 
@@ -302,7 +308,8 @@ add_action('wp_enqueue_scripts', 'leafacademy_scripts');
  * @since LEAF Academy 1.0
  */
 function leafacademy_admin_fonts() {
-	wp_enqueue_style('leafacademy-lato', leafacademy_font_url(), array(), null);
+
+	wp_enqueue_style('leafacademy-lato', leafacademy_font_url(), array(), NULL);
 
 }
 
@@ -316,6 +323,7 @@ if (!function_exists('leafacademy_the_attached_image')) :
 	 * @since LEAF Academy 1.0
 	 */
 	function leafacademy_the_attached_image() {
+
 		$post = get_post();
 		/**
 		 * Filter the default LEAF Academy attachment size.
@@ -325,8 +333,8 @@ if (!function_exists('leafacademy_the_attached_image')) :
 		 * @param array $dimensions {
 		 *     An array of height and width dimensions.
 		 *
-		 *     @type int $height Height of the image in pixels. Default 810.
-		 *     @type int $width  Width of the image in pixels. Default 810.
+		 * @type int $height Height of the image in pixels. Default 810.
+		 * @type int $width Width of the image in pixels. Default 810.
 		 * }
 		 */
 		$attachment_size = apply_filters('leafacademy_attachment_size', array(810, 810));
@@ -361,15 +369,16 @@ if (!function_exists('leafacademy_the_attached_image')) :
 			// get the URL of the next image attachment...
 			if ($next_id) {
 				$next_attachment_url = get_attachment_link($next_id);
-			}
-
-			// or get the URL of the first image attachment.
+			} // or get the URL of the first image attachment.
 			else {
 				$next_attachment_url = get_attachment_link(reset($attachment_ids));
 			}
 		}
 
-		printf('<a href="%1$s" rel="attachment">%2$s</a>', esc_url($next_attachment_url), wp_get_attachment_image($post->ID, $attachment_size)
+		printf(
+			'<a href="%1$s" rel="attachment">%2$s</a>',
+			esc_url($next_attachment_url),
+			wp_get_attachment_image($post->ID, $attachment_size)
 		);
 
 	}
@@ -384,6 +393,7 @@ if (!function_exists('leafacademy_list_authors')) :
 	 * @since LEAF Academy 1.0
 	 */
 	function leafacademy_list_authors() {
+
 		$contributor_ids = get_users(array(
 			'fields' => 'ID',
 			'orderby' => 'post_count',
@@ -415,7 +425,7 @@ if (!function_exists('leafacademy_list_authors')) :
 				</div><!-- .contributor-info -->
 			</div><!-- .contributor -->
 
-			<?php
+		<?php
 		endforeach;
 
 	}
@@ -437,9 +447,11 @@ endif;
  * @since LEAF Academy 1.0
  *
  * @param array $classes A list of existing body class values.
+ *
  * @return array The filtered body class list.
  */
 function leafacademy_body_classes($classes) {
+
 	if (is_multi_author()) {
 		$classes[] = 'group-blog';
 	}
@@ -454,7 +466,7 @@ function leafacademy_body_classes($classes) {
 		$classes[] = 'list-view';
 	}
 
-	if ((!is_active_sidebar('sidebar-2') ) || is_page_template('page-templates/full-width.php') || is_page_template('page-templates/contributors.php') || is_page_template('page-templates/homepage.php') || is_page_template('page-templates/contact.php') || is_attachment()) {
+	if ((!is_active_sidebar('sidebar-2')) || is_page_template('page-templates/full-width.php') || is_page_template('page-templates/contributors.php') || is_page_template('page-templates/homepage.php') || is_page_template('page-templates/contact.php') || is_attachment()) {
 		$classes[] = 'full-width';
 	}
 
@@ -487,9 +499,11 @@ add_filter('body_class', 'leafacademy_body_classes');
  * @since LEAF Academy 1.0
  *
  * @param array $classes A list of existing post class values.
+ *
  * @return array The filtered post class list.
  */
 function leafacademy_post_classes($classes) {
+
 	if (!post_password_required() && !is_attachment() && has_post_thumbnail()) {
 		$classes[] = 'has-post-thumbnail';
 	}
@@ -507,13 +521,15 @@ add_filter('post_class', 'leafacademy_post_classes');
  * @since LEAF Academy 1.0
  *
  * @global int $paged WordPress archive pagination page count.
- * @global int $page  WordPress paginated post page count.
+ * @global int $page WordPress paginated post page count.
  *
  * @param string $title Default title text for current view.
  * @param string $sep Optional separator.
+ *
  * @return string The filtered title.
  */
 function leafacademy_wp_title($title, $sep) {
+
 	global $paged, $page;
 
 	if (is_feed()) {
@@ -525,12 +541,12 @@ function leafacademy_wp_title($title, $sep) {
 
 	// Add the site description for the home/front page.
 	$site_description = get_bloginfo('description', 'display');
-	if ($site_description && ( is_home() || is_front_page() )) {
+	if ($site_description && (is_home() || is_front_page())) {
 		$title = "$title $sep $site_description";
 	}
 
 	// Add a page number if necessary.
-	if (( $paged >= 2 || $page >= 2 ) && !is_404()) {
+	if (($paged >= 2 || $page >= 2) && !is_404()) {
 		$title = "$title $sep " . sprintf(__('Page %s', 'leafacademy'), max($paged, $page));
 	}
 
@@ -559,12 +575,12 @@ if (!class_exists('Featured_Content') && 'plugins.php' !== $GLOBALS['pagenow']) 
 	require get_template_directory() . '/inc/featured-content.php';
 }
 
-
 // add hook
 add_filter('wp_nav_menu_objects', 'my_wp_nav_menu_objects_sub_menu', 10, 2);
 
 // filter_hook function to react on sub_menu flag
 function my_wp_nav_menu_objects_sub_menu($sorted_menu_items, $args) {
+
 	if (isset($args->sub_menu)) {
 		$root_id = 0;
 
@@ -572,7 +588,7 @@ function my_wp_nav_menu_objects_sub_menu($sorted_menu_items, $args) {
 		foreach ($sorted_menu_items as $menu_item) {
 			if ($menu_item->current) {
 				// set the root id based on whether the current menu item has a parent or not
-				$root_id = ( $menu_item->menu_item_parent ) ? $menu_item->menu_item_parent : $menu_item->ID;
+				$root_id = ($menu_item->menu_item_parent) ? $menu_item->menu_item_parent : $menu_item->ID;
 				break;
 			}
 		}
@@ -600,7 +616,7 @@ function my_wp_nav_menu_objects_sub_menu($sorted_menu_items, $args) {
 			if (in_array($item->menu_item_parent, $menu_item_parents)) {
 				// part of sub-tree: keep!
 				$menu_item_parents[] = $item->ID;
-			} else if (!( isset($args->show_parent) && in_array($item->ID, $menu_item_parents) )) {
+			} else if (!(isset($args->show_parent) && in_array($item->ID, $menu_item_parents))) {
 				// not part of sub-tree: away with it!
 				unset($sorted_menu_items[$key]);
 			}
@@ -615,6 +631,7 @@ function my_wp_nav_menu_objects_sub_menu($sorted_menu_items, $args) {
 
 // Callback function to insert 'styleselect' into the $buttons array
 function my_mce_buttons_2($buttons) {
+
 	array_unshift($buttons, 'styleselect');
 	return $buttons;
 
@@ -625,6 +642,7 @@ add_filter('mce_buttons_2', 'my_mce_buttons_2');
 
 // Callback function to filter the MCE settings
 function my_mce_before_init_insert_formats($init_array) {
+
 	// Define the style_formats array
 	$style_formats = array(
 		// Each array child is a format with it's own settings
@@ -634,38 +652,38 @@ function my_mce_before_init_insert_formats($init_array) {
 			'selector' => 'p',
 			'block' => 'p',
 			'classes' => 'small',
-			'wrapper' => true,
+			'wrapper' => TRUE,
 		),
 		array(
 			'title' => 'Green text',
 			//'selector' => '',  
 			'inline' => 'span',
 			'classes' => 'green-text',
-			'wrapper' => true,
+			'wrapper' => TRUE,
 		),
 		array(
 			'title' => 'Button green/grey',
 			'inline' => 'a',
 			'classes' => 'btn green-grey',
-			'wrapper' => true,
+			'wrapper' => TRUE,
 		),
 		array(
 			'title' => 'Button grey/green',
 			'inline' => 'a',
 			'classes' => 'btn grey-green',
-			'wrapper' => true,
+			'wrapper' => TRUE,
 		),
 		array(
 			'title' => 'Button green/white',
 			'inline' => 'a',
 			'classes' => 'btn green',
-			'wrapper' => true,
+			'wrapper' => TRUE,
 		),
 		array(
 			'title' => 'Button grey/white',
 			'inline' => 'a',
 			'classes' => 'btn grey',
-			'wrapper' => true,
+			'wrapper' => TRUE,
 		),
 	);
 	// Insert the array, JSON ENCODED, into 'style_formats'
@@ -678,7 +696,8 @@ function my_mce_before_init_insert_formats($init_array) {
 // Attach callback to 'tiny_mce_before_init' 
 add_filter('tiny_mce_before_init', 'my_mce_before_init_insert_formats');
 
-function inline_featured_image($atts, $content = null, $name = null) {
+function inline_featured_image($atts, $content = NULL, $name = NULL) {
+
 	global $post;
 
 	if (class_exists('Dynamic_Featured_Image')) {
@@ -690,10 +709,9 @@ function inline_featured_image($atts, $content = null, $name = null) {
 		}
 		$fi = $featured_images[$attr['index'] - 1];
 		if ($fi) {
-			//return print_r($fi,true);       
 			return leafacademy_inline_featured_image($fi["attachment_id"]);
 		} else {
-			return false;
+			return FALSE;
 		}
 	}
 
@@ -701,63 +719,98 @@ function inline_featured_image($atts, $content = null, $name = null) {
 
 add_shortcode('featured_image', 'inline_featured_image');
 
-
-
 add_action('init', 'leafacademy_create_post_type');
 
 function leafacademy_create_post_type() {
+
 	register_post_type('team_member', array(
-		'labels' => array(
-			'name' => __('Team Members', __TEXTDOMAIN__),
-			'singular_name' => __('Team Member', __TEXTDOMAIN__)
-		),
-		'public' => false,
-		'has_archive' => true,
-		'exclude_from_search' => true,
-		'publicly_queryable' => true,
-		'show_ui' => true,
-		'show_in_menu' => true,
-		'menu_position' => 5,
-		//'menu_icon' =>
-		'hierarchical' => false,
-		'supports' => array(
-			'title', 'editor', 'thumbnail'
-		)
+			'labels' => array(
+				'name' => __('Team Members', __TEXTDOMAIN__),
+				'singular_name' => __('Team Member', __TEXTDOMAIN__)
+			),
+			'public' => FALSE,
+			'has_archive' => TRUE,
+			'exclude_from_search' => TRUE,
+			'publicly_queryable' => TRUE,
+			'show_ui' => TRUE,
+			'show_in_menu' => TRUE,
+			'menu_position' => 5,
+			'menu_icon' => 'dashicons-groups',
+			'hierarchical' => FALSE,
+			'supports' => array(
+				'title',
+				'editor',
+				'thumbnail'
 			)
+		)
 	);
 
+	$labels = array(
+		'name' => _x('Team Groups', 'Taxonomy General Name', __TEXTDOMAIN__),
+		'singular_name' => _x('Team Group', 'Taxonomy Singular Name', __TEXTDOMAIN__),
+		'menu_name' => __('Team Groups', __TEXTDOMAIN__),
+		'all_items' => __('All Items', __TEXTDOMAIN__),
+		'parent_item' => __('Parent Item', __TEXTDOMAIN__),
+		'parent_item_colon' => __('Parent Item:', __TEXTDOMAIN__),
+		'new_item_name' => __('New Item Name', __TEXTDOMAIN__),
+		'add_new_item' => __('Add New Item', __TEXTDOMAIN__),
+		'edit_item' => __('Edit Item', __TEXTDOMAIN__),
+		'update_item' => __('Update Item', __TEXTDOMAIN__),
+		'view_item' => __('View Item', __TEXTDOMAIN__),
+		'separate_items_with_commas' => __('Separate items with commas', __TEXTDOMAIN__),
+		'add_or_remove_items' => __('Add or remove items', __TEXTDOMAIN__),
+		'choose_from_most_used' => __('Choose from the most used', __TEXTDOMAIN__),
+		'popular_items' => __('Popular Items', __TEXTDOMAIN__),
+		'search_items' => __('Search Items', __TEXTDOMAIN__),
+		'not_found' => __('Not Found', __TEXTDOMAIN__),
+		'no_terms' => __('No items', __TEXTDOMAIN__),
+		'items_list' => __('Items list', __TEXTDOMAIN__),
+		'items_list_navigation' => __('Items list navigation', __TEXTDOMAIN__),
+	);
+	$args = array(
+		'labels' => $labels,
+		'hierarchical' => FALSE,
+		'public' => TRUE,
+		'show_ui' => TRUE,
+		'show_admin_column' => TRUE,
+		'show_in_nav_menus' => TRUE,
+		'show_tagcloud' => FALSE,
+	);
+	register_taxonomy('team_group', array('team_member'), $args);
+
 	register_post_type('grid_block', array(
-		'labels' => array(
-			'name' => __('Grid Blocks', __TEXTDOMAIN__),
-			'singular_name' => __('Grid Block', __TEXTDOMAIN__)
-		),
-		'public' => false,
-		'has_archive' => true,
-		'exclude_from_search' => true,
-		'publicly_queryable' => true,
-		'show_ui' => true,
-		'show_in_menu' => true,
-		'menu_position' => 6,
-		//'menu_icon' =>
-		'hierarchical' => false,
-		'supports' => array(
-			'title', 'editor', 'thumbnail'
-		)
+			'labels' => array(
+				'name' => __('Grid Blocks', __TEXTDOMAIN__),
+				'singular_name' => __('Grid Block', __TEXTDOMAIN__)
+			),
+			'public' => FALSE,
+			'has_archive' => TRUE,
+			'exclude_from_search' => TRUE,
+			'publicly_queryable' => TRUE,
+			'show_ui' => TRUE,
+			'show_in_menu' => TRUE,
+			'menu_position' => 6,
+			//'menu_icon' =>
+			'hierarchical' => FALSE,
+			'supports' => array(
+				'title', 'editor', 'thumbnail'
 			)
+		)
 	);
 
 }
 
 define('LEAFACADEMY_TEAM_MEMBER_EMAIL_META_KEY', '_team_member_email');
-define('LEAFACADEMY_TEAM_MEMBER_TYPE_META_KEY', '_team_member_type');
 
 function leafacademy_metabox_team_member_meta_boxes() {
 
 	add_meta_box(
-			'leafacademy_metabox_team_member_email', __("Team member email", __TEXTDOMAIN__), 'leafacademy_metabox_team_member_email_callback', 'team_member', 'normal', 'low'
-	);
-	add_meta_box(
-			'leafacademy_metabox_team_member_type', __("Member type", __TEXTDOMAIN__), 'leafacademy_metabox_team_member_type_callback', 'team_member', 'normal', 'low'
+		'leafacademy_metabox_team_member_email',
+		__("Team member email", __TEXTDOMAIN__),
+		'leafacademy_metabox_team_member_email_callback',
+		'team_member',
+		'normal',
+		'low'
 	);
 
 }
@@ -774,25 +827,10 @@ function leafacademy_metabox_team_member_email_callback($post) {
 	// Add an nonce field so we can check for it later.
 	wp_nonce_field('leafacademy_metabox_team_member_email', 'leafacademy_metabox_team_member_email_nonce');
 
-	$value = get_post_meta($post->ID, LEAFACADEMY_TEAM_MEMBER_EMAIL_META_KEY, true);
+	$value = get_post_meta($post->ID, LEAFACADEMY_TEAM_MEMBER_EMAIL_META_KEY, TRUE);
 
 	echo '<input type="email" name="_team_member_email" class="text  email widefat large" id="_team_member_email" value="' . esc_attr($value) . '">';
 	echo '<p class="description">' . __("Team member email address.", __TEXTDOMAIN__) . '</p>';
-
-}
-
-function leafacademy_metabox_team_member_type_callback($post) {
-
-	// Add an nonce field so we can check for it later.
-	wp_nonce_field('leafacademy_metabox_team_member_type', 'leafacademy_metabox_team_member_type_nonce');
-
-	$value = get_post_meta($post->ID, LEAFACADEMY_TEAM_MEMBER_TYPE_META_KEY, true);
-
-	echo '<select  name="_team_member_type" class=" widefat" id="_team_member_type">';
-	echo '<option value="our-team" ' . ($value == "our-team" ? 'selected="selected"' : '') . ' >Our team</option>';
-	echo '<option value="advisory-council" ' . ($value == "advisory-council" ? 'selected="selected"' : '') . ' >Advisory council</option>';
-	echo '</select>';
-	// echo '<p class="description">'.__("Block background color", __TEXTDOMAIN__).'</p>';
 
 }
 
@@ -807,17 +845,14 @@ function leafacademy_metabox_team_member_email_save_date($post_id) {
 	 * We need to verify this came from our screen and with proper authorization,
 	 * because the save_post action can be triggered at other times.
 	 */
+
 	// Check if our nonce is set.
-	if (!isset($_POST['leafacademy_metabox_team_member_email_nonce']) || !isset($_POST['leafacademy_metabox_team_member_type_nonce'])) {
+	if (!isset($_POST['leafacademy_metabox_team_member_email_nonce'])) {
 		return;
 	}
 
 	// Verify that the nonce is valid.
 	if (!wp_verify_nonce($_POST['leafacademy_metabox_team_member_email_nonce'], 'leafacademy_metabox_team_member_email')) {
-		return;
-	}
-	// Verify that the nonce is valid.
-	if (!wp_verify_nonce($_POST['leafacademy_metabox_team_member_type_nonce'], 'leafacademy_metabox_team_member_type')) {
 		return;
 	}
 
@@ -835,16 +870,13 @@ function leafacademy_metabox_team_member_email_save_date($post_id) {
 
 	// Sanitize user input.
 	$email = isset($_POST["_team_member_email"]) ? $_POST["_team_member_email"] : "";
-	$type = isset($_POST["_team_member_type"]) ? $_POST["_team_member_type"] : "";
 
 	// Update the meta field in the database.
 	update_post_meta($post_id, LEAFACADEMY_TEAM_MEMBER_EMAIL_META_KEY, $email);
-	update_post_meta($post_id, LEAFACADEMY_TEAM_MEMBER_TYPE_META_KEY, $type);
 
 }
 
 add_action('save_post', 'leafacademy_metabox_team_member_email_save_date');
-
 
 /* * ******* BLOCKS ********** */
 define('LEAFACADEMY_BLOCK_TAG_META_KEY', '_block_tag');
@@ -855,18 +887,18 @@ define('LEAFACADEMY_BLOCK_HIDE_TITLE_META_KEY', '_block_hide_title');
 function leafacademy_metabox_block() {
 
 	add_meta_box(
-			'leafacademy_metabox_block_tag', __("Block tag", __TEXTDOMAIN__), 'leafacademy_metabox_block_tag_callback', 'grid_block', 'normal', 'low'
+		'leafacademy_metabox_block_tag', __("Block tag", __TEXTDOMAIN__), 'leafacademy_metabox_block_tag_callback', 'grid_block', 'normal', 'low'
 	);
 
 	add_meta_box(
-			'leafacademy_metabox_block_bgcolor', __("Background color", __TEXTDOMAIN__), 'leafacademy_metabox_block_bgcolor_callback', 'grid_block', 'normal', 'low'
+		'leafacademy_metabox_block_bgcolor', __("Background color", __TEXTDOMAIN__), 'leafacademy_metabox_block_bgcolor_callback', 'grid_block', 'normal', 'low'
 	);
 
 	add_meta_box(
-			'leafacademy_metabox_block_wide', __("Block size", __TEXTDOMAIN__), 'leafacademy_metabox_block_wide_callback', 'grid_block', 'normal', 'low'
+		'leafacademy_metabox_block_wide', __("Block size", __TEXTDOMAIN__), 'leafacademy_metabox_block_wide_callback', 'grid_block', 'normal', 'low'
 	);
 	add_meta_box(
-			'leafacademy_metabox_block_hide_title', __("Block title options", __TEXTDOMAIN__), 'leafacademy_metabox_block_hide_title_callback', 'grid_block', 'normal', 'low'
+		'leafacademy_metabox_block_hide_title', __("Block title options", __TEXTDOMAIN__), 'leafacademy_metabox_block_hide_title_callback', 'grid_block', 'normal', 'low'
 	);
 
 }
@@ -883,7 +915,7 @@ function leafacademy_metabox_block_tag_callback($post) {
 	// Add an nonce field so we can check for it later.
 	wp_nonce_field('leafacademy_metabox_block_tag', 'leafacademy_metabox_block_tag_nonce');
 
-	$value = get_post_meta($post->ID, LEAFACADEMY_BLOCK_TAG_META_KEY, true);
+	$value = get_post_meta($post->ID, LEAFACADEMY_BLOCK_TAG_META_KEY, TRUE);
 
 	echo '<input type="text" name="_block_tag" class="text  widefat large" id="_block_tag" value="' . esc_attr($value) . '">';
 	echo '<p class="description">' . __("Block tag used in shortcodes", __TEXTDOMAIN__) . '</p>';
@@ -895,7 +927,7 @@ function leafacademy_metabox_block_bgcolor_callback($post) {
 	// Add an nonce field so we can check for it later.
 	wp_nonce_field('leafacademy_metabox_block_bgcolor', 'leafacademy_metabox_block_bgcolor_nonce');
 
-	$value = get_post_meta($post->ID, LEAFACADEMY_BLOCK_BGCOLOR_META_KEY, true);
+	$value = get_post_meta($post->ID, LEAFACADEMY_BLOCK_BGCOLOR_META_KEY, TRUE);
 
 	echo '<select  name="_block_bgcolor" class=" widefat" id="_block_bgcolor">';
 	echo '<option value="white" ' . ($value == "white" ? 'selected="selected"' : '') . ' >White</option>';
@@ -912,7 +944,7 @@ function leafacademy_metabox_block_hide_title_callback($post) {
 	// Add an nonce field so we can check for it later.
 	wp_nonce_field('leafacademy_metabox_block_hide_title', 'leafacademy_metabox_block_hide_title_nonce');
 
-	$value = get_post_meta($post->ID, LEAFACADEMY_BLOCK_HIDE_TITLE_META_KEY, true);
+	$value = get_post_meta($post->ID, LEAFACADEMY_BLOCK_HIDE_TITLE_META_KEY, TRUE);
 
 	echo '<input type="hidden"  name="_block_hide_title" class="" value="0" />';
 	echo '<input type="checkbox"  name="_block_hide_title" class="" value="1" id="_block_hide_title" ' . ($value ? 'checked="checked"' : '') . ' />';
@@ -925,7 +957,7 @@ function leafacademy_metabox_block_wide_callback($post) {
 	// Add an nonce field so we can check for it later.
 	wp_nonce_field('leafacademy_metabox_block_wide', 'leafacademy_metabox_block_wide_nonce');
 
-	$value = get_post_meta($post->ID, LEAFACADEMY_BLOCK_WIDE_META_KEY, true);
+	$value = get_post_meta($post->ID, LEAFACADEMY_BLOCK_WIDE_META_KEY, TRUE);
 
 	echo '<input type="hidden"  name="_block_wide" class="" value="0" />';
 	echo '<input type="checkbox"  name="_block_wide" class="" value="1" id="_block_wide" ' . ($value == 1 ? 'checked="checked"' : '') . ' />';
@@ -997,22 +1029,27 @@ function leafacademy_metabox_block_tag_save_date($post_id) {
 
 add_action('save_post', 'leafacademy_metabox_block_tag_save_date');
 
-
 if (!function_exists('leafacademy_team_members')) : // output
 
 	function leafacademy_team_members($atts, $do_shortcode = 1, $strip_shortcodes = 0) {
 
-		$type = isset($atts["type"]) ? $atts["type"] : "our-team";
+		$memberGroup = isset($atts["group"]) ? $atts["group"] : "our-team";
+
 		$args = array(
 			'posts_per_page' => 100,
 			'offset' => 0,
 			'orderby' => 'menu_order',
 			'order' => 'ASC',
-			'meta_key' => "_team_member_type",
-			'meta_value' => $type,
 			'post_type' => 'team_member',
 			'post_status' => 'publish',
-			'suppress_filters' => true
+			'suppress_filters' => TRUE,
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'team_group',
+					'field' => 'slug',
+					'terms' => $memberGroup
+				)
+			)
 		);
 
 		$posts = get_posts($args);
@@ -1020,8 +1057,8 @@ if (!function_exists('leafacademy_team_members')) : // output
 		$html = '';
 		foreach ($posts as $post) {
 
-			$meta_email = get_post_meta($post->ID, '_team_member_email', true);
-			$img_url = null;
+			$meta_email = get_post_meta($post->ID, '_team_member_email', TRUE);
+			$img_url = NULL;
 			$img = get_the_post_thumbnail($post->ID, 'medium');
 
 			if (has_post_thumbnail($post->ID)) {
@@ -1045,19 +1082,19 @@ if (!function_exists('leafacademy_team_members')) : // output
 			$html .= '<a href="#' . $post->post_name . '" class="image do-bg-image" data-supress-scroll><img src="' . ($img_url ? $img_url : '/wp-content/themes/leafacademy/images/team-member.png ') . '"></a>';
 			$html .= '<h2 class="name">' . $post->post_title . '</h2>';
 
-			$meta_job_role = get_post_meta($post->ID, 'la_job_role', true);
+			$meta_job_role = get_post_meta($post->ID, 'la_job_role', TRUE);
 			if (!empty($meta_job_role)) {
 				$html .= '<span class="job-role">' . esc_html($meta_job_role) . '</span>';
 			}
 
 			if ($meta_email) {
 
-				$html .='<div class="contact">';
+				$html .= '<div class="contact">';
 				$html .= '<a href="mailto:' . $meta_email . '">' . $meta_email . '</a>';
 				$html .= '</div>';
 			}
 
-			$html .='<div class="about"><a class="close"></a><p>' . $content . '</p></div>';
+			$html .= '<div class="about"><a class="close"></a><p>' . $content . '</p></div>';
 			$html .= '</article>';
 		}
 
@@ -1075,7 +1112,7 @@ if (!function_exists('leafacademy_blocks_grid')) : // output
 	function leafacademy_blocks_grid($atts, $do_shortcode = 1, $strip_shortcodes = 0) {
 
 		$tag = isset($atts["tag"]) ? $atts["tag"] : "";
-		$matchHeight = isset($atts["matchheight"]) ? $atts["matchheight"] : false;
+		$matchHeight = isset($atts["matchheight"]) ? $atts["matchheight"] : FALSE;
 
 		$args = array(
 			'posts_per_page' => 100,
@@ -1086,7 +1123,7 @@ if (!function_exists('leafacademy_blocks_grid')) : // output
 			'meta_value' => $tag,
 			'post_type' => 'grid_block',
 			'post_status' => 'publish',
-			'suppress_filters' => false
+			'suppress_filters' => FALSE
 		);
 
 		$posts = get_posts($args);
@@ -1095,12 +1132,12 @@ if (!function_exists('leafacademy_blocks_grid')) : // output
 		foreach ($posts as $post) {
 
 			$isMajorBlock = get_field('la_major_block', $post->ID);
-			$meta_bgcolor = get_post_meta($post->ID, '_block_bgcolor', true);
-			$meta_bgimage = get_post_meta($post->ID, 'la_bg_pattern', true);
-			$meta_hidetitle = get_post_meta($post->ID, '_block_hide_title', true);
-			$meta_wide = get_post_meta($post->ID, '_block_wide', true);
+			$meta_bgcolor = get_post_meta($post->ID, '_block_bgcolor', TRUE);
+			$meta_bgimage = get_post_meta($post->ID, 'la_bg_pattern', TRUE);
+			$meta_hidetitle = get_post_meta($post->ID, '_block_hide_title', TRUE);
+			$meta_wide = get_post_meta($post->ID, '_block_wide', TRUE);
 
-			$img_url = null;
+			$img_url = NULL;
 
 			$img = get_the_post_thumbnail($post->ID, 'medium');
 			$sizeClass = $meta_wide ? "wide-column" : "";
@@ -1119,7 +1156,7 @@ if (!function_exists('leafacademy_blocks_grid')) : // output
 				global $dynamic_featured_image;
 				$featured_images = $dynamic_featured_image->get_featured_images($post->ID);
 				foreach ($featured_images as $fi) {
-					$slides .='<div class="item do-bg-image">' . wp_get_attachment_image($fi["attachment_id"], 'leafacademy-full-width', false, null) . '</div>';
+					$slides .= '<div class="item do-bg-image">' . wp_get_attachment_image($fi["attachment_id"], 'leafacademy-full-width', FALSE, NULL) . '</div>';
 				}
 				if (!empty($slides) && !empty($img_url)) { //este prvy featured image treba pridat lebo ten neni v poli  $featured_images
 					$slides = '<div class="item do-bg-image"><img src="' . $img_url . '"></div>' . $slides;
@@ -1148,12 +1185,12 @@ if (!function_exists('leafacademy_blocks_grid')) : // output
 				$blocksClass = 'block-gallery';
 			} else if (trim(strip_tags($content)) == "" && !empty($img)) {
 				if ($matchHeight) {
-					$html .='<article class="item image do-bg-image ' . $sizeClass . '" style="' . $inlineCss . '"><img src="' . $img_url . '"></article>';
+					$html .= '<article class="item image do-bg-image ' . $sizeClass . '" style="' . $inlineCss . '"><img src="' . $img_url . '"></article>';
 				} else {
-					$html .='<article class="item image ' . $sizeClass . '" style="' . $inlineCss . '"><img src="' . $img_url . '"></article>';
+					$html .= '<article class="item image ' . $sizeClass . '" style="' . $inlineCss . '"><img src="' . $img_url . '"></article>';
 				}
-			} else if (stripos($content, '<iframe') !== false && $meta_hidetitle) {
-				$html .='<article class="item image ' . $sizeClass . '" style="' . $inlineCss . '">' . $content . '</article>';
+			} else if (stripos($content, '<iframe') !== FALSE && $meta_hidetitle) {
+				$html .= '<article class="item image ' . $sizeClass . '" style="' . $inlineCss . '">' . $content . '</article>';
 			} else {
 
 				$content = wpautop($content);
@@ -1178,7 +1215,6 @@ if (!function_exists('leafacademy_blocks_grid')) : // output
 
 endif; // end of function_exists()
 
-
 add_shortcode('blocks_grid', 'leafacademy_blocks_grid');
 
 add_filter('manage_grid_block_posts_columns', 'grid_blocks_table_head');
@@ -1193,8 +1229,9 @@ function grid_blocks_table_head($defaults) {
 add_action('manage_grid_block_posts_custom_column', 'grid_blocks_table_content', 10, 2);
 
 function grid_blocks_table_content($column_name, $post_id) {
+
 	if ($column_name == '_block_tag') {
-		$tag = get_post_meta($post_id, '_block_tag', true);
+		$tag = get_post_meta($post_id, '_block_tag', TRUE);
 		echo $tag;
 	}
 
@@ -1212,18 +1249,19 @@ define('LEAFACADEMY_POST_LINK_TARGET_META_KEY', '_link_target_meta_key');
 function leafacademy_metabox_post_meta_boxes() {
 
 	add_meta_box(
-			'leafacademy_metabox_post_link', __("Button URL", __TEXTDOMAIN__), 'leafacademy_metabox_post_link_callback', 'post', 'normal', 'low'
+		'leafacademy_metabox_post_link', __("Button URL", __TEXTDOMAIN__), 'leafacademy_metabox_post_link_callback', 'post', 'normal', 'low'
 	);
 	add_meta_box(
-			'leafacademy_metabox_post_link_label', __("Button label", __TEXTDOMAIN__), 'leafacademy_metabox_post_link_label_callback', 'post', 'normal', 'low'
+		'leafacademy_metabox_post_link_label', __("Button label", __TEXTDOMAIN__), 'leafacademy_metabox_post_link_label_callback', 'post', 'normal', 'low'
 	);
 	add_meta_box(
-			'leafacademy_metabox_post_link_target', __("Button options", __TEXTDOMAIN__), 'leafacademy_metabox_post_link_target_callback', 'post', 'normal', 'low'
+		'leafacademy_metabox_post_link_target', __("Button options", __TEXTDOMAIN__), 'leafacademy_metabox_post_link_target_callback', 'post', 'normal', 'low'
 	);
 
 	array_map(function ($postType) {
+
 		add_meta_box(
-				'leafacademy_metabox_post_feed', __("Show in news feed", __TEXTDOMAIN__), 'leafacademy_metabox_post_feed_callback', $postType, 'normal', 'low'
+			'leafacademy_metabox_post_feed', __("Show in news feed", __TEXTDOMAIN__), 'leafacademy_metabox_post_feed_callback', $postType, 'normal', 'low'
 		);
 	}, array("post", LFA_POST_TYPE_BLOG_ARTICLE));
 
@@ -1241,7 +1279,7 @@ function leafacademy_metabox_post_link_callback($post) {
 	// Add an nonce field so we can check for it later.
 	wp_nonce_field('leafacademy_metabox_post_link', 'leafacademy_metabox_post_link_nonce');
 
-	$value = get_post_meta($post->ID, LEAFACADEMY_POST_LINK_META_KEY, true);
+	$value = get_post_meta($post->ID, LEAFACADEMY_POST_LINK_META_KEY, TRUE);
 
 	echo '<input type="url" name="_post_link" class="url  widefat large" id="_post_link" value="' . esc_attr($value) . '">';
 	//echo '<p class="description">'.__("Button link.", __TEXTDOMAIN__).'</p>';
@@ -1253,7 +1291,7 @@ function leafacademy_metabox_post_link_label_callback($post) {
 	// Add an nonce field so we can check for it later.
 	wp_nonce_field('leafacademy_metabox_post_link_label', 'leafacademy_metabox_post_link_label_nonce');
 
-	$value = get_post_meta($post->ID, LEAFACADEMY_POST_LINK_LABEL_META_KEY, true);
+	$value = get_post_meta($post->ID, LEAFACADEMY_POST_LINK_LABEL_META_KEY, TRUE);
 
 	echo '<input type="text" name="_post_link_label" class="url  widefat large" id="_post_link_label" value="' . esc_attr($value) . '">';
 	//echo '<p class="description">'.__("Button label.", __TEXTDOMAIN__).'</p>';
@@ -1265,7 +1303,7 @@ function leafacademy_metabox_post_link_target_callback($post) {
 	// Add an nonce field so we can check for it later.
 	wp_nonce_field('leafacademy_metabox_post_link_target', 'leafacademy_metabox_post_link_target_nonce');
 
-	$value = get_post_meta($post->ID, LEAFACADEMY_POST_LINK_TARGET_META_KEY, true);
+	$value = get_post_meta($post->ID, LEAFACADEMY_POST_LINK_TARGET_META_KEY, TRUE);
 
 	echo '<input type="hidden"  name="_post_link_target" class="" value="0" />';
 	echo '<input type="checkbox"  name="_post_link_target" class="" value="1" id="_post_link_target" ' . ($value == 1 ? 'checked="checked"' : '') . ' />';
@@ -1278,17 +1316,16 @@ function leafacademy_metabox_post_feed_callback($post) {
 	// Add an nonce field so we can check for it later.
 	wp_nonce_field('leafacademy_metabox_post_feed', 'leafacademy_metabox_post_feed_nonce');
 
-	$value = get_post_meta($post->ID, LEAFACADEMY_POST_FEED_META_KEY, true);
+	$value = get_post_meta($post->ID, LEAFACADEMY_POST_FEED_META_KEY, TRUE);
 
 	echo '<input type="hidden"  name="_post_feed" class="" value="0" />';
 	echo '<input type="checkbox"  name="_post_feed" class="" value="1" id="_post_feed" ' . ($value == 1 ? 'checked="checked"' : '') . ' />';
 	echo '<label for="_post_feed">Show in news feed carousel on homepage?</label>';
 
-
 	// Add an nonce field so we can check for it later.
 	wp_nonce_field('leafacademy_metabox_post_feed_video', 'leafacademy_metabox_post_feed_video_nonce');
 
-	$value = get_post_meta($post->ID, LEAFACADEMY_POST_FEED_VIDEO_META_KEY, true);
+	$value = get_post_meta($post->ID, LEAFACADEMY_POST_FEED_VIDEO_META_KEY, TRUE);
 
 	echo '<br /><label for="_post_feed_video">Feed video (Youtube URL):</label>';
 	echo '<input type="text"  name="_post_feed_video" class="" style="width:400px;" value="' . $value . '" id="_post_feed_video"  />';
@@ -1410,21 +1447,23 @@ function lfa_load_acf_json($paths) {
 
 }
 
-function wpse_287229_embed_html( $cache, $url, $attr, $post_ID ) {
-    if ( 
-        strpos( $cache, 'youtube.com' ) !== false || 
-        strpos( $cache, 'youtu.be' ) !== false 
-    ) {
-        //	$cache = str_replace( '<iframe ', '<iframe class="" ', $cache ); // YouTube doesn't have a class on its iframe.
+function wpse_287229_embed_html($cache, $url, $attr, $post_ID) {
+
+	if (
+		strpos($cache, 'youtube.com') !== FALSE ||
+		strpos($cache, 'youtu.be') !== FALSE
+	) {
+		//	$cache = str_replace( '<iframe ', '<iframe class="" ', $cache ); // YouTube doesn't have a class on its iframe.
 		$cache = '<div class="youtube-embed">' . $cache . '</div>';
-    }
+	}
 
-    if ( strpos( $cache, 'soundcloud.com' ) !== false ) {
-        // str_replace optimised for SoundCloud here.
-    }
+	if (strpos($cache, 'soundcloud.com') !== FALSE) {
+		// str_replace optimised for SoundCloud here.
+	}
 
-    // etc.
+	// etc.
 
-    return $cache;
+	return $cache;
 }
-add_filter( 'embed_oembed_html', 'wpse_287229_embed_html', 10, 4 );
+
+add_filter('embed_oembed_html', 'wpse_287229_embed_html', 10, 4);
