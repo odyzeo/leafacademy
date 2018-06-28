@@ -1,6 +1,6 @@
 {
 	"name": "leafacademy",
-  "version": "1.6.8",
+  "version": "1.6.9",
 	"description": "WordPress theme for project LEAF Academy",
 	"main": "gulpfile.js",
 	"repository": {

@@ -239,7 +239,7 @@ if (!function_exists('leafacademy_post_thumbnail')) :
 						the_post_thumbnail_caption();
 					} else {
 
-						the_post_thumbnail();
+			    the_post_thumbnail('leafacademy-full-width');
 					}
 					?>
 				</div>
