@@ -60,12 +60,12 @@ get_header();
 
 		function onYouTubeIframeAPIReady() {
 			YouTubeIframeAPIReady = true;
-			<?php
-			$mainVideoId = get_text_block_video_id(1670);
-			if ($mainVideoId) {
-				echo("initPlayer('$mainVideoId','intro-video'); ");
-			}
-			?>
+		<?php
+		$mainVideoId = get_text_block_video_id(1670);
+		if ($mainVideoId) {
+			echo("initPlayer('$mainVideoId','intro-video'); ");
+		}
+		?>
 			if (domReady) {
 				initSlideVideos();
 			}
@@ -95,36 +95,36 @@ get_header();
 
 	<div id="main-content" class="main-content homepage">
 
-		<?php
-		$introInlineStyle = '';
-		if (function_exists('get_text_block_image_url')) {
+	    <?php
+	    $introInlineStyle = '';
+	    if (function_exists('get_text_block_image_url')) {
 
-			if (function_exists('get_text_block_video_id')) {
+		    if (function_exists('get_text_block_video_id')) {
 
-				$introBackgroundImage = get_text_block_image_url(1670);
-				if (!empty($introBackgroundImage)) {
-					$introInlineStyle = 'style="background-image: url(' . $introBackgroundImage . ');"';
-				}
-			}
-		}
-		?>
+			    $introBackgroundImage = get_text_block_image_url(1670);
+			    if (!empty($introBackgroundImage)) {
+				    $introInlineStyle = 'style="background-image: url(' . $introBackgroundImage . ');"';
+			    }
+		    }
+	    }
+	    ?>
 
 		<div class="block block-front-intro do-match-height bg-green">
 			<div class="video" <?php echo $introInlineStyle; ?>>
 				<div class="overlay"></div>
 				<div class="wrap">
-									<?php if (function_exists('show_text_block') && trim(strip_tags(show_text_block(1670, TRUE))) != ''): ?>
-					    <div class="title">
-												<?php echo show_text_block(1670, FALSE); ?>
-					    </div>
-									<?php endif; ?>
+			<?php if (function_exists('show_text_block') && trim(strip_tags(show_text_block(1670, TRUE))) != ''): ?>
+							<div class="title">
+				    <?php echo show_text_block(1670, FALSE); ?>
+							</div>
+			<?php endif; ?>
 					<a href="<?php echo home_url('/#start'); ?>" class="scroll-down"></a>
 				</div>
 				<div id="intro-video"></div>
 			</div>
 			<div class="slider-wrap">
 				<div class="slider">
-									<?php echo do_shortcode('[carousel-horizontal-main-content-slider]'); ?>
+			<?php echo do_shortcode('[carousel-horizontal-main-content-slider]'); ?>
 				</div>
 				<a href="#" class="read-more">&nbsp;</a>
 			</div>
@@ -135,11 +135,12 @@ get_header();
 		<div class="block block-front block-front-news">
 			<div class="slider">
 				<h2 class="section">News feed</h2>
-				<?php echo do_shortcode('[carousel-horizontal-news-content-slider]'); ?>
+		    <?php echo do_shortcode('[carousel-horizontal-news-content-slider]'); ?>
 			</div>
 		</div>
 
-		<?php
+	    <?php
+	    /*
 		$eventsInlineStyle = '';
 		if (function_exists('get_text_block_image_url')) {
 
@@ -153,35 +154,39 @@ get_header();
 				<?php echo do_shortcode('[carousel-horizontal-events-content-slider]'); ?>
 			</div>
 		</div>
+		*/ ?>
 
 		<!-- .block-front-map -->
+	    <?php
+
+	    $frontSectionsData = array(
+		    array(
+			    'post_id' => 54,
+			    'css_class' => 'bg-white'
+		    ),
+		    array(
+			    'post_id' => 56,
+			    'css_class' => 'bg-green'
+		    ),
+		    array(
+			    'post_id' => 58,
+			    'css_class' => 'bg-darkgrey'
+		    )
+	    );
+
+	    ?>
 		<div class="block block-front-sections do-match-height">
-			<article class="item bg-white">
-				<div class="section"><?php echo get_the_title(54); ?></div>
-				<?php
-				if (function_exists('show_text_block')) {
-					echo show_text_block(54, FALSE);
-				}
-				?>
+		<?php foreach ($frontSectionsData as $frontSectionsItem): ?>
+			<?php $postId = apply_filters('wpml_object_id', $frontSectionsItem['post_id'], 'text-blocks'); ?>
+					<article class="item <?php echo $frontSectionsItem['css_class']; ?>">
+						<div class="section"><?php echo get_the_title($postId); ?></div>
+			    <?php if (function_exists('show_text_block')) {
+				    echo show_text_block($postId, FALSE);
+			    }
+			    ?>
+					</article>
+		<?php endforeach; ?>
 
-			</article>
-			<article class="item bg-green">
-				<div class="section"><?php echo get_the_title(56); ?></div>
-				<?php
-				if (function_exists('show_text_block')) {
-					echo show_text_block(56, FALSE);
-				}
-				?>
-
-			</article>
-			<article class="item bg-darkgrey">
-				<div class="section"><?php echo get_the_title(58); ?></div>
-				<?php
-				if (function_exists('show_text_block')) {
-					echo show_text_block(58, FALSE);
-				}
-				?>
-			</article>
 		</div><!-- .block-front-sections -->
 
 	</div><!-- #main-content -->
