@@ -1,31 +1,31 @@
 {
-	"name": "leafacademy",
-  "version": "1.6.9",
-	"description": "WordPress theme for project LEAF Academy",
-	"main": "gulpfile.js",
-	"repository": {
-		"type": "git",
-		"url": "http://git.devstudio.sk/git/martin.krcho/leaf-academy-theme.git"
-	},
-	"author": "Dev Studio spol. s r.o.",
-	"license": "BSD-3-Clause",
-	"dependencies": {
-		"bower": "^1.8.0",
-		"dateformat": "^2.0.0",
-		"del": "^3.0.0",
-		"graceful-fs": "^4.0.0",
-		"gulp": "^3.9.1",
-		"gulp-concat": "^2.6.1",
-		"gulp-copy": "^1.0.0",
-		"gulp-minify-css": "^1.2.4",
-		"gulp-rename": "^1.2.2",
-		"gulp-sass": "^3.1.0",
-		"gulp-uglify": "^2.1.2",
-		"gulp-zip": "^4.0.0",
-		"merge-stream": "^1.0.1",
-		"pump": "^1.0.2"
-	},
-	"devDependencies": {
-		"gulp-watch": "^4.3.11"
-	}
+  "name": "leafacademy",
+  "version": "1.6.10",
+  "description": "WordPress theme for project LEAF Academy",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "http://git.devstudio.sk/git/martin.krcho/leaf-academy-theme.git"
+  },
+  "author": "Dev Studio spol. s r.o.",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gulp-watch": "^4.3.11",
+    "bower": "^1.8.0",
+    "dateformat": "^2.0.0",
+    "del": "^3.0.0",
+    "graceful-fs": "^4.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-copy": "^1.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.1.2",
+    "gulp-zip": "^4.0.0",
+    "merge-stream": "^1.0.1",
+    "pump": "^1.0.2"
+  }
 }

@@ -112,6 +112,7 @@ get_header();
 		<div class="block block-front-intro do-match-height bg-green">
 			<div class="video" <?php echo $introInlineStyle; ?>>
 				<div class="overlay"></div>
+		    <?php /*
 				<div class="wrap">
 			<?php if (function_exists('show_text_block') && trim(strip_tags(show_text_block(1670, TRUE))) != ''): ?>
 							<div class="title">
@@ -119,7 +120,8 @@ get_header();
 							</div>
 			<?php endif; ?>
 					<a href="<?php echo home_url('/#start'); ?>" class="scroll-down"></a>
-				</div>
+				</div><!-- /.wrap -->
+                */ ?>
 				<div id="intro-video"></div>
 			</div>
 			<div class="slider-wrap">

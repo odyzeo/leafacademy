@@ -1777,38 +1777,19 @@ header.entry-header {
 }
 
 #header .top .logo .image .leaf {
-	/*  
-	font-family: 'GothamRndBold', sans-serif;
-	font-weight: normal;    */
 	font-family: "Gotham Rounded A", "Gotham Rounded B";
 	font-style: normal;
 	font-weight: 700;
 }
 
 #header .top .logo .image .academy {
-	/*font-family: 'GothamRndLight', sans-serif;
-	font-weight: normal; */
 	font-family: "Gotham Rounded A", "Gotham Rounded B", sans-serif;
 	font-style: normal;
 	font-weight: 300;
-
 }
 
 #header .top .logo .slogan {
-	display: block;
-	padding-top: 20px;
-	font-family: 'ChaparralProRegular', sans-serif;
-	font-size: 18px;
-	font-weight: normal;
-	color: #00b24c;
-	opacity: 1;
-	text-align: left;
-	padding-left: 20px;
-	-webkit-transition: all .5s ease 0s;
-	-moz-transition: all .5s ease 0s;
-	-ms-transition: all .5s ease 0s;
-	-o-transition: all .5s ease 0s;
-	transition: all .5s ease 0s;
+	display: none;
 }
 
 #header .language-switcher {
