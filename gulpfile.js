@@ -3,11 +3,11 @@ var copy = require('gulp-copy');
 var dateFormat = require('dateformat');
 var del = require('del');
 var gulp = require('gulp');
-var merge = require('merge-stream');
 var minify_css = require('gulp-minify-css');
 var pump = require('pump');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
+var stripCssComments = require('gulp-strip-css-comments');
 var uglify = require('gulp-uglify');
 var zip = require('gulp-zip');
 
@@ -20,11 +20,29 @@ var sassSources = [
 	'css/src/*.scss'
 ];
 
-gulp.task('process-css', [], function(cb) {
+gulp.task('copy-css-deps', function(cb) {
+
+	pump([
+		gulp.src([
+			'node_modules/purecss/build/grids-responsive.css'
+		]),
+		rename({
+			'extname': '.scss'
+		}),
+		gulp.dest('css/build')
+	], cb);
+
+});
+
+gulp.task('process-css', ['copy-css-deps'], function(cb) {
 
 	pump([
 		gulp.src(sassSources),
-		sass(),
+		sass({
+			errLogToConsole: true
+		}),
+		concat('app.css'),
+		stripCssComments(),
 		gulp.dest('css'),
 		minify_css(),
 		rename({
@@ -50,7 +68,9 @@ gulp.task('process-js', [], function(cb) {
 
 gulp.task('watch', ['process-css', 'process-js'], function(cb) {
 
-	gulp.watch(sassSources, ['process-css']);
+	gulp.watch([
+		'css/src/**/*.scss'
+	], ['process-css']);
 	gulp.watch(jsSources, ['process-js']);
 
 });

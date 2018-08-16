@@ -12,11 +12,24 @@
 
 			</div><!-- #main -->
 
+<?php
+wp_nav_menu(array(
+	'theme_location' => 'footer-menu',
+	'depth' => 2,
+	'container_class' => 'footer-menu',
+	'menu_class' => 'pure-g ',
+	//'menu_id' => 'footer-menu'
+));
+?>
+
+<div class="footer-separator"></div>
+
 			<footer id="footer">
 				<div>
 					<span class="part"><?php echo __('LEAF Academy, Sasinkova 13, 811 08 Bratislava, Slovakia', 'leafacademy'); ?></span>
-					<span class="part"><?php echo __('phone: +421 907 836 490', 'leafacademy'); ?></span> 
-					<span class="part"><?php echo __('e-mail:'); ?> <a href="mailto:<?php echo esc_url(__('info@leafacademy.eu', 'leafacademy')); ?>"><?php echo __('info@leafacademy.eu', 'leafacademy'); ?></a></span> 
+					<span class="part"><?php echo __('phone: +421 907 836 490', 'leafacademy'); ?></span>
+					<span class="part"><?php echo __('e-mail:'); ?>
+						<a href="mailto:<?php echo esc_url(__('info@leafacademy.eu', 'leafacademy')); ?>"><?php echo __('info@leafacademy.eu', 'leafacademy'); ?></a></span>
 					<span class="part"><?php echo __('LEAF Organization:'); ?> <a href="<?php echo esc_url(__('www.leaf.sk', 'leafacademy')); ?>" target="_blank"><?php echo __('www.leaf.sk', 'leafacademy'); ?></a></span>
 				</div>
 
@@ -32,7 +45,7 @@
 		</div><!-- #page -->
 
 		<?php wp_footer(); ?>
-		
-	</body>
-	
+
+</body>
+
 </html>

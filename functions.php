@@ -101,7 +101,7 @@ if (!function_exists('leafacademy_setup')) :
 		register_nav_menus(array(
 			'primary' => __('Top primary menu', 'leafacademy'),
 			'secondary_top' => __('Top Secondary menu', 'leafacademy'),
-			//'secondary' => __( 'Secondary menu in left sidebar', 'leafacademy' ),
+		'footer-menu' => __('Footer menu', 'leafacademy')
 		));
 
 		/*
@@ -269,7 +269,7 @@ function leafacademy_scripts() {
 	wp_enqueue_style('genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.0.3');
 
 	// Load our main stylesheet.
-	wp_enqueue_style('leafacademy-style', get_template_directory_uri() . '/css/style.css', array(), '201803010828');
+	wp_enqueue_style('leafacademy-style', get_template_directory_uri() . '/css/app.css', array(), '201803010828');
 
 	// Load the Internet Explorer specific stylesheet.
 	wp_enqueue_style('leafacademy-ie', get_template_directory_uri() . '/css/ie.css', array('leafacademy-style'), '20131205');
@@ -416,10 +416,10 @@ if (!function_exists('leafacademy_list_authors')) :
 					<div class="contributor-summary">
 						<h2 class="contributor-name"><?php echo get_the_author_meta('display_name', $contributor_id); ?></h2>
 						<p class="contributor-bio">
-							<?php echo get_the_author_meta('description', $contributor_id); ?>
+				<?php echo get_the_author_meta('description', $contributor_id); ?>
 						</p>
 						<a class="button contributor-posts-link" href="<?php echo esc_url(get_author_posts_url($contributor_id)); ?>">
-							<?php printf(_n('%d Article', '%d Articles', $post_count, 'leafacademy'), $post_count); ?>
+				<?php printf(_n('%d Article', '%d Articles', $post_count, 'leafacademy'), $post_count); ?>
 						</a>
 					</div><!-- .contributor-summary -->
 				</div><!-- .contributor-info -->
