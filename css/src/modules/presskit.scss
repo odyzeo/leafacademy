@@ -1,0 +1,33 @@
+.presskit {
+
+	max-width: 1034px;
+	padding-left: 60px;
+	padding-right: 60px;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 1px solid #333;
+	text-align: center;
+	padding-bottom: 30px;
+
+	.logo-wrap {
+
+		padding: 20px;
+		margin: 20px 0;
+
+		&-inverted {
+			background: #333333;
+		}
+
+		img {
+			margin: 0 auto;
+		}
+	}
+
+	a {
+		padding: 20px 10px;
+	}
+}
+
+.entry-content .presskit {
+	margin-bottom: 40px !important;
+}
