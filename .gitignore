@@ -4,3 +4,4 @@
 /css/app*.css
 /css/build/
 /css/build/*
+/packaged/

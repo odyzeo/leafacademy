@@ -103,7 +103,7 @@ if (!function_exists('leafacademy_setup')) :
 		register_nav_menus(array(
 			'primary' => __('Top primary menu', 'leafacademy'),
 			'secondary_top' => __('Top Secondary menu', 'leafacademy'),
-		'footer-menu' => __('Footer menu', 'leafacademy')
+			'footer-menu' => __('Footer menu', 'leafacademy')
 		));
 
 		/*

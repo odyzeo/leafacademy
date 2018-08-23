@@ -412,8 +412,8 @@ window.screenLG = 1200;
 
 
 				stretchyNavTrigger.on('click', function(event) {
-					event.preventDefault();
 					stretchyNav.toggleClass('nav-is-visible');
+					return false;
 				});
 
 				stretchyLink.on('click', function(event) {

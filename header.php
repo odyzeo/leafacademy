@@ -82,14 +82,14 @@
 						<?php $languages = icl_get_languages('skip_missing=0&orderby=name&order=asc&link_empty_to=' . home_url('/{%lang}/')); ?>
 						<?php foreach ($languages as $language): ?>
 							<?php if ($language['active'] == 1): ?>
-								<a href="<?php echo $language['url']; ?>" data-lang="<?php echo $language['language_code']; ?>" class="language-switcher-trigger"><?php echo $language['language_code']; ?></a>
+								<a href="<?php echo $language['url']; ?>" data-lang="<?php echo $language['language_code']; ?>" class="language-switcher-trigger"><img class="lang-icon" src="<?php echo $language['country_flag_url']; ?>" /><?php echo $language['language_code']; ?></a>
 							<?php endif; ?>
 						<?php endforeach; ?>
 						<ul>
 							<?php foreach ($languages as $language): ?>
 								<?php if ($language['active'] == 0): ?>
 									<li>
-										<a href="<?php echo $language['url']; ?>"><span><?php echo $language['language_code']; ?></span></a>
+										<a href="<?php echo $language['url']; ?>"><span><img class="lang-icon" src="<?php echo $language['country_flag_url']; ?>" /><?php echo $language['language_code']; ?></span></a>
 									</li>
 								<?php endif; ?>
 							<?php endforeach; ?>
