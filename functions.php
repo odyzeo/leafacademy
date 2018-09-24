@@ -1469,3 +1469,15 @@ function wpse_287229_embed_html($cache, $url, $attr, $post_ID) {
 }
 
 add_filter('embed_oembed_html', 'wpse_287229_embed_html', 10, 4);
+
+add_filter('content_save_pre', 'la_remove_buggy_nbsps', 99);
+
+function la_remove_buggy_nbsps($content) {
+
+	//strip both types of non-breaking space in case NGG or similar is installed
+	$content = str_replace('&nbsp;', ' ', $content);
+	$content = str_replace('\xc2\xa0', ' ', $content);
+
+	return $content;
+
+}

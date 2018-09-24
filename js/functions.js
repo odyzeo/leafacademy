@@ -646,6 +646,17 @@ window.screenLG = 1200;
 			fnTeamPlaceholders(3);
 			fnGetHashFromUrl();
 
+			if ($('body').hasClass('page')) {
+
+				/* Substitutes Empty Space for $nbsp; in Post Content */
+				var oldhtml = $('.entry-content').html();
+				var newhtml = oldhtml.replace(/&nbsp;/g, ' ');
+
+				$('.entry-content').html(newhtml);
+
+			}
+
+
 		});
 
 		/*-------------------------------------------*/
