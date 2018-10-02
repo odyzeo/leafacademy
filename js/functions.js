@@ -646,7 +646,7 @@ window.screenLG = 1200;
 			fnTeamPlaceholders(3);
 			fnGetHashFromUrl();
 
-			if ($('body').hasClass('page')) {
+			if ($('body').hasClass('page') && $('.entry-content').length > 0 && ('#la-calendar').length === 0) {
 
 				/* Substitutes Empty Space for $nbsp; in Post Content */
 				var oldhtml = $('.entry-content').html();

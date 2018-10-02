@@ -298,7 +298,7 @@ function leafacademy_scripts() {
 	wp_enqueue_script('leafacademy-imagesloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.min.js', array('jquery'), '20151102', TRUE);
 	wp_enqueue_script('leafacademy-masonry', get_template_directory_uri() . '/js/masonry.pkgd.min.js', array('jquery'), '20151102', TRUE);
 	wp_enqueue_script('leafacademy-slick', get_template_directory_uri() . '/js/slick/slick.min.js', array('jquery'), '20151102', TRUE);
-	wp_enqueue_script('leafacademy-script', get_template_directory_uri() . '/js/functions.js', array('jquery'), '201711001', TRUE);
+	wp_enqueue_script('leafacademy-script', get_template_directory_uri() . '/js/functions.js', array('jquery'), '201810021556', TRUE);
 
 }
 
