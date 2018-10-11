@@ -86,7 +86,11 @@ if (!function_exists('leafacademy_setup')) :
 		load_theme_textdomain('leafacademy', get_template_directory() . '/languages');
 
 		// This theme styles the visual editor to resemble the theme style.
-		add_editor_style(array('css/editor-style.css', leafacademy_font_url(), 'genericons/genericons.css'));
+	    add_editor_style(array(
+		    'css/dist/editor-style.min.css',
+		    leafacademy_font_url(),
+		    'genericons/genericons.css'
+	    ));
 
 		// Add RSS feed links to <head> for posts and comments.
 		add_theme_support('automatic-feed-links');
@@ -246,11 +250,7 @@ function leafacademy_font_url() {
 	 * by Lato, translate this to 'off'. Do not translate into your own language.
 	 */
 	if ('off' !== _x('on', 'Lato font: on or off', 'leafacademy')) {
-		$query_args = array(
-			'family' => urlencode('Lato:300,400,700,900,300italic,400italic,700italic'),
-			'subset' => urlencode('latin,latin-ext'),
-		);
-		$font_url = add_query_arg($query_args, 'https://fonts.googleapis.com/css');
+	    $font_url = get_template_directory_uri() . '/css/dist/lato.min.css';
 	}
 
 	return $font_url;
@@ -271,11 +271,12 @@ function leafacademy_scripts() {
 	wp_enqueue_style('genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.0.3');
 
 	// Load our main stylesheet.
-	wp_enqueue_style('leafacademy-style', get_template_directory_uri() . '/css/app.css', array(), '201803010828');
+	wp_enqueue_style('leafacademy-style', get_template_directory_uri() . '/css/dist/app.min.css', array(), '20181011');
+
+	wp_enqueue_style('leafacademy-slick', get_template_directory_uri() . '/css/dist/slick/slick.min.css', array('leafacademy-style'), '20131205');
 
 	// Load the Internet Explorer specific stylesheet.
-	wp_enqueue_style('leafacademy-ie', get_template_directory_uri() . '/css/ie.css', array('leafacademy-style'), '20131205');
-	wp_enqueue_style('leafacademy-slick', get_template_directory_uri() . '/js/slick/slick.css', array('leafacademy-style'), '20131205');
+	wp_enqueue_style('leafacademy-ie', get_template_directory_uri() . '/css/dist/ie.min.css', array('leafacademy-style'), '20131205');
 	wp_style_add_data('leafacademy-ie', 'conditional', 'lt IE 9');
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -283,22 +284,22 @@ function leafacademy_scripts() {
 	}
 
 	if (is_singular() && wp_attachment_is_image()) {
-		wp_enqueue_script('leafacademy-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array('jquery'), '20130402');
+	    wp_enqueue_script('leafacademy-keyboard-image-navigation', get_template_directory_uri() . '//js/dist/keyboard-image-navigation.min.js', array('jquery'), '20181011');
 	}
 
 	if (is_front_page() && 'slider' == get_theme_mod('featured_content_layout')) {
-		wp_enqueue_script('leafacademy-slider', get_template_directory_uri() . '/js/slider.js', array('jquery'), '20151102', TRUE);
 
+	    wp_enqueue_script('leafacademy-slider', get_template_directory_uri() . '/js/dist/slider.min.js', array('jquery'), '20181011', TRUE);
 		wp_localize_script('leafacademy-slider', 'featuredSliderDefaults', array(
 			'prevText' => __('Previous', 'leafacademy'),
 			'nextText' => __('Next', 'leafacademy')
 		));
-	}
-	wp_enqueue_script('leafacademy-matchHeight', get_template_directory_uri() . '/js/jquery.matchHeight-min.js', array('jquery'), '20151102', TRUE);
-	wp_enqueue_script('leafacademy-imagesloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.min.js', array('jquery'), '20151102', TRUE);
-	wp_enqueue_script('leafacademy-masonry', get_template_directory_uri() . '/js/masonry.pkgd.min.js', array('jquery'), '20151102', TRUE);
-	wp_enqueue_script('leafacademy-slick', get_template_directory_uri() . '/js/slick/slick.min.js', array('jquery'), '20151102', TRUE);
-	wp_enqueue_script('leafacademy-script', get_template_directory_uri() . '/js/functions.js', array('jquery'), '201810021556', TRUE);
+
+    }
+
+	//  refer to the build script for list of files included in the vendors bundle
+	wp_enqueue_script('leafacademy-vendors', get_template_directory_uri() . '/js/dist/vendors.min.js', array('jquery'), '20181011', TRUE);
+	wp_enqueue_script('leafacademy-script', get_template_directory_uri() . '/js/dist/app.min.js', array('leafacademy-vendors'), '20181011', TRUE);
 
 }
 

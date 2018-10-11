@@ -86,7 +86,8 @@ function leafacademy_sanitize_layout( $layout ) {
  * @since Twenty Fourteen 1.0
  */
 function leafacademy_customize_preview_js() {
-	wp_enqueue_script( 'leafacademy_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20131205', true );
+
+	wp_enqueue_script('leafacademy_customizer', get_template_directory_uri() . '/js/dist/customizer.min.js', array('customize-preview'), '20131205', TRUE);
 }
 add_action( 'customize_preview_init', 'leafacademy_customize_preview_js' );
 

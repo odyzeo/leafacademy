@@ -1,7 +1,15 @@
 .idea
+/blog/css/dist/
+/blog/css/dist/*
+/blog/js/dist/
+/blog/js/dist/*
 /dist/
-/node_modules/
-/css/app*.css
+/dist/*
+/css/dist/
+/css/dist/*
 /css/build/
 /css/build/*
+/js/dist/
+/js/dist/*
+/node_modules/
 /packaged/

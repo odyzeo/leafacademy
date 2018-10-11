@@ -26,7 +26,7 @@
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/fonts/gotham-rnd/408453/B2F6C17C212922BE4.css"/>
 	<!--[if lt IE 9]>
-	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/js/dist/html5.min.js"></script>
 	<![endif]-->
 
 	<!-- Google Tag Manager -->
