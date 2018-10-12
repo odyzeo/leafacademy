@@ -646,7 +646,7 @@ window.screenLG = 1200;
 			fnTeamPlaceholders(3);
 			fnGetHashFromUrl();
 
-			if ($('body').hasClass('page') && $('.entry-content').length > 0 && ('#la-calendar').length === 0) {
+			if ($('body').hasClass('page') && $('.entry-content').length > 0 && $('#la-calendar').length === 0) {
 
 				/* Substitutes Empty Space for $nbsp; in Post Content */
 				var oldhtml = $('.entry-content').html();
@@ -654,6 +654,22 @@ window.screenLG = 1200;
 
 				$('.entry-content').html(newhtml);
 
+			}
+
+			var newsListItems = $('.news-list-content .formated-output');
+			if (newsListItems.length > 0) {
+
+				newsListItems.each(function() {
+
+					var newsListItem = $(this);
+
+					/* Substitutes Empty Space for $nbsp; in Post Content */
+					var oldhtml = newsListItem.html();
+					var newhtml = oldhtml.replace(/&nbsp;/g, ' ');
+
+					newsListItem.html(newhtml);
+
+				});
 			}
 
 
