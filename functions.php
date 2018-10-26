@@ -271,7 +271,7 @@ function leafacademy_scripts() {
 	wp_enqueue_style('genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.0.3');
 
 	// Load our main stylesheet.
-	wp_enqueue_style('leafacademy-style', get_template_directory_uri() . '/css/dist/app.min.css', array(), '20181011');
+	wp_enqueue_style('leafacademy-style', get_template_directory_uri() . '/css/dist/app.min.css', array(), '20181012');
 
 	wp_enqueue_style('leafacademy-slick', get_template_directory_uri() . '/css/dist/slick/slick.min.css', array('leafacademy-style'), '20131205');
 
